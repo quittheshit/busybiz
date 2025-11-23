@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burger Menu Diagnostic Test</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f0f0;
+    }
+
+    .diagnostic-panel {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .test-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .burger-icon {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+      padding: 12px;
+      position: relative;
+      z-index: 10001;
+      min-width: 44px;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      transition: transform 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .burger-icon:hover {
+      transform: scale(1.1);
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .burger-icon:active {
+      transform: scale(0.95);
+    }
+
+    .burger-icon span {
+      width: 28px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: block;
+    }
+
+    .burger-icon.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .burger-icon.active span:nth-child(2) {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    .burger-icon.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 400px;
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      z-index: 10000;
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 20px;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .menu-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      gap: 30px;
+      color: white;
+      font-size: 24px;
+    }
+
+    .log-entry {
+      padding: 8px 12px;
+      margin: 4px 0;
+      background: #f8f9fa;
+      border-left: 3px solid #667eea;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
+
+    .log-entry.success {
+      border-left-color: #28a745;
+      background: #d4edda;
+    }
+
+    .log-entry.error {
+      border-left-color: #dc3545;
+      background: #f8d7da;
+    }
+
+    .log-entry.warning {
+      border-left-color: #ffc107;
+      background: #fff3cd;
+    }
+
+    .test-button {
+      padding: 12px 24px;
+      margin: 5px;
+      border: none;
+      border-radius: 4px;
+      background: #667eea;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+
+    .test-button:hover {
+      background: #5568d3;
+    }
+
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .status-indicator.active {
+      background: #28a745;
+      box-shadow: 0 0 8px #28a745;
+    }
+
+    .status-indicator.inactive {
+      background: #dc3545;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    h3 {
+      margin-top: 15px;
+      margin-bottom: 10px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-header">
+    <div>
+      <h1>🍔 Burger Menu Diagnostic Test</h1>
+      <p>Live testing environment for hamburger menu functionality</p>
+    </div>
+    <div class="burger-icon" id="burgerIcon" role="button" aria-label="Toggle mobile menu" aria-expanded="false" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="menu-content">
+      <h2>Mobile Menu</h2>
+      <a href="#" style="color: white; text-decoration: none;">Home</a>
+      <a href="#" style="color: white; text-decoration: none;">About</a>
+      <a href="#" style="color: white; text-decoration: none;">Services</a>
+      <a href="#" style="color: white; text-decoration: none;">Contact</a>
+      <button onclick="toggleMobileMenu()" style="padding: 12px 24px; background: white; color: #667eea; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">Close Menu</button>
+    </div>
+  </div>
+
+  <div class="diagnostic-panel">
+    <h2>📊 Status Monitor</h2>
+    <p><span class="status-indicator" id="elementStatus"></span> <strong>Elements Found:</strong> <span id="elementsFound">Checking...</span></p>
+    <p><span class="status-indicator" id="listenerStatus"></span> <strong>Event Listener:</strong> <span id="listenerStatus">Checking...</span></p>
+    <p><span class="status-indicator" id="menuStatus"></span> <strong>Menu State:</strong> <span id="menuState">Closed</span></p>
+  </div>
+
+  <div class="diagnostic-panel">
+    <h2>🧪 Manual Tests</h2>
+    <button class="test-button" onclick="manualToggle()">Manual Toggle</button>
+    <button class="test-button" onclick="simulateClick()">Simulate Click</button>
+    <button class="test-button" onclick="checkElements()">Check Elements</button>
+    <button class="test-button" onclick="clearLogs()">Clear Logs</button>
+  </div>
+
+  <div class="diagnostic-panel">
+    <h2>📝 Event Log</h2>
+    <div id="logContainer"></div>
+  </div>
+
+  <div class="diagnostic-panel">
+    <h2>🔧 Diagnostic Information</h2>
+    <h3>Browser Info:</h3>
+    <p><strong>User Agent:</strong> <span id="userAgent"></span></p>
+    <p><strong>Screen Width:</strong> <span id="screenWidth"></span></p>
+    <p><strong>Touch Support:</strong> <span id="touchSupport"></span></p>
+
+    <h3>Element Properties:</h3>
+    <pre id="elementProps" style="background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto;"></pre>
+  </div>
+
+  <script>
+    // Logging system
+    function log(message, type = 'info') {
+      const logContainer = document.getElementById('logContainer');
+      const entry = document.createElement('div');
+      entry.className = `log-entry ${type}`;
+      const timestamp = new Date().toLocaleTimeString();
+      entry.textContent = `[${timestamp}] ${message}`;
+      logContainer.insertBefore(entry, logContainer.firstChild);
+      console.log(`[${type.toUpperCase()}] ${message}`);
+    }
+
+    function clearLogs() {
+      document.getElementById('logContainer').innerHTML = '';
+      log('Logs cleared', 'info');
+    }
+
+    // Core toggle function
+    function toggleMobileMenu() {
+      log('toggleMobileMenu() called', 'info');
+
+      const menu = document.getElementById('mobileMenu');
+      const burger = document.getElementById('burgerIcon');
+
+      if (!menu || !burger) {
+        log('ERROR: Navigation elements not found!', 'error');
+        console.error('Navigation elements not found');
+        return;
+      }
+
+      const isActive = menu.classList.contains('active');
+      log(`Menu is currently: ${isActive ? 'OPEN' : 'CLOSED'}`, 'info');
+
+      menu.classList.toggle('active');
+      burger.classList.toggle('active');
+      burger.setAttribute('aria-expanded', !isActive);
+
+      // Prevent body scroll when menu is open
+      if (!isActive) {
+        document.body.style.overflow = 'hidden';
+        log('Menu OPENED - Body scroll disabled', 'success');
+      } else {
+        document.body.style.overflow = '';
+        log('Menu CLOSED - Body scroll enabled', 'success');
+      }
+
+      updateStatus();
+    }
+
+    // Update status indicators
+    function updateStatus() {
+      const menu = document.getElementById('mobileMenu');
+      const burger = document.getElementById('burgerIcon');
+
+      // Element status
+      const elementStatusIndicator = document.querySelector('#elementStatus');
+      const elementsFoundText = document.getElementById('elementsFound');
+
+      if (burger && menu) {
+        elementStatusIndicator.className = 'status-indicator active';
+        elementsFoundText.textContent = '✓ Burger & Menu elements exist';
+      } else {
+        elementStatusIndicator.className = 'status-indicator inactive';
+        elementsFoundText.textContent = '✗ Missing elements';
+      }
+
+      // Menu state
+      const menuStatusIndicator = document.querySelector('#menuStatus');
+      const menuStateText = document.getElementById('menuState');
+
+      if (menu && menu.classList.contains('active')) {
+        menuStatusIndicator.className = 'status-indicator active';
+        menuStateText.textContent = 'Open';
+      } else {
+        menuStatusIndicator.className = 'status-indicator inactive';
+        menuStateText.textContent = 'Closed';
+      }
+    }
+
+    // Manual tests
+    function manualToggle() {
+      log('Manual toggle test initiated', 'warning');
+      toggleMobileMenu();
+    }
+
+    function simulateClick() {
+      log('Simulating click event on burger icon', 'warning');
+      const burger = document.getElementById('burgerIcon');
+      if (burger) {
+        burger.click();
+        log('Click event dispatched', 'success');
+      } else {
+        log('ERROR: Burger icon not found', 'error');
+      }
+    }
+
+    function checkElements() {
+      log('Running element check...', 'warning');
+      const burger = document.getElementById('burgerIcon');
+      const menu = document.getElementById('mobileMenu');
+
+      log(`Burger element: ${burger ? 'FOUND' : 'NOT FOUND'}`, burger ? 'success' : 'error');
+      log(`Menu element: ${menu ? 'FOUND' : 'NOT FOUND'}`, menu ? 'success' : 'error');
+
+      if (burger) {
+        const rect = burger.getBoundingClientRect();
+        log(`Burger dimensions: ${rect.width}x${rect.height}`, 'info');
+        log(`Burger position: top=${rect.top}, left=${rect.left}`, 'info');
+        log(`Burger z-index: ${window.getComputedStyle(burger).zIndex}`, 'info');
+        log(`Burger cursor: ${window.getComputedStyle(burger).cursor}`, 'info');
+        log(`Burger pointer-events: ${window.getComputedStyle(burger).pointerEvents}`, 'info');
+      }
+
+      updateStatus();
+      updateDiagnostics();
+    }
+
+    function updateDiagnostics() {
+      // Browser info
+      document.getElementById('userAgent').textContent = navigator.userAgent;
+      document.getElementById('screenWidth').textContent = `${window.innerWidth}px`;
+      document.getElementById('touchSupport').textContent = 'ontouchstart' in window ? 'Yes' : 'No';
+
+      // Element properties
+      const burger = document.getElementById('burgerIcon');
+      if (burger) {
+        const props = {
+          id: burger.id,
+          classList: Array.from(burger.classList),
+          tabindex: burger.tabIndex,
+          ariaLabel: burger.getAttribute('aria-label'),
+          ariaExpanded: burger.getAttribute('aria-expanded'),
+          computedDisplay: window.getComputedStyle(burger).display,
+          computedPointerEvents: window.getComputedStyle(burger).pointerEvents,
+          computedZIndex: window.getComputedStyle(burger).zIndex,
+          hasClickListener: 'Checking via test clicks...'
+        };
+        document.getElementById('elementProps').textContent = JSON.stringify(props, null, 2);
+      }
+    }
+
+    // Initialize app
+    function initializeApp() {
+      log('=== INITIALIZATION STARTED ===', 'warning');
+
+      const burger = document.getElementById('burgerIcon');
+      const menu = document.getElementById('mobileMenu');
+
+      if (!burger || !menu) {
+        log('CRITICAL ERROR: Navigation elements missing!', 'error');
+        log(`Burger: ${!!burger}, Menu: ${!!menu}`, 'error');
+        return;
+      }
+
+      log('Navigation elements found successfully', 'success');
+
+      // Add click listener
+      try {
+        burger.addEventListener('click', function(e) {
+          log('CLICK EVENT FIRED on burger icon', 'success');
+          e.stopPropagation();
+          toggleMobileMenu();
+        });
+        log('Click event listener attached successfully', 'success');
+
+        const listenerStatusIndicator = document.querySelector('#listenerStatus');
+        listenerStatusIndicator.className = 'status-indicator active';
+        document.getElementById('listenerStatus').textContent = '✓ Attached';
+      } catch (error) {
+        log(`ERROR attaching listener: ${error.message}`, 'error');
+      }
+
+      // Add keyboard support
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menu.classList.contains('active')) {
+          log('Escape key pressed - closing menu', 'info');
+          toggleMobileMenu();
+        }
+
+        if ((e.key === 'Enter' || e.key === ' ') && document.activeElement === burger) {
+          log(`${e.key} key pressed on burger - toggling menu`, 'info');
+          e.preventDefault();
+          toggleMobileMenu();
+        }
+      });
+      log('Keyboard event listeners attached', 'success');
+
+      // Click outside to close
+      document.addEventListener('click', function(e) {
+        if (burger && burger.contains(e.target)) {
+          return;
+        }
+
+        if (menu && menu.classList.contains('active') && !menu.contains(e.target)) {
+          log('Click outside detected - closing menu', 'info');
+          toggleMobileMenu();
+        }
+      });
+      log('Click-outside listener attached', 'success');
+
+      // Direct click tracking for diagnostics
+      burger.addEventListener('mousedown', function() {
+        log('MOUSEDOWN event on burger', 'info');
+      });
+
+      burger.addEventListener('mouseup', function() {
+        log('MOUSEUP event on burger', 'info');
+      });
+
+      burger.addEventListener('touchstart', function() {
+        log('TOUCHSTART event on burger', 'info');
+      }, { passive: true });
+
+      burger.addEventListener('touchend', function() {
+        log('TOUCHEND event on burger', 'info');
+      }, { passive: true });
+
+      log('=== INITIALIZATION COMPLETE ===', 'success');
+
+      updateStatus();
+      updateDiagnostics();
+    }
+
+    // Run initialization when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeApp);
+    } else {
+      initializeApp();
+    }
+
+    // Monitor window resize
+    window.addEventListener('resize', function() {
+      log(`Window resized: ${window.innerWidth}x${window.innerHeight}`, 'info');
+      updateDiagnostics();
+    });
+  </script>
+</body>
+</html>
