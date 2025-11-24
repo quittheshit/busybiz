@@ -5,6 +5,7 @@ function App() {
   const [contactSuccessMessage, setContactSuccessMessage] = useState(false);
   const [contactErrorMessage, setContactErrorMessage] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showThankYouModal, setShowThankYouModal] = useState(false);
 
   const openContactModal = () => {
     setIsContactModalOpen(true);
@@ -90,10 +91,16 @@ function App() {
         setContactSuccessMessage(true);
         form.reset();
 
-        // Close modal after 3 seconds
         setTimeout(() => {
-          closeContactModal();
-        }, 3000);
+          setIsContactModalOpen(false);
+          setContactSuccessMessage(false);
+          document.body.style.overflow = '';
+
+          setTimeout(() => {
+            setShowThankYouModal(true);
+            document.body.style.overflow = 'hidden';
+          }, 200);
+        }, 500);
       } else {
         throw new Error('Failed to send message');
       }
@@ -508,6 +515,66 @@ function App() {
                 </button>
               </form>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Thank You Modal */}
+      {showThankYouModal && (
+        <div
+          className="thank-you-modal-overlay"
+          onClick={() => {
+            setShowThankYouModal(false);
+            document.body.style.overflow = '';
+          }}
+          role="dialog"
+          aria-labelledby="thankYouModalTitle"
+          aria-modal="true"
+        >
+          <div
+            className="thank-you-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="thank-you-modal-close"
+              onClick={() => {
+                setShowThankYouModal(false);
+                document.body.style.overflow = '';
+              }}
+              aria-label="Luk tak besked"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
+            <div className="thank-you-icon-wrapper">
+              <div className="thank-you-icon-circle">
+                <svg className="thank-you-checkmark" viewBox="0 0 52 52" fill="none">
+                  <circle className="checkmark-circle" cx="26" cy="26" r="25" stroke="#4fa88b" strokeWidth="2" fill="none"/>
+                  <path className="checkmark-check" fill="none" stroke="#4fa88b" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" d="M14 27l7.5 7.5L38 18"/>
+                </svg>
+              </div>
+            </div>
+
+            <h2 id="thankYouModalTitle" className="thank-you-title headline-font">
+              Tak for din besked!
+            </h2>
+
+            <p className="thank-you-message">
+              Mange tak for at skrive! Vi svarer dig inden for 24 timer
+            </p>
+
+            <button
+              className="thank-you-close-button"
+              onClick={() => {
+                setShowThankYouModal(false);
+                document.body.style.overflow = '';
+              }}
+            >
+              Luk
+            </button>
           </div>
         </div>
       )}

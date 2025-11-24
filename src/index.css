@@ -900,3 +900,194 @@ body {
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
+
+.thank-you-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  z-index: 10002;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.thank-you-modal-content {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fdfc 100%);
+  border-radius: 32px;
+  max-width: 500px;
+  width: 100%;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  position: relative;
+  box-shadow:
+    0 35px 100px rgba(79, 168, 139, 0.3),
+    0 15px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 0 0 1px rgba(79, 168, 139, 0.1);
+  animation: thankYouSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+.thank-you-modal-content::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(79, 168, 139, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+@keyframes thankYouSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.thank-you-modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(45, 55, 72, 0.08);
+  border: none;
+  color: #4a5568;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  padding: 0;
+}
+
+.thank-you-modal-close:hover {
+  background: rgba(45, 55, 72, 0.12);
+  transform: rotate(90deg) scale(1.1);
+  color: #2d3748;
+}
+
+.thank-you-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.thank-you-icon-circle {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  animation: iconBounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+@keyframes iconBounceIn {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.thank-you-checkmark {
+  width: 100%;
+  height: 100%;
+}
+
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: strokeCircle 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.4s forwards;
+}
+
+@keyframes strokeCircle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.checkmark-check {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: strokeCheck 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes strokeCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.thank-you-title {
+  font-size: 2rem;
+  color: #2d3748;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  animation: fadeInUp 0.5s ease-out 0.5s both;
+}
+
+.thank-you-message {
+  font-size: 1.125rem;
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.5s ease-out 0.6s both;
+}
+
+.thank-you-close-button {
+  padding: 0.875rem 2.5rem;
+  background: linear-gradient(135deg, #4fa88b 0%, #6ba896 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 20px rgba(79, 168, 139, 0.3);
+  text-transform: uppercase;
+  animation: fadeInUp 0.5s ease-out 0.7s both;
+}
+
+.thank-you-close-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(79, 168, 139, 0.4);
+  background: linear-gradient(135deg, #3d8a73 0%, #5a9785 100%);
+}
+
+@media (max-width: 640px) {
+  .thank-you-modal-content {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .thank-you-title {
+    font-size: 1.75rem;
+  }
+
+  .thank-you-message {
+    font-size: 1rem;
+  }
+
+  .thank-you-icon-circle {
+    width: 80px;
+    height: 80px;
+  }
+}
