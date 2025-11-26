@@ -66,9 +66,10 @@ const RankSearchSection = () => {
       const clientHeight = container.clientHeight;
       const maxScroll = scrollHeight - clientHeight;
 
-      if (scrollTop >= maxScroll - 10) {
-        const extraScroll = scrollTop - maxScroll;
-        const progress = Math.min(extraScroll / 500, 1);
+      const scrollPercentage = (scrollTop / maxScroll) * 100;
+
+      if (scrollPercentage >= 50) {
+        const progress = Math.min((scrollPercentage - 50) / 50, 1);
         setScrollProgress(progress);
 
         const newPosition = Math.max(
@@ -260,7 +261,7 @@ const RankSearchSection = () => {
                   </div>
                 )}
 
-                <div style={{ height: '1000px' }} />
+                <div style={{ height: '200px' }} />
               </div>
             </div>
 
