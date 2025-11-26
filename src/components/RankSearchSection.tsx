@@ -22,7 +22,7 @@ const RankSearchSection = memo(() => {
 
   const VISIBLE_LISTINGS = 8;
   const STARTING_POSITION = 28;
-  const LISTING_HEIGHT = 90;
+  const LISTING_HEIGHT = 65;
 
   useEffect(() => {
     const targetQuery = queries[queryIndex];
@@ -131,20 +131,20 @@ const RankSearchSection = memo(() => {
   const displayListings = generateListings();
 
   return (
-    <section className="relative bg-gradient-to-b from-gray-50 to-white py-20">
+    <section className="relative bg-gradient-to-b from-gray-50 to-white py-12">
       <div className="px-6 md:px-12 lg:px-20">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="headline-font text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6">
+          <div className="text-center mb-8">
+            <h2 className="headline-font text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-4">
               Bliv fundet online
             </h2>
-            <p className="text-gray-600 text-lg md:text-xl mb-8">
+            <p className="text-gray-600 text-lg md:text-xl mb-6">
               Se hvordan dit firma klatrer til tops i søgeresultaterne
             </p>
           </div>
 
-          <div className="mb-12 max-w-3xl mx-auto">
-            <div className="relative bg-white rounded-full shadow-lg border border-gray-200 px-6 py-4 flex items-center gap-4">
+          <div className="mb-8 max-w-3xl mx-auto">
+            <div className="relative bg-white rounded-full shadow-lg border border-gray-200 px-6 py-3 flex items-center gap-4">
               <Search className="w-5 h-5 text-gray-400 flex-shrink-0" />
               <div className="flex-1 text-gray-700 text-base md:text-lg font-light">
                 {currentQuery}
@@ -159,8 +159,8 @@ const RankSearchSection = memo(() => {
           </div>
 
           <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-            <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-teal-50">
-              <h3 className="text-lg font-semibold text-gray-900">
+            <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-teal-50">
+              <h3 className="text-base font-semibold text-gray-900">
                 Søgeresultater
               </h3>
             </div>
@@ -177,7 +177,7 @@ const RankSearchSection = memo(() => {
                   <div
                     key={`${listing.position}-${listing.isYourBusiness ? 'your' : 'other'}-${index}`}
                     className={`
-                      px-6 py-5 border-b border-gray-100 transition-all duration-500 ease-in-out
+                      px-6 py-3 border-b border-gray-100 transition-all duration-500 ease-in-out
                       ${
                         listing.isYourBusiness
                           ? 'bg-gradient-to-r from-teal-50 via-blue-50 to-teal-50 border-l-4 border-l-teal-500 shadow-md'
@@ -192,7 +192,7 @@ const RankSearchSection = memo(() => {
                     <div className="flex items-center gap-6 h-full">
                       <div
                         className={`
-                          text-2xl font-bold flex-shrink-0 w-14 text-left
+                          text-xl font-bold flex-shrink-0 w-10 text-left
                           ${
                             listing.isYourBusiness
                               ? 'text-teal-600'
@@ -209,8 +209,8 @@ const RankSearchSection = memo(() => {
                             font-semibold
                             ${
                               listing.isYourBusiness
-                                ? 'text-gray-900 text-xl'
-                                : 'text-gray-700 text-lg'
+                                ? 'text-gray-900 text-base'
+                                : 'text-gray-700 text-base'
                             }
                           `}
                         >
@@ -222,7 +222,7 @@ const RankSearchSection = memo(() => {
                             listing.name
                           )}
                         </div>
-                        <div className="text-sm text-gray-500 mt-1">
+                        <div className="text-xs text-gray-500 mt-0.5">
                           {listing.isYourBusiness
                             ? 'Din virksomhed stiger i søgeresultaterne'
                             : 'Konkurrent virksomhed'}
@@ -243,12 +243,12 @@ const RankSearchSection = memo(() => {
               </div>
             </div>
 
-            <div className="p-6 bg-gradient-to-r from-gray-50 to-blue-50 border-t border-gray-200">
+            <div className="p-4 bg-gradient-to-r from-gray-50 to-blue-50 border-t border-gray-200">
               <div className="text-center">
-                <p className="text-sm text-gray-600 mb-2">
+                <p className="text-xs text-gray-600 mb-1.5">
                   <strong className="text-gray-900">Scroll ned</strong> for at se dit firma klatre til tops
                 </p>
-                <div className="flex items-center justify-center gap-2 text-teal-600 font-semibold">
+                <div className="flex items-center justify-center gap-2 text-teal-600 font-semibold text-sm">
                   <span>Fra position {STARTING_POSITION}</span>
                   <span>→</span>
                   <span>Til #1</span>
@@ -257,8 +257,8 @@ const RankSearchSection = memo(() => {
             </div>
           </div>
 
-          <div className="mt-12 text-center max-w-2xl mx-auto">
-            <p className="text-gray-600 leading-relaxed">
+          <div className="mt-8 text-center max-w-2xl mx-auto">
+            <p className="text-gray-600 leading-relaxed text-sm">
               Med vores SEO-optimering og lokale markedsføringsstrategier hjælper vi dit firma med at blive den
               <strong className="text-teal-600"> førstevalg</strong> når potentielle kunder søger efter dine ydelser.
             </p>
