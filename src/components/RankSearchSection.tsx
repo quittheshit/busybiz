@@ -7,6 +7,7 @@ const RankSearchSection = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
   const [yourPosition, setYourPosition] = useState(28);
+  const [wheelProgress, setWheelProgress] = useState(0);
 
   const queries = [
     'Bedste frisør i København',
@@ -22,7 +23,6 @@ const RankSearchSection = () => {
   const VISIBLE_LISTINGS = 8;
   const STARTING_POSITION = 28;
   const LISTING_HEIGHT = 90;
-  const SCROLL_SENSITIVITY = 300;
 
   useEffect(() => {
     const targetQuery = queries[queryIndex];
@@ -61,29 +61,27 @@ const RankSearchSection = () => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    const handleScroll = () => {
-      const scrollTop = container.scrollTop;
-      const scrollHeight = container.scrollHeight;
-      const clientHeight = container.clientHeight;
-      const maxScroll = scrollHeight - clientHeight;
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
 
-      const scrollPercentage = (scrollTop / maxScroll) * 100;
+      const delta = e.deltaY;
+      const sensitivity = 0.001;
 
-      if (scrollPercentage >= 30) {
-        const effectiveProgress = Math.min((scrollPercentage - 30) / 70, 1);
+      setWheelProgress((prev) => {
+        const newProgress = Math.max(0, Math.min(1, prev + delta * sensitivity));
 
         const newPosition = Math.max(
           1,
-          Math.round(STARTING_POSITION - effectiveProgress * (STARTING_POSITION - 1))
+          Math.round(STARTING_POSITION - newProgress * (STARTING_POSITION - 1))
         );
         setYourPosition(newPosition);
-      } else {
-        setYourPosition(STARTING_POSITION);
-      }
+
+        return newProgress;
+      });
     };
 
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
+    container.addEventListener('wheel', handleWheel, { passive: false });
+    return () => container.removeEventListener('wheel', handleWheel);
   }, []);
 
   const generateListings = () => {
@@ -169,13 +167,12 @@ const RankSearchSection = () => {
 
             <div
               ref={scrollContainerRef}
-              className="relative overflow-y-auto custom-scrollbar"
+              className="relative overflow-hidden"
               style={{
                 height: `${VISIBLE_LISTINGS * LISTING_HEIGHT}px`,
-                scrollBehavior: 'smooth'
               }}
             >
-              <div className="py-4">
+              <div>
                 {displayListings.map((listing, index) => (
                   <div
                     key={`${listing.position}-${listing.isYourBusiness ? 'your' : 'other'}-${index}`}
@@ -243,8 +240,6 @@ const RankSearchSection = () => {
                     </div>
                   </div>
                 ))}
-
-                <div style={{ height: `${SCROLL_SENSITIVITY}px` }} />
               </div>
             </div>
 
