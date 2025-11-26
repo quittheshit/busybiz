@@ -374,7 +374,7 @@ function App() {
             </div>
 
             <div className="flex flex-col items-center space-y-3 text-gray-700 text-sm">
-              <div className="flex items-center space-x-3 transition-all duration-300 hover:text-gray-900 group cursor-pointer">
+              <div className="flex items-center space-x-3 transition-all duration-300 hover:text-gray-900 group cursor-pointer" onClick={openContactModal}>
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-200 to-teal-100 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3" style={{boxShadow: '0 4px 12px rgba(79, 168, 139, 0.25), 0 0 0 3px rgba(133, 194, 175, 0.1)'}}>
                   <svg className="w-4 h-4 text-teal-700 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
