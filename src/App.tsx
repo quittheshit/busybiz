@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, lazy, Suspense, useCallback, useMemo } from 'react';
 
 const RankSearchSection = lazy(() => import('./components/RankSearchSection'));
 
@@ -9,29 +9,26 @@ function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showThankYouModal, setShowThankYouModal] = useState(false);
 
-  const openContactModal = () => {
+  const openContactModal = useCallback(() => {
     setIsContactModalOpen(true);
     document.body.style.overflow = 'hidden';
 
-    // Focus on first input field
     setTimeout(() => {
       const firstInput = document.getElementById('contactName');
       if (firstInput) firstInput.focus();
     }, 300);
-  };
+  }, []);
 
-  const closeContactModal = () => {
+  const closeContactModal = useCallback(() => {
     setIsContactModalOpen(false);
     document.body.style.overflow = '';
     setContactSuccessMessage(false);
     setContactErrorMessage(false);
 
-    // Reset form
     const form = document.getElementById('contactForm') as HTMLFormElement;
     if (form) form.reset();
-  };
+  }, []);
 
-  // Handle ESC key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isContactModalOpen) {
@@ -41,10 +38,29 @@ function App() {
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isContactModalOpen]);
+  }, [isContactModalOpen, closeContactModal]);
 
-  // Smooth scroll handler
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '50px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, observerOptions);
+
+    const scrollElements = document.querySelectorAll('.scroll-reveal');
+    scrollElements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const targetId = e.currentTarget.getAttribute('href');
     const targetElement = document.querySelector(targetId || '');
@@ -59,7 +75,7 @@ function App() {
         behavior: 'smooth'
       });
     }
-  };
+  }, []);
 
   const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -121,7 +137,7 @@ function App() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo with Mascot */}
           <div className="flex items-center space-x-4">
-            <img src="/Busybiz-mascot-transparent-Photoroom copy.png" alt="BusyBiz Logo" className="mascot-logo" />
+            <img src="/Busybiz-mascot-transparent-Photoroom copy.png" alt="BusyBiz Logo" className="mascot-logo" loading="eager" fetchpriority="high" />
             <span className="logo-text text-white">BUSYBIZ</span>
           </div>
 
@@ -189,22 +205,22 @@ function App() {
             {/* Business Icons */}
             <div className="fade-in stagger-5 flex justify-center items-center gap-5 mb-10 flex-wrap px-4">
               <div className="icon-circle float-gentle" style={{animationDelay: '0.2s'}}>
-                <img src="/transparent-hairdresser-icon-Photoroom.png" alt="Hairdresser & Salon Services" loading="lazy" />
+                <img src="/transparent-hairdresser-icon-Photoroom.png" alt="Hairdresser & Salon Services" loading="lazy" decoding="async" />
               </div>
               <div className="icon-circle float-gentle" style={{animationDelay: '0.4s'}}>
-                <img src="/transparent-construction-icon-Photoroom.png" alt="Construction & Repair Services" loading="lazy" />
+                <img src="/transparent-construction-icon-Photoroom.png" alt="Construction & Repair Services" loading="lazy" decoding="async" />
               </div>
               <div className="icon-circle float-gentle" style={{animationDelay: '0.5s'}}>
-                <img src="/transparent-service-icon-Photoroom.png" alt="Hospitality & Service Industry" loading="lazy" />
+                <img src="/transparent-service-icon-Photoroom.png" alt="Hospitality & Service Industry" loading="lazy" decoding="async" />
               </div>
               <div className="icon-circle float-gentle" style={{animationDelay: '0.7s'}}>
-                <img src="/transparent-influencer-icon.png" alt="Fitness & Wellness Instructors" loading="lazy" />
+                <img src="/transparent-influencer-icon.png" alt="Fitness & Wellness Instructors" loading="lazy" decoding="async" />
               </div>
               <div className="icon-circle float-gentle" style={{animationDelay: '0.9s'}}>
-                <img src="/transparent-doctor-icon.png" alt="Healthcare & Medical Services" loading="lazy" />
+                <img src="/transparent-doctor-icon.png" alt="Healthcare & Medical Services" loading="lazy" decoding="async" />
               </div>
               <div className="icon-circle float-gentle" style={{animationDelay: '1.1s'}}>
-                <img src="/transparent-gardening-icon.png" alt="Garden & Lifestyle Boutiques" loading="lazy" />
+                <img src="/transparent-gardening-icon.png" alt="Garden & Lifestyle Boutiques" loading="lazy" decoding="async" />
               </div>
             </div>
 
@@ -219,7 +235,7 @@ function App() {
 
         {/* Mascot */}
         <div className="mascot-container fade-in float-slow" style={{animationDelay: '1.5s'}}>
-          <img src="/Busybiz-mascot-transparent-Photoroom.png" alt="BusyBiz Mascot" className="mascot-image" loading="lazy" />
+          <img src="/Busybiz-mascot-transparent-Photoroom.png" alt="BusyBiz Mascot" className="mascot-image" loading="lazy" decoding="async" />
         </div>
       </section>
 
@@ -353,7 +369,7 @@ function App() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-10 md:space-y-0">
             <div className="flex items-center space-x-4 transition-all duration-300 hover:scale-105">
-              <img src="/Busybiz-mascot-transparent-Photoroom copy.png" alt="BusyBiz Logo" className="mascot-logo" loading="lazy" />
+              <img src="/Busybiz-mascot-transparent-Photoroom copy.png" alt="BusyBiz Logo" className="mascot-logo" loading="lazy" decoding="async" />
               <span className="logo-text text-gray-900" style={{fontSize: '1.125rem'}}>BUSYBIZ</span>
             </div>
 
