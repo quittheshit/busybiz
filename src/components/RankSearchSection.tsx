@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { Search } from 'lucide-react';
 
 const RankSearchSection = () => {
@@ -7,6 +6,8 @@ const RankSearchSection = () => {
   const [queryIndex, setQueryIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
+  const [yourPosition, setYourPosition] = useState(28);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const queries = [
     'Bedste frisør i København',
@@ -17,26 +18,10 @@ const RankSearchSection = () => {
     'Tandlæge i Frederiksberg'
   ];
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start']
-  });
-
-  const TOTAL_BUSINESSES = 30;
-  const YOUR_STARTING_POSITION = 26;
-
-  const currentRank = useTransform(
-    scrollYProgress,
-    [0.2, 0.8],
-    [YOUR_STARTING_POSITION, 1]
-  );
-
-  const translateY = useTransform(
-    scrollYProgress,
-    [0.2, 0.8],
-    [0, -(YOUR_STARTING_POSITION - 1) * 70]
-  );
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const LISTINGS_PER_PAGE = 10;
+  const STARTING_POSITION = 28;
+  const LISTING_HEIGHT = 80;
 
   useEffect(() => {
     const targetQuery = queries[queryIndex];
@@ -61,7 +46,7 @@ const RankSearchSection = () => {
     );
 
     return () => clearTimeout(timeout);
-  }, [currentQuery, isDeleting, queryIndex, queries]);
+  }, [currentQuery, isDeleting, queryIndex]);
 
   useEffect(() => {
     const cursorInterval = setInterval(() => {
@@ -71,12 +56,63 @@ const RankSearchSection = () => {
     return () => clearInterval(cursorInterval);
   }, []);
 
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const scrollTop = container.scrollTop;
+      const scrollHeight = container.scrollHeight;
+      const clientHeight = container.clientHeight;
+      const maxScroll = scrollHeight - clientHeight;
+
+      if (scrollTop >= maxScroll - 10) {
+        const extraScroll = scrollTop - maxScroll;
+        const progress = Math.min(extraScroll / 500, 1);
+        setScrollProgress(progress);
+
+        const newPosition = Math.max(
+          1,
+          Math.round(STARTING_POSITION - progress * (STARTING_POSITION - 1))
+        );
+        setYourPosition(newPosition);
+      } else {
+        setScrollProgress(0);
+        setYourPosition(STARTING_POSITION);
+      }
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const regularListings = Array.from({ length: LISTINGS_PER_PAGE }, (_, i) => i + 1);
+
+  const shouldShowYourBusinessInList = yourPosition <= LISTINGS_PER_PAGE;
+
+  const getListingsWithYourBusiness = () => {
+    if (!shouldShowYourBusinessInList) {
+      return regularListings.map(pos => ({ position: pos, isYourBusiness: false }));
+    }
+
+    const listings = [];
+    for (let i = 1; i <= LISTINGS_PER_PAGE; i++) {
+      if (i === yourPosition) {
+        listings.push({ position: yourPosition, isYourBusiness: true });
+      } else if (i < yourPosition) {
+        listings.push({ position: i, isYourBusiness: false });
+      } else {
+        listings.push({ position: i, isYourBusiness: false });
+      }
+    }
+    return listings;
+  };
+
+  const listingsToDisplay = getListingsWithYourBusiness();
+
   return (
-    <section
-      ref={containerRef}
-      className="relative min-h-[200vh] bg-gradient-to-b from-gray-50 to-white py-20"
-    >
-      <div className="sticky top-20 px-6 md:px-12 lg:px-20">
+    <section className="relative bg-gradient-to-b from-gray-50 to-white py-20">
+      <div className="px-6 md:px-12 lg:px-20">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="headline-font text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6">
@@ -109,88 +145,123 @@ const RankSearchSection = () => {
               </h3>
             </div>
 
-            <div className="relative h-[500px] overflow-hidden">
-              <motion.div style={{ y: translateY }} className="py-4">
-                {Array.from({ length: TOTAL_BUSINESSES }).map((_, index) => {
-                  const position = index + 1;
-                  const isYourBusiness = position === YOUR_STARTING_POSITION;
+            <div
+              ref={scrollContainerRef}
+              className="relative overflow-y-auto"
+              style={{
+                height: `${LISTINGS_PER_PAGE * LISTING_HEIGHT}px`,
+                scrollBehavior: 'smooth'
+              }}
+            >
+              <div className="py-4">
+                {listingsToDisplay.map((item, index) => (
+                  <div
+                    key={`listing-${index}`}
+                    className={`
+                      px-6 py-4 border-b border-gray-100 transition-all duration-500
+                      ${
+                        item.isYourBusiness
+                          ? 'bg-gradient-to-r from-teal-50 via-blue-50 to-teal-50 border-l-4 border-l-teal-500 shadow-md'
+                          : 'bg-white hover:bg-gray-50'
+                      }
+                    `}
+                    style={{
+                      height: `${LISTING_HEIGHT}px`,
+                      transform: item.isYourBusiness ? 'scale(1.02)' : 'scale(1)',
+                    }}
+                  >
+                    <div className="flex items-center gap-4 h-full">
+                      <div
+                        className={`
+                          text-lg font-bold flex-shrink-0 w-12 text-center
+                          ${
+                            item.isYourBusiness
+                              ? 'text-teal-600'
+                              : 'text-gray-400'
+                          }
+                        `}
+                      >
+                        {item.position}
+                      </div>
 
-                  return (
-                    <motion.div
-                      key={position}
-                      className={`
-                        px-6 py-4 border-b border-gray-100 transition-all duration-300
-                        ${
-                          isYourBusiness
-                            ? 'bg-gradient-to-r from-teal-50 via-blue-50 to-teal-50 border-l-4 border-l-teal-500 shadow-md'
-                            : 'bg-white hover:bg-gray-50'
-                        }
-                      `}
-                      style={{
-                        height: '70px'
-                      }}
-                    >
-                      <div className="flex items-center gap-4">
-                        <motion.div
+                      <div className="flex-1">
+                        <div
                           className={`
-                            text-lg font-bold flex-shrink-0 w-12 text-center
+                            font-semibold
                             ${
-                              isYourBusiness
-                                ? 'text-teal-600'
-                                : 'text-gray-400'
+                              item.isYourBusiness
+                                ? 'text-gray-900 text-lg'
+                                : 'text-gray-700'
                             }
                           `}
                         >
-                          {isYourBusiness ? (
-                            <motion.span>
-                              {Math.round(currentRank.get())}
-                            </motion.span>
-                          ) : (
-                            position
-                          )}
-                        </motion.div>
-
-                        <div className="flex-1">
-                          <div
-                            className={`
-                              font-semibold
-                              ${
-                                isYourBusiness
-                                  ? 'text-gray-900 text-lg'
-                                  : 'text-gray-700'
-                              }
-                            `}
-                          >
-                            {isYourBusiness ? (
-                              <span className="flex items-center gap-2">
-                                <span className="uppercase tracking-wide">
-                                  DIG / DIT FIRMA
-                                </span>
-                                <span className="text-teal-600">→</span>
+                          {item.isYourBusiness ? (
+                            <span className="flex items-center gap-2">
+                              <span className="uppercase tracking-wide">
+                                DIG - DIT FIRMA
                               </span>
-                            ) : (
-                              `Andet firma ${position}`
-                            )}
-                          </div>
-                          <div className="text-sm text-gray-500 mt-1">
-                            {isYourBusiness
-                              ? 'Din virksomhed stiger i søgeresultaterne'
-                              : 'Konkurrent virksomhed'}
+                              <span className="text-teal-600">↑</span>
+                            </span>
+                          ) : (
+                            `Andet firma ${item.position}`
+                          )}
+                        </div>
+                        <div className="text-sm text-gray-500 mt-1">
+                          {item.isYourBusiness
+                            ? 'Din virksomhed stiger i søgeresultaterne'
+                            : 'Konkurrent virksomhed'}
+                        </div>
+                      </div>
+
+                      {item.isYourBusiness && (
+                        <div className="flex-shrink-0">
+                          <div className="bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
+                            Klatrer
                           </div>
                         </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
 
-                        {isYourBusiness && (
-                          <div className="flex-shrink-0">
-                            <div className="bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
-                              Klatrer
-                            </div>
-                          </div>
-                        )}
+                {!shouldShowYourBusinessInList && (
+                  <div
+                    className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-teal-50 via-blue-50 to-teal-50 border-l-4 border-l-teal-500 shadow-md transition-all duration-500"
+                    style={{
+                      height: `${LISTING_HEIGHT}px`,
+                      transform: 'scale(1.02)',
+                    }}
+                  >
+                    <div className="flex items-center gap-4 h-full">
+                      <div className="text-lg font-bold flex-shrink-0 w-12 text-center text-teal-600">
+                        {yourPosition}
                       </div>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
+
+                      <div className="flex-1">
+                        <div className="font-semibold text-gray-900 text-lg">
+                          <span className="flex items-center gap-2">
+                            <span className="uppercase tracking-wide">
+                              DIG - DIT FIRMA
+                            </span>
+                            <span className="text-teal-600">↑</span>
+                          </span>
+                        </div>
+                        <div className="text-sm text-gray-500 mt-1">
+                          Din virksomhed stiger i søgeresultaterne
+                        </div>
+                      </div>
+
+                      <div className="flex-shrink-0">
+                        <div className="bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
+                          Klatrer
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div style={{ height: '1000px' }} />
+              </div>
             </div>
 
             <div className="p-6 bg-gradient-to-r from-gray-50 to-blue-50 border-t border-gray-200">
@@ -199,7 +270,7 @@ const RankSearchSection = () => {
                   <strong className="text-gray-900">Scroll ned</strong> for at se dit firma klatre til tops
                 </p>
                 <div className="flex items-center justify-center gap-2 text-teal-600 font-semibold">
-                  <span>Fra position {YOUR_STARTING_POSITION}</span>
+                  <span>Fra position {STARTING_POSITION}</span>
                   <span>→</span>
                   <span>Til #1</span>
                 </div>
