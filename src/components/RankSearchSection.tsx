@@ -318,8 +318,8 @@ const RankSearchSection = memo(() => {
 
           <div className="mt-8 text-center max-w-2xl mx-auto">
             <p className="text-gray-600 leading-relaxed text-sm">
-              Med vores SEO-optimering og lokale markedsføringsstrategier hjælper vi dit firma med at blive den
-              <strong className="text-teal-600"> førstevalg</strong> når potentielle kunder søger efter dine ydelser.
+              Med vores SEO-optimering og lokale markedsføringsstrategier hjælper vi dit firma med at blive det
+              <strong className="text-teal-600"> første valg</strong> når potentielle kunder søger efter dine ydelser.
             </p>
           </div>
         </div>
