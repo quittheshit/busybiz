@@ -279,7 +279,7 @@ function App() {
                 <div>
                   <p className="text-sm font-semibold text-gray-800 mb-3" style={{letterSpacing: '0.02em'}}>Hvad jeg laver:</p>
                   <p className="text-sm text-gray-600 leading-relaxed" style={{lineHeight: '1.7'}}>
-                    Jeg bygger eller opdaterer din hjemmeside, så den ser moderne ud, loader hurtigt og forklarer klart hvem du er. Jeg forbedrer struktur, tekst, billeder og det tekniske — så siden både føles bedre og performer bedre.
+                    Jeg bygger eller opdaterer din hjemmeside, så den ser moderne ud, loader hurtigt og forklarer klart hvem du er. Jeg forbedrer struktur, tekst, billeder og det tekniske - så siden både føles bedre og performer bedre.
                   </p>
                 </div>
                 <div>
@@ -311,7 +311,7 @@ function App() {
                 <div>
                   <p className="text-sm font-semibold text-gray-800 mb-3" style={{letterSpacing: '0.02em'}}>Hvad jeg laver:</p>
                   <p className="text-sm text-gray-600 leading-relaxed" style={{lineHeight: '1.7'}}>
-                    Jeg optimerer din hjemmeside og din Google Business profil, så du bliver vist højere når folk søger efter dine ydelser — både på Google og Google Maps.
+                    Jeg optimerer din hjemmeside og din Google Business profil, så du bliver vist højere når folk søger efter dine ydelser - både på Google, Google Maps, ChatGPT mm.
                   </p>
                 </div>
                 <div>
