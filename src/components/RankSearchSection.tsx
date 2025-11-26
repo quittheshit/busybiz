@@ -288,14 +288,7 @@ const RankSearchSection = memo(() => {
                         </div>
                       </div>
 
-                      {listing.isYourBusiness && (
-                        <div className="flex items-center gap-3 flex-shrink-0">
-                          <div className="bg-teal-500 text-white px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide flex items-center gap-2">
-                            <span>↑</span>
-                            <span>Klatrer</span>
-                          </div>
-                        </div>
-                      )}
+                      {/* No more "klatrer" badge here */}
                     </div>
                   </div>
                 ))}
