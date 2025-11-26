@@ -7,7 +7,6 @@ const RankSearchSection = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
   const [yourPosition, setYourPosition] = useState(28);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   const queries = [
     'Bedste frisør i København',
@@ -19,9 +18,11 @@ const RankSearchSection = () => {
   ];
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const LISTINGS_PER_PAGE = 10;
+
+  const VISIBLE_LISTINGS = 8;
   const STARTING_POSITION = 28;
-  const LISTING_HEIGHT = 80;
+  const LISTING_HEIGHT = 90;
+  const SCROLL_SENSITIVITY = 300;
 
   useEffect(() => {
     const targetQuery = queries[queryIndex];
@@ -68,17 +69,15 @@ const RankSearchSection = () => {
 
       const scrollPercentage = (scrollTop / maxScroll) * 100;
 
-      if (scrollPercentage >= 50) {
-        const progress = Math.min((scrollPercentage - 50) / 50, 1);
-        setScrollProgress(progress);
+      if (scrollPercentage >= 30) {
+        const effectiveProgress = Math.min((scrollPercentage - 30) / 70, 1);
 
         const newPosition = Math.max(
           1,
-          Math.round(STARTING_POSITION - progress * (STARTING_POSITION - 1))
+          Math.round(STARTING_POSITION - effectiveProgress * (STARTING_POSITION - 1))
         );
         setYourPosition(newPosition);
       } else {
-        setScrollProgress(0);
         setYourPosition(STARTING_POSITION);
       }
     };
@@ -87,29 +86,51 @@ const RankSearchSection = () => {
     return () => container.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const regularListings = Array.from({ length: LISTINGS_PER_PAGE }, (_, i) => i + 1);
-
-  const shouldShowYourBusinessInList = yourPosition <= LISTINGS_PER_PAGE;
-
-  const getListingsWithYourBusiness = () => {
-    if (!shouldShowYourBusinessInList) {
-      return regularListings.map(pos => ({ position: pos, isYourBusiness: false }));
-    }
-
+  const generateListings = () => {
     const listings = [];
-    for (let i = 1; i <= LISTINGS_PER_PAGE; i++) {
-      if (i === yourPosition) {
-        listings.push({ position: yourPosition, isYourBusiness: true });
-      } else if (i < yourPosition) {
-        listings.push({ position: i, isYourBusiness: false });
-      } else {
-        listings.push({ position: i, isYourBusiness: false });
+
+    if (yourPosition > VISIBLE_LISTINGS) {
+      for (let i = 1; i <= VISIBLE_LISTINGS - 1; i++) {
+        listings.push({
+          position: i,
+          name: `Andet firma ${i}`,
+          isYourBusiness: false
+        });
+      }
+
+      listings.push({
+        position: yourPosition,
+        name: 'DIG - DIT FIRMA',
+        isYourBusiness: true
+      });
+    } else {
+      let currentPos = 1;
+      let insertedYourBusiness = false;
+
+      for (let i = 0; i < VISIBLE_LISTINGS; i++) {
+        if (currentPos === yourPosition && !insertedYourBusiness) {
+          listings.push({
+            position: yourPosition,
+            name: 'DIG - DIT FIRMA',
+            isYourBusiness: true
+          });
+          insertedYourBusiness = true;
+          currentPos++;
+        } else {
+          listings.push({
+            position: currentPos,
+            name: `Andet firma ${currentPos}`,
+            isYourBusiness: false
+          });
+          currentPos++;
+        }
       }
     }
+
     return listings;
   };
 
-  const listingsToDisplay = getListingsWithYourBusiness();
+  const displayListings = generateListings();
 
   return (
     <section className="relative bg-gradient-to-b from-gray-50 to-white py-20">
@@ -148,41 +169,41 @@ const RankSearchSection = () => {
 
             <div
               ref={scrollContainerRef}
-              className="relative overflow-y-auto"
+              className="relative overflow-y-auto custom-scrollbar"
               style={{
-                height: `${LISTINGS_PER_PAGE * LISTING_HEIGHT}px`,
+                height: `${VISIBLE_LISTINGS * LISTING_HEIGHT}px`,
                 scrollBehavior: 'smooth'
               }}
             >
               <div className="py-4">
-                {listingsToDisplay.map((item, index) => (
+                {displayListings.map((listing, index) => (
                   <div
-                    key={`listing-${index}`}
+                    key={`${listing.position}-${listing.isYourBusiness ? 'your' : 'other'}-${index}`}
                     className={`
-                      px-6 py-4 border-b border-gray-100 transition-all duration-500
+                      px-6 py-5 border-b border-gray-100 transition-all duration-500 ease-in-out
                       ${
-                        item.isYourBusiness
+                        listing.isYourBusiness
                           ? 'bg-gradient-to-r from-teal-50 via-blue-50 to-teal-50 border-l-4 border-l-teal-500 shadow-md'
                           : 'bg-white hover:bg-gray-50'
                       }
                     `}
                     style={{
                       height: `${LISTING_HEIGHT}px`,
-                      transform: item.isYourBusiness ? 'scale(1.02)' : 'scale(1)',
+                      transform: listing.isYourBusiness ? 'scale(1.01)' : 'scale(1)',
                     }}
                   >
-                    <div className="flex items-center gap-4 h-full">
+                    <div className="flex items-center gap-6 h-full">
                       <div
                         className={`
-                          text-lg font-bold flex-shrink-0 w-12 text-center
+                          text-2xl font-bold flex-shrink-0 w-14 text-left
                           ${
-                            item.isYourBusiness
+                            listing.isYourBusiness
                               ? 'text-teal-600'
                               : 'text-gray-400'
                           }
                         `}
                       >
-                        {item.position}
+                        {listing.position}
                       </div>
 
                       <div className="flex-1">
@@ -190,34 +211,32 @@ const RankSearchSection = () => {
                           className={`
                             font-semibold
                             ${
-                              item.isYourBusiness
-                                ? 'text-gray-900 text-lg'
-                                : 'text-gray-700'
+                              listing.isYourBusiness
+                                ? 'text-gray-900 text-xl'
+                                : 'text-gray-700 text-lg'
                             }
                           `}
                         >
-                          {item.isYourBusiness ? (
-                            <span className="flex items-center gap-2">
-                              <span className="uppercase tracking-wide">
-                                DIG - DIT FIRMA
-                              </span>
-                              <span className="text-teal-600">↑</span>
+                          {listing.isYourBusiness ? (
+                            <span className="uppercase tracking-wide">
+                              {listing.name}
                             </span>
                           ) : (
-                            `Andet firma ${item.position}`
+                            listing.name
                           )}
                         </div>
                         <div className="text-sm text-gray-500 mt-1">
-                          {item.isYourBusiness
+                          {listing.isYourBusiness
                             ? 'Din virksomhed stiger i søgeresultaterne'
                             : 'Konkurrent virksomhed'}
                         </div>
                       </div>
 
-                      {item.isYourBusiness && (
-                        <div className="flex-shrink-0">
-                          <div className="bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
-                            Klatrer
+                      {listing.isYourBusiness && (
+                        <div className="flex items-center gap-3 flex-shrink-0">
+                          <div className="bg-teal-500 text-white px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide flex items-center gap-2">
+                            <span>↑</span>
+                            <span>Klatrer</span>
                           </div>
                         </div>
                       )}
@@ -225,43 +244,7 @@ const RankSearchSection = () => {
                   </div>
                 ))}
 
-                {!shouldShowYourBusinessInList && (
-                  <div
-                    className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-teal-50 via-blue-50 to-teal-50 border-l-4 border-l-teal-500 shadow-md transition-all duration-500"
-                    style={{
-                      height: `${LISTING_HEIGHT}px`,
-                      transform: 'scale(1.02)',
-                    }}
-                  >
-                    <div className="flex items-center gap-4 h-full">
-                      <div className="text-lg font-bold flex-shrink-0 w-12 text-center text-teal-600">
-                        {yourPosition}
-                      </div>
-
-                      <div className="flex-1">
-                        <div className="font-semibold text-gray-900 text-lg">
-                          <span className="flex items-center gap-2">
-                            <span className="uppercase tracking-wide">
-                              DIG - DIT FIRMA
-                            </span>
-                            <span className="text-teal-600">↑</span>
-                          </span>
-                        </div>
-                        <div className="text-sm text-gray-500 mt-1">
-                          Din virksomhed stiger i søgeresultaterne
-                        </div>
-                      </div>
-
-                      <div className="flex-shrink-0">
-                        <div className="bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
-                          Klatrer
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                <div style={{ height: '200px' }} />
+                <div style={{ height: `${SCROLL_SENSITIVITY}px` }} />
               </div>
             </div>
 
