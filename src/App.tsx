@@ -171,7 +171,7 @@ function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="hero-bg relative">
+      <section className="hero-bg relative overflow-hidden">
         <div className="hero-overlay"></div>
 
         {/* Floating Decorative Shapes */}
