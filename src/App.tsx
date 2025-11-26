@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import RankSearchSection from './components/RankSearchSection';
 
 function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -337,6 +338,9 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Rank Search Animation Section */}
+      <RankSearchSection />
 
       {/* Footer */}
       <footer className="fade-in-bottom bg-gradient-to-br from-teal-50/30 via-gray-50 to-orange-50/20 py-16 px-10 mt-0 relative overflow-hidden" style={{boxShadow: 'inset 0 2px 0 rgba(79, 168, 139, 0.12)'}}>
