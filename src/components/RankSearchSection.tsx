@@ -19,6 +19,7 @@ const RankSearchSection = memo(() => {
   ];
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   const VISIBLE_LISTINGS = 8;
   const STARTING_POSITION = 28;
@@ -58,31 +59,44 @@ const RankSearchSection = memo(() => {
   }, []);
 
   useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
+    const trigger = triggerRef.current;
+    if (!trigger) return;
 
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && wheelProgress < 1) {
+            const animateScroll = () => {
+              setWheelProgress((prev) => {
+                const newProgress = Math.min(1, prev + 0.005);
 
-      const delta = e.deltaY;
-      const sensitivity = 0.001;
+                const newPosition = Math.max(
+                  1,
+                  Math.round(STARTING_POSITION - newProgress * (STARTING_POSITION - 1))
+                );
+                setYourPosition(newPosition);
 
-      setWheelProgress((prev) => {
-        const newProgress = Math.max(0, Math.min(1, prev + delta * sensitivity));
+                if (newProgress < 1) {
+                  requestAnimationFrame(animateScroll);
+                }
 
-        const newPosition = Math.max(
-          1,
-          Math.round(STARTING_POSITION - newProgress * (STARTING_POSITION - 1))
-        );
-        setYourPosition(newPosition);
+                return newProgress;
+              });
+            };
 
-        return newProgress;
-      });
-    };
+            requestAnimationFrame(animateScroll);
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+        rootMargin: '0px'
+      }
+    );
 
-    container.addEventListener('wheel', handleWheel, { passive: false });
-    return () => container.removeEventListener('wheel', handleWheel);
-  }, []);
+    observer.observe(trigger);
+    return () => observer.disconnect();
+  }, [wheelProgress]);
 
   const generateListings = () => {
     const listings = [];
@@ -243,7 +257,7 @@ const RankSearchSection = memo(() => {
               </div>
             </div>
 
-            <div className="p-4 bg-gradient-to-r from-gray-50 to-blue-50 border-t border-gray-200">
+            <div ref={triggerRef} className="p-4 bg-gradient-to-r from-gray-50 to-blue-50 border-t border-gray-200">
               <div className="text-center">
                 <p className="text-xs text-gray-600 mb-1.5">
                   <strong className="text-gray-900">Scroll ned</strong> for at se dit firma klatre til tops
