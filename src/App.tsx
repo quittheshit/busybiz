@@ -133,7 +133,7 @@ function App() {
   return (
     <>
       {/* Header */}
-      <header className="header-teal py-4 px-10 fade-in-top shadow-sm">
+      <header className="header-teal py-4 px-4 sm:px-6 md:px-10 fade-in-top shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo with Mascot */}
           <div className="flex items-center space-x-4">
@@ -178,7 +178,7 @@ function App() {
         <div className="absolute top-1/4 right-1/4 w-20 h-20 rounded-full bg-gradient-to-br from-teal-300/20 to-teal-400/10 blur-xl animate-pulse" style={{animationDuration: '5s'}}></div>
         <div className="absolute bottom-1/3 left-1/4 w-16 h-16 rounded-full bg-gradient-to-br from-orange-300/15 to-orange-400/10 blur-lg animate-pulse" style={{animationDuration: '6s', animationDelay: '1s'}}></div>
 
-        <div className="relative z-10 flex items-center justify-center min-h-screen py-24 px-10">
+        <div className="relative z-10 flex items-center justify-center min-h-screen py-24 px-4 sm:px-6 md:px-10">
           <div className="max-w-5xl mx-auto text-center">
             {/* Overline */}
             <div className="fade-in stagger-1 text-gray-700 uppercase mb-4" style={{fontWeight: 500, letterSpacing: '0.25em', fontSize: '0.875rem'}}>
@@ -362,7 +362,7 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="fade-in-bottom bg-gradient-to-br from-teal-50/30 via-gray-50 to-orange-50/20 py-16 px-10 mt-0 relative overflow-hidden" style={{boxShadow: 'inset 0 2px 0 rgba(79, 168, 139, 0.12)'}}>
+      <footer className="fade-in-bottom bg-gradient-to-br from-teal-50/30 via-gray-50 to-orange-50/20 py-16 px-4 sm:px-6 md:px-10 mt-0 relative overflow-hidden" style={{boxShadow: 'inset 0 2px 0 rgba(79, 168, 139, 0.12)'}}>
         <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-gradient-to-br from-teal-200/15 to-teal-300/10 blur-3xl"></div>
         <div className="absolute bottom-10 left-10 w-56 h-56 rounded-full bg-gradient-to-br from-orange-200/10 to-orange-300/5 blur-3xl"></div>
 
