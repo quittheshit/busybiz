@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { Search } from 'lucide-react';
 
-const RankSearchSection = () => {
+const RankSearchSection = memo(() => {
   const [currentQuery, setCurrentQuery] = useState('');
   const [queryIndex, setQueryIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -267,6 +267,8 @@ const RankSearchSection = () => {
       </div>
     </section>
   );
-};
+});
+
+RankSearchSection.displayName = 'RankSearchSection';
 
 export default RankSearchSection;

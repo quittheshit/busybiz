@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import RankSearchSection from './components/RankSearchSection';
+import { useState, useEffect, lazy, Suspense } from 'react';
+
+const RankSearchSection = lazy(() => import('./components/RankSearchSection'));
 
 function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -188,22 +189,22 @@ function App() {
             {/* Business Icons */}
             <div className="fade-in stagger-5 flex justify-center items-center gap-5 mb-10 flex-wrap px-4">
               <div className="icon-circle float-gentle" style={{animationDelay: '0.2s'}}>
-                <img src="/transparent-hairdresser-icon-Photoroom.png" alt="Hairdresser & Salon Services" />
+                <img src="/transparent-hairdresser-icon-Photoroom.png" alt="Hairdresser & Salon Services" loading="lazy" />
               </div>
               <div className="icon-circle float-gentle" style={{animationDelay: '0.4s'}}>
-                <img src="/transparent-construction-icon-Photoroom.png" alt="Construction & Repair Services" />
+                <img src="/transparent-construction-icon-Photoroom.png" alt="Construction & Repair Services" loading="lazy" />
               </div>
               <div className="icon-circle float-gentle" style={{animationDelay: '0.5s'}}>
-                <img src="/transparent-service-icon-Photoroom.png" alt="Hospitality & Service Industry" />
+                <img src="/transparent-service-icon-Photoroom.png" alt="Hospitality & Service Industry" loading="lazy" />
               </div>
               <div className="icon-circle float-gentle" style={{animationDelay: '0.7s'}}>
-                <img src="/transparent-influencer-icon.png" alt="Fitness & Wellness Instructors" />
+                <img src="/transparent-influencer-icon.png" alt="Fitness & Wellness Instructors" loading="lazy" />
               </div>
               <div className="icon-circle float-gentle" style={{animationDelay: '0.9s'}}>
-                <img src="/transparent-doctor-icon.png" alt="Healthcare & Medical Services" />
+                <img src="/transparent-doctor-icon.png" alt="Healthcare & Medical Services" loading="lazy" />
               </div>
               <div className="icon-circle float-gentle" style={{animationDelay: '1.1s'}}>
-                <img src="/transparent-gardening-icon.png" alt="Garden & Lifestyle Boutiques" />
+                <img src="/transparent-gardening-icon.png" alt="Garden & Lifestyle Boutiques" loading="lazy" />
               </div>
             </div>
 
@@ -218,12 +219,14 @@ function App() {
 
         {/* Mascot */}
         <div className="mascot-container fade-in float-slow" style={{animationDelay: '1.5s'}}>
-          <img src="/Busybiz-mascot-transparent-Photoroom.png" alt="BusyBiz Mascot" className="mascot-image" />
+          <img src="/Busybiz-mascot-transparent-Photoroom.png" alt="BusyBiz Mascot" className="mascot-image" loading="lazy" />
         </div>
       </section>
 
       {/* Rank Search Animation Section */}
-      <RankSearchSection />
+      <Suspense fallback={<div className="py-20 text-center">Loading...</div>}>
+        <RankSearchSection />
+      </Suspense>
 
       {/* Services Section */}
       <section id="services" className="services-bg py-32 px-6 md:px-12 lg:px-20 relative overflow-hidden">
@@ -350,7 +353,7 @@ function App() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-10 md:space-y-0">
             <div className="flex items-center space-x-4 transition-all duration-300 hover:scale-105">
-              <img src="/Busybiz-mascot-transparent-Photoroom copy.png" alt="BusyBiz Logo" className="mascot-logo" />
+              <img src="/Busybiz-mascot-transparent-Photoroom copy.png" alt="BusyBiz Logo" className="mascot-logo" loading="lazy" />
               <span className="logo-text text-gray-900" style={{fontSize: '1.125rem'}}>BUSYBIZ</span>
             </div>
 
