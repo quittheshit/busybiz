@@ -222,6 +222,9 @@ function App() {
         </div>
       </section>
 
+      {/* Rank Search Animation Section */}
+      <RankSearchSection />
+
       {/* Services Section */}
       <section id="services" className="services-bg py-32 px-6 md:px-12 lg:px-20 relative overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-gradient-to-br from-teal-200/20 to-teal-300/10 blur-2xl animate-pulse" style={{animationDuration: '4s'}}></div>
@@ -338,9 +341,6 @@ function App() {
           </div>
         </div>
       </section>
-
-      {/* Rank Search Animation Section */}
-      <RankSearchSection />
 
       {/* Footer */}
       <footer className="fade-in-bottom bg-gradient-to-br from-teal-50/30 via-gray-50 to-orange-50/20 py-16 px-10 mt-0 relative overflow-hidden" style={{boxShadow: 'inset 0 2px 0 rgba(79, 168, 139, 0.12)'}}>
