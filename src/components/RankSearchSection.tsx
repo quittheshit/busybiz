@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, memo } from 'react';
+import { useState, useEffect, useRef, memo, useCallback } from 'react';
 import { Search } from 'lucide-react';
 
 const RankSearchSection = memo(() => {
@@ -8,6 +8,10 @@ const RankSearchSection = memo(() => {
   const [showCursor, setShowCursor] = useState(true);
   const [yourPosition, setYourPosition] = useState(28);
   const [wheelProgress, setWheelProgress] = useState(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const animationFrameRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number | null>(null);
+  const hasAnimatedRef = useRef(false);
 
   const queries = [
     'Bedste frisør i København',
@@ -59,44 +63,82 @@ const RankSearchSection = memo(() => {
   }, []);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  const easeOutCubic = useCallback((t: number): number => {
+    return 1 - Math.pow(1 - t, 3);
+  }, []);
+
+  const animatePosition = useCallback((timestamp: number) => {
+    if (!startTimeRef.current) {
+      startTimeRef.current = timestamp;
+    }
+
+    const duration = prefersReducedMotion ? 800 : 2500;
+    const elapsed = timestamp - startTimeRef.current;
+    const progress = Math.min(elapsed / duration, 1);
+
+    const easedProgress = easeOutCubic(progress);
+
+    const newPosition = Math.max(
+      1,
+      Math.round(STARTING_POSITION - easedProgress * (STARTING_POSITION - 1))
+    );
+
+    setYourPosition(newPosition);
+    setWheelProgress(easedProgress);
+
+    if (progress < 1) {
+      animationFrameRef.current = requestAnimationFrame(animatePosition);
+    } else {
+      startTimeRef.current = null;
+      animationFrameRef.current = null;
+    }
+  }, [prefersReducedMotion, easeOutCubic]);
+
+  useEffect(() => {
     const trigger = triggerRef.current;
     if (!trigger) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && wheelProgress < 1) {
-            const animateScroll = () => {
-              setWheelProgress((prev) => {
-                const newProgress = Math.min(1, prev + 0.005);
+          if (entry.isIntersecting && !hasAnimatedRef.current) {
+            hasAnimatedRef.current = true;
 
-                const newPosition = Math.max(
-                  1,
-                  Math.round(STARTING_POSITION - newProgress * (STARTING_POSITION - 1))
-                );
-                setYourPosition(newPosition);
+            if (animationFrameRef.current) {
+              cancelAnimationFrame(animationFrameRef.current);
+            }
 
-                if (newProgress < 1) {
-                  requestAnimationFrame(animateScroll);
-                }
-
-                return newProgress;
-              });
-            };
-
-            requestAnimationFrame(animateScroll);
+            startTimeRef.current = null;
+            animationFrameRef.current = requestAnimationFrame(animatePosition);
           }
         });
       },
       {
-        threshold: 0.5,
+        threshold: 0.3,
         rootMargin: '0px'
       }
     );
 
     observer.observe(trigger);
-    return () => observer.disconnect();
-  }, [wheelProgress]);
+
+    return () => {
+      observer.disconnect();
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [animatePosition]);
 
   const generateListings = () => {
     const listings = [];
@@ -191,7 +233,7 @@ const RankSearchSection = memo(() => {
                   <div
                     key={`${listing.position}-${listing.isYourBusiness ? 'your' : 'other'}-${index}`}
                     className={`
-                      px-6 py-3 border-b border-gray-100 transition-all duration-500 ease-in-out
+                      px-6 py-3 border-b border-gray-100 transition-all duration-300 ease-out will-change-transform
                       ${
                         listing.isYourBusiness
                           ? 'bg-gradient-to-r from-teal-50 via-blue-50 to-teal-50 border-l-4 border-l-teal-500 shadow-md'
@@ -201,6 +243,9 @@ const RankSearchSection = memo(() => {
                     style={{
                       height: `${LISTING_HEIGHT}px`,
                       transform: listing.isYourBusiness ? 'scale(1.01)' : 'scale(1)',
+                      transformOrigin: 'center',
+                      backfaceVisibility: 'hidden',
+                      WebkitFontSmoothing: 'antialiased',
                     }}
                   >
                     <div className="flex items-center gap-6 h-full">
