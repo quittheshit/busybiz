@@ -1,4 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, lazy, Suspense, useCallback, useMemo } from 'react';
+
+const RankSearchSection = lazy(() => import('./components/RankSearchSection'));
 
 function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -237,6 +239,10 @@ function App() {
         </div>
       </section>
 
+      {/* Rank Search Animation Section */}
+      <Suspense fallback={<div className="py-20 text-center">Loading...</div>}>
+        <RankSearchSection />
+      </Suspense>
 
       {/* Services Section */}
       <section id="services" className="services-bg py-32 px-6 md:px-12 lg:px-20 relative overflow-hidden">
