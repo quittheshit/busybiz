@@ -396,7 +396,7 @@ function App() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-gray-700 leading-relaxed">en hjemmeside, der ser professionel ud</p>
+                  <p className="text-gray-800 leading-relaxed font-medium text-lg">En hjemmeside, der ser professionel ud</p>
                 </div>
               </div>
             </div>
@@ -409,7 +409,7 @@ function App() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-gray-700 leading-relaxed">flere besøg fra Google og ChatGPT</p>
+                  <p className="text-gray-800 leading-relaxed font-medium text-lg">Flere besøg fra Google og ChatGPT</p>
                 </div>
               </div>
             </div>
@@ -422,7 +422,7 @@ function App() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-gray-700 leading-relaxed">flere henvendelser fra både nye og eksisterende kunder</p>
+                  <p className="text-gray-800 leading-relaxed font-medium text-lg">Flere henvendelser fra både nye og eksisterende kunder</p>
                 </div>
               </div>
             </div>
@@ -435,7 +435,7 @@ function App() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-gray-700 leading-relaxed">mindre manuelt arbejde med chatbots og automatisering</p>
+                  <p className="text-gray-800 leading-relaxed font-medium text-lg">Mindre manuelt arbejde med chatbots og automatisering</p>
                 </div>
               </div>
             </div>
