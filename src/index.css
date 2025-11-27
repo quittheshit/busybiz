@@ -1277,3 +1277,14 @@ footer {
 .animate-bounce-subtle {
   animation: bounce-subtle 3s ease-in-out infinite;
 }
+
+#voiceflow-chat {
+  right: 20px !important;
+  left: auto !important;
+}
+
+#voiceflow-chat iframe,
+#voiceflow-chat > div {
+  right: 0 !important;
+  left: auto !important;
+}
