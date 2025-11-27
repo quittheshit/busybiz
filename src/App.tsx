@@ -435,7 +435,7 @@ function App() {
                       </svg>
                     </div>
                   </div>
-                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Mange flere kunder der finder dig på internettet (Google, Maps, ChatGPT)</p>
+                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Mange flere kunder der finder dig på internettet (Google, Maps, Sociale Meder & ChatGPT)</p>
                 </div>
               </div>
 
@@ -452,7 +452,7 @@ function App() {
                     {/* Floating Money Symbol */}
                     <div className="absolute -top-2 -right-2 text-3xl animate-bounce" style={{ animationDuration: '2s' }}>💰</div>
                   </div>
-                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Professionel hjemmeside der overbeviser alle kunder om at vælge dig.<br />HVER gang.</p>
+                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Professionel hjemmeside der overbeviser alle kunder om at vælge dig. HVER gang.</p>
                 </div>
               </div>
 
@@ -470,7 +470,7 @@ function App() {
                     <div className="absolute -top-1 -right-1 text-xl animate-ping" style={{ animationDuration: '1.5s' }}>✨</div>
                     <div className="absolute -bottom-1 -left-1 text-xl animate-ping" style={{ animationDuration: '2s', animationDelay: '0.5s' }}>⚡</div>
                   </div>
-                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Automatiseringer der svare på dine kunders spørgsmål med det samme, sender emails og meget mere</p>
+                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Hjælp dig selv og dine kunder hurtigt og effektiv med automatisk kundeservice, booking-systemer og meget mere </p>
                 </div>
               </div>
             </div>
