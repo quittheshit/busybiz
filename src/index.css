@@ -1230,7 +1230,8 @@ footer {
   position: fixed !important;
   bottom: 24px !important;
   right: 24px !important;
-  z-index: 9999 !important;
+  z-index: 10003 !important;
+  pointer-events: auto !important;
 }
 
 /* Chatbot button styling */
@@ -1243,6 +1244,13 @@ footer {
   box-shadow: 0 8px 24px rgba(79, 168, 139, 0.4), 0 4px 12px rgba(0, 0, 0, 0.15) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   border: 3px solid rgba(255, 255, 255, 0.3) !important;
+  position: relative !important;
+  z-index: 10003 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 #voiceflow-chat button[aria-label="Open chat"]:hover,
@@ -1263,6 +1271,9 @@ footer {
   border-radius: 16px !important;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(79, 168, 139, 0.15) !important;
   overflow: hidden !important;
+  position: fixed !important;
+  z-index: 10003 !important;
+  pointer-events: auto !important;
 }
 
 /* Mobile responsive adjustments */
@@ -1344,3 +1355,49 @@ body.voiceflow-chat-open {
 #voiceflow-chat button[aria-label="Open chat"] {
   animation: chatbotPulse 2s ease-in-out 3;
 }
+
+/* Additional Voiceflow visibility fixes */
+#voiceflow-chat *,
+#voiceflow-chat * > * {
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure the chat window itself is visible */
+#voiceflow-chat div[role="dialog"],
+#voiceflow-chat div[class*="chat"],
+#voiceflow-chat div[class*="widget"],
+#voiceflow-chat div[class*="container"] {
+  z-index: 10003 !important;
+  position: fixed !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Force visibility for all child elements */
+#voiceflow-chat button,
+#voiceflow-chat input,
+#voiceflow-chat textarea,
+#voiceflow-chat [role="button"] {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  visibility: visible !important;
+}
+
+/* Ensure backdrop/overlay doesn't block interaction */
+#voiceflow-chat [class*="backdrop"],
+#voiceflow-chat [class*="overlay"] {
+  pointer-events: none !important;
+}
+
+/* Debug mode - uncomment to highlight chatbot elements */
+/*
+#voiceflow-chat {
+  outline: 3px solid red !important;
+}
+#voiceflow-chat * {
+  outline: 1px solid blue !important;
+}
+*/
