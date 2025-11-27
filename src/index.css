@@ -1258,6 +1258,22 @@ footer {
   z-index: 99999 !important;
   max-height: calc(100vh - 140px) !important;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2) !important;
+  transform-origin: bottom right !important;
+  animation: popOutFromButton 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+@keyframes popOutFromButton {
+  0% {
+    transform: scale(0) translateY(20px) translateX(20px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) translateY(0) translateX(0);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1280,6 +1296,7 @@ footer {
     width: calc(100vw - 30px) !important;
     max-width: 400px !important;
     max-height: calc(100vh - 120px) !important;
+    transform-origin: bottom right !important;
   }
 }
 
@@ -1292,6 +1309,7 @@ footer {
   #voiceflow-chat .vfrc-chat {
     bottom: 80px !important;
     max-height: calc(100vh - 110px) !important;
+    transform-origin: bottom right !important;
   }
 }
 
