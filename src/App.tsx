@@ -361,6 +361,151 @@ function App() {
         </div>
       </section>
 
+      {/* Contact Section */}
+      <section id="contact" className="contact-section">
+        <div className="contact-container">
+          <div className="contact-info-side">
+            <h2 className="headline-font">Lad os tale sammen</h2>
+            <p>Har du spørgsmål eller brug for hjælp? Kontakt os direkte eller prøv vores AI-assistent for hurtige svar.</p>
+
+            <div className="contact-details">
+              <div className="contact-detail-item">
+                <div className="contact-detail-icon">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div className="contact-detail-text">
+                  <strong>EMAIL</strong>
+                  <a href="mailto:miklhagstroem@gmail.com">miklhagstroem@gmail.com</a>
+                </div>
+              </div>
+
+              <div className="contact-detail-item">
+                <div className="contact-detail-icon">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                  </svg>
+                </div>
+                <div className="contact-detail-text">
+                  <strong>TELEFON</strong>
+                  <a href="tel:+4581260711">+45 81 26 07 11</a>
+                </div>
+              </div>
+
+              <div className="contact-detail-item">
+                <div className="contact-detail-icon">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div className="contact-detail-text">
+                  <strong>SVARTID</strong>
+                  <span>Inden for 24 timer</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="chatbot-cta">
+              <h3>Har du brug for øjeblikkelig hjælp?</h3>
+              <p>Chat med vores AI-assistent og få svar på dine spørgsmål nu</p>
+              <button
+                className="chatbot-button"
+                onClick={() => {
+                  if (window.voiceflow && window.voiceflow.chat) {
+                    window.voiceflow.chat.open();
+                  }
+                }}
+              >
+                Start Chat
+              </button>
+            </div>
+          </div>
+
+          <div className="contact-form-side">
+            <h3 className="headline-font">Send os en besked</h3>
+            <form onSubmit={handleContactSubmit}>
+              <div className="form-group">
+                <label htmlFor="newContactName">Navn *</label>
+                <input
+                  type="text"
+                  id="newContactName"
+                  name="name"
+                  placeholder="Dit fulde navn"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="newContactEmail">Email *</label>
+                <input
+                  type="email"
+                  id="newContactEmail"
+                  name="email"
+                  placeholder="din@email.dk"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="newContactSubject">Emne</label>
+                <input
+                  type="text"
+                  id="newContactSubject"
+                  name="subject"
+                  placeholder="Hvad drejer din henvendelse sig om?"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="newContactMessage">Besked *</label>
+                <textarea
+                  id="newContactMessage"
+                  name="message"
+                  placeholder="Fortæl os om dit projekt eller spørgsmål..."
+                  required
+                  rows={5}
+                ></textarea>
+              </div>
+
+              {contactSuccessMessage && (
+                <div style={{
+                  padding: '12px 16px',
+                  marginBottom: '16px',
+                  backgroundColor: '#d1fae5',
+                  color: '#065f46',
+                  borderRadius: '8px',
+                  fontSize: '0.9rem'
+                }}>
+                  Tak for din besked! Vi vender tilbage til dig hurtigst muligt.
+                </div>
+              )}
+
+              {contactErrorMessage && (
+                <div style={{
+                  padding: '12px 16px',
+                  marginBottom: '16px',
+                  backgroundColor: '#fee2e2',
+                  color: '#991b1b',
+                  borderRadius: '8px',
+                  fontSize: '0.9rem'
+                }}>
+                  Der opstod en fejl. Prøv venligst igen.
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className="submit-button"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'SENDER...' : 'SEND BESKED'}
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="fade-in-bottom bg-gradient-to-br from-teal-50/30 via-gray-50 to-orange-50/20 py-16 px-4 sm:px-6 md:px-10 mt-0 relative overflow-hidden" style={{boxShadow: 'inset 0 2px 0 rgba(79, 168, 139, 0.12)'}}>
         <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-gradient-to-br from-teal-200/15 to-teal-300/10 blur-3xl"></div>
