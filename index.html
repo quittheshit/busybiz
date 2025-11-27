@@ -13,56 +13,5 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-
-    <!-- Voiceflow Chatbot Widget -->
-    <script type="text/javascript">
-      (function(d, t) {
-          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-          v.onload = function() {
-            window.voiceflow.chat.load({
-              verify: { projectID: '69280470415f7f18f623a97e' },
-              url: 'https://general-runtime.voiceflow.com',
-              versionID: 'production',
-              voice: {
-                url: "https://runtime-api.voiceflow.com"
-              }
-            });
-
-            // Debug: Log when chatbot loads
-            console.log('Voiceflow chatbot loaded successfully');
-
-            // Debug: Check chatbot visibility after a delay
-            setTimeout(function() {
-              var chatElement = document.querySelector('#voiceflow-chat');
-              if (chatElement) {
-                console.log('Chatbot element found:', chatElement);
-                console.log('Chatbot styles:', {
-                  position: window.getComputedStyle(chatElement).position,
-                  zIndex: window.getComputedStyle(chatElement).zIndex,
-                  display: window.getComputedStyle(chatElement).display,
-                  visibility: window.getComputedStyle(chatElement).visibility,
-                  opacity: window.getComputedStyle(chatElement).opacity
-                });
-
-                // Force visibility if needed
-                chatElement.style.setProperty('z-index', '10003', 'important');
-                chatElement.style.setProperty('position', 'fixed', 'important');
-                chatElement.style.setProperty('visibility', 'visible', 'important');
-                chatElement.style.setProperty('pointer-events', 'auto', 'important');
-              } else {
-                console.warn('Chatbot element not found in DOM');
-              }
-            }, 2000);
-          };
-
-          v.onerror = function() {
-            console.error('Failed to load Voiceflow chatbot script');
-          };
-
-          v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs";
-          v.type = "text/javascript";
-          s.parentNode.insertBefore(v, s);
-      })(document, 'script');
-    </script>
   </body>
 </html>
