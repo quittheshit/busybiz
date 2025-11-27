@@ -435,7 +435,7 @@ function App() {
                       </svg>
                     </div>
                   </div>
-                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Mange flere kunder der finder dig på internettet (Google, Maps, Sociale Meder & ChatGPT)</p>
+                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Mange flere kunder der finder dig på internettet (Google, Maps, Sociale Medier & ChatGPT)</p>
                 </div>
               </div>
 
