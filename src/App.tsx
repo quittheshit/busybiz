@@ -386,35 +386,92 @@ function App() {
             </p>
           </div>
 
-          {/* Value Proposition Steps */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-6xl mx-auto">
-            {/* Step 1 */}
-            <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-amber-100/50 relative">
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 relative">
-                  <span className="text-2xl font-bold text-white">1</span>
-                </div>
-                <p className="text-gray-800 leading-relaxed font-medium text-lg">Mange flere kunder der finder dig på internettet (Google, Maps, ChatGPT)</p>
-              </div>
+          {/* Value Proposition Steps - Animated Infographic */}
+          <div className="relative mb-16 max-w-6xl mx-auto">
+            {/* Symbolic Background */}
+            <div className="absolute inset-0 overflow-hidden rounded-3xl opacity-10 pointer-events-none">
+              {/* Growth Lines (More Customers) */}
+              <svg className="absolute left-0 top-1/4 w-1/3 h-1/2 text-teal-500" viewBox="0 0 200 200" fill="none">
+                <path d="M20 180 L50 140 L80 120 L110 80 L140 60 L170 20" stroke="currentColor" strokeWidth="3" className="animate-pulse" />
+                <path d="M20 180 L50 150 L80 130 L110 100 L140 80 L170 50" stroke="currentColor" strokeWidth="2" opacity="0.5" />
+              </svg>
+
+              {/* Money Coins (More Revenue) */}
+              <svg className="absolute left-1/2 -translate-x-1/2 top-10 w-1/4 h-1/4 text-amber-500" viewBox="0 0 100 100">
+                <circle cx="30" cy="30" r="15" stroke="currentColor" strokeWidth="2" fill="none" className="animate-bounce" style={{ animationDelay: '0s', animationDuration: '2s' }} />
+                <circle cx="50" cy="20" r="12" stroke="currentColor" strokeWidth="2" fill="none" className="animate-bounce" style={{ animationDelay: '0.3s', animationDuration: '2s' }} />
+                <circle cx="70" cy="35" r="10" stroke="currentColor" strokeWidth="2" fill="none" className="animate-bounce" style={{ animationDelay: '0.6s', animationDuration: '2s' }} />
+              </svg>
+
+              {/* Zen Circles (Relaxation) */}
+              <svg className="absolute right-0 bottom-1/4 w-1/3 h-1/2 text-emerald-500" viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="80" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.3" className="animate-ping" style={{ animationDuration: '3s' }} />
+                <circle cx="100" cy="100" r="50" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.4" className="animate-ping" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }} />
+                <circle cx="100" cy="100" r="25" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.5" />
+              </svg>
             </div>
 
-            {/* Step 2 */}
-            <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-teal-100/50 relative">
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 relative">
-                  <span className="text-2xl font-bold text-white">2</span>
+            {/* Main Content Grid */}
+            <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Step 1: More Customers - Magnet with Users */}
+              <div className="group bg-gradient-to-br from-teal-50 to-white backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-teal-500/30 relative overflow-hidden">
+                <div className="flex flex-col items-center text-center space-y-5">
+                  <div className="relative w-20 h-20">
+                    {/* Animated Magnet Icon */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-teal-400 to-teal-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-teal-400/50 transition-all duration-500 group-hover:rotate-12">
+                      <svg className="w-12 h-12 text-white animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                      </svg>
+                    </div>
+                    {/* Orbiting Users */}
+                    <div className="absolute -top-1 -right-1 w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center animate-bounce" style={{ animationDuration: '1.5s' }}>
+                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+                      </svg>
+                    </div>
+                    <div className="absolute -bottom-1 -left-1 w-5 h-5 bg-teal-400 rounded-full flex items-center justify-center animate-bounce" style={{ animationDuration: '2s', animationDelay: '0.3s' }}>
+                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Mange flere kunder der finder dig på internettet (Google, Maps, ChatGPT)</p>
                 </div>
-                <p className="text-gray-800 leading-relaxed font-medium text-lg">Professionel hjemmeside der overbeviser kunder om at vælge dig</p>
               </div>
-            </div>
 
-            {/* Step 3 */}
-            <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-emerald-100/50 relative">
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 relative">
-                  <span className="text-2xl font-bold text-white">3</span>
+              {/* Step 2: More Money - Growing Trophy/Money */}
+              <div className="group bg-gradient-to-br from-amber-50 to-white backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-amber-500/30 relative overflow-hidden">
+                <div className="flex flex-col items-center text-center space-y-5">
+                  <div className="relative w-20 h-20">
+                    {/* Animated Trophy with Money */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-amber-400/50 transition-all duration-500 group-hover:scale-110">
+                      <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                      </svg>
+                    </div>
+                    {/* Floating Money Symbol */}
+                    <div className="absolute -top-2 -right-2 text-3xl animate-bounce" style={{ animationDuration: '2s' }}>💰</div>
+                  </div>
+                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Professionel hjemmeside der overbeviser kunder om at vælge dig</p>
                 </div>
-                <p className="text-gray-800 leading-relaxed font-medium text-lg">Automatiseringer der svare på dine kunders spørgsmål med det samme, sender emails og meget mere</p>
+              </div>
+
+              {/* Step 3: Relaxation - Clock to Checkmark */}
+              <div className="group bg-gradient-to-br from-emerald-50 to-white backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-emerald-500/30 relative overflow-hidden">
+                <div className="flex flex-col items-center text-center space-y-5">
+                  <div className="relative w-20 h-20">
+                    {/* Animated Check/Relax Icon */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-emerald-400/50 transition-all duration-500">
+                      <svg className="w-12 h-12 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    {/* Floating Sparkles (Time Saved) */}
+                    <div className="absolute -top-1 -right-1 text-xl animate-ping" style={{ animationDuration: '1.5s' }}>✨</div>
+                    <div className="absolute -bottom-1 -left-1 text-xl animate-ping" style={{ animationDuration: '2s', animationDelay: '0.5s' }}>⚡</div>
+                  </div>
+                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Automatiseringer der svare på dine kunders spørgsmål med det samme, sender emails og meget mere</p>
+                </div>
               </div>
             </div>
           </div>
