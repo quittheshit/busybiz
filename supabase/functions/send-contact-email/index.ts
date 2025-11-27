@@ -9,12 +9,11 @@ const corsHeaders = {
 interface ContactFormData {
   name: string;
   email: string;
-  subject: string;
+  subject?: string;
   message: string;
 }
 
 Deno.serve(async (req: Request) => {
-  // Handle CORS preflight
   if (req.method === "OPTIONS") {
     return new Response(null, {
       status: 200,
@@ -23,10 +22,8 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    // Parse request body
     const { name, email, subject, message }: ContactFormData = await req.json();
 
-    // Validate required fields
     if (!name || !email || !message) {
       return new Response(
         JSON.stringify({ error: "Missing required fields" }),
@@ -37,7 +34,6 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return new Response(
@@ -49,10 +45,8 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    // Email configuration - Using SMTP or email service
-    // For this implementation, we'll use Resend API (you can replace with any email service)
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-    const TO_EMAIL = "miklhagstroem@gmail.com"; // Your business email
+    const TO_EMAIL = "miklhagstroem@gmail.com";
 
     if (!RESEND_API_KEY) {
       console.error("RESEND_API_KEY not configured");
@@ -65,7 +59,6 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    // Prepare email content
     const emailHtml = `
       <!DOCTYPE html>
       <html>
@@ -130,29 +123,29 @@ Deno.serve(async (req: Request) => {
         </head>
         <body>
           <div class="header">
-            <h1>🔔 Ny Kontaktformular Besked</h1>
+            <h1>Ny Kontaktformular Besked</h1>
             <p style="margin: 5px 0 0 0; opacity: 0.9;">BusyBiz Hjemmeside</p>
           </div>
           <div class="content">
             <div class="field">
-              <div class="field-label">👤 Navn:</div>
+              <div class="field-label">Navn:</div>
               <div class="field-value">${name}</div>
             </div>
 
             <div class="field">
-              <div class="field-label">📧 Email:</div>
+              <div class="field-label">Email:</div>
               <div class="field-value">
                 <a href="mailto:${email}" style="color: #4fa88b; text-decoration: none;">${email}</a>
               </div>
             </div>
 
             <div class="field">
-              <div class="field-label">📋 Emne:</div>
+              <div class="field-label">Emne:</div>
               <div class="field-value">${subject || 'Ingen emne'}</div>
             </div>
 
             <div class="field">
-              <div class="field-label">💬 Besked:</div>
+              <div class="field-label">Besked:</div>
               <div class="message-box">${message}</div>
             </div>
           </div>
@@ -168,7 +161,6 @@ Deno.serve(async (req: Request) => {
       </html>
     `;
 
-    // Plain text version
     const emailText = `
 Ny Kontaktformular Besked fra BusyBiz
 
@@ -183,7 +175,6 @@ ${message}
 Modtaget: ${new Date().toLocaleString('da-DK')}
     `.trim();
 
-    // Send email using Resend API
     const resendResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
