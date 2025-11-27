@@ -1252,13 +1252,7 @@ footer {
 }
 
 #voiceflow-chat .vfrc-chat {
-  position: fixed !important;
-  bottom: 90px !important;
-  right: 20px !important;
   z-index: 99999 !important;
-  max-height: calc(100vh - 140px) !important;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2) !important;
-  transform-origin: bottom right !important;
 }
 
 @media (max-width: 768px) {
@@ -1314,15 +1308,16 @@ footer {
 @media (min-width: 769px) {
   #voiceflow-chat .vfrc-chat {
     position: fixed !important;
-    bottom: 85px !important;
+    bottom: 90px !important;
     right: 20px !important;
     left: auto !important;
     top: auto !important;
     width: 400px !important;
     height: 600px !important;
     max-width: 400px !important;
-    max-height: 600px !important;
+    max-height: calc(100vh - 140px) !important;
     border-radius: 16px !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2) !important;
     transform-origin: bottom right !important;
   }
 }
