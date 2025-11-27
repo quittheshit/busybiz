@@ -35,7 +35,7 @@ export function initVoiceflowScrollHandler() {
     scrollTimer = window.setTimeout(() => {
       enableAnimations();
       scrollTimer = null;
-    }, 300);
+    }, 150);
   };
 
   const handleTouchStart = () => {
@@ -53,7 +53,7 @@ export function initVoiceflowScrollHandler() {
       scrollTimer = window.setTimeout(() => {
         enableAnimations();
         scrollTimer = null;
-      }, 300);
+      }, 150);
     }
   };
 

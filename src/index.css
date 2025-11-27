@@ -1278,24 +1278,33 @@ footer {
 
 @media (max-width: 768px) {
   #voiceflow-chat {
+    position: fixed !important;
     bottom: 15px !important;
     right: 15px !important;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
   }
 
   #voiceflow-chat button[data-testid="launcher"] {
+    position: fixed !important;
     bottom: 15px !important;
     right: 15px !important;
     width: 56px !important;
     height: 56px !important;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
   }
 
   #voiceflow-chat .vfrc-chat {
+    position: fixed !important;
     bottom: 85px !important;
     right: 15px !important;
     left: 15px !important;
     width: calc(100vw - 30px) !important;
     max-width: 400px !important;
-    max-height: calc(100vh - 120px) !important;
+    max-height: calc(100dvh - 120px) !important;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
     transform-origin: bottom right !important;
   }
 }
@@ -1308,7 +1317,7 @@ footer {
 
   #voiceflow-chat .vfrc-chat {
     bottom: 80px !important;
-    max-height: calc(100vh - 110px) !important;
+    max-height: calc(100dvh - 110px) !important;
     transform-origin: bottom right !important;
   }
 }
@@ -1328,10 +1337,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-  body.mobile-scrolling #voiceflow-chat {
-    position: fixed !important;
-  }
-
   body.mobile-scrolling #voiceflow-chat,
   body.mobile-scrolling #voiceflow-chat *,
   body.mobile-scrolling #voiceflow-chat *::before,
@@ -1340,15 +1345,23 @@ footer {
     transition: none !important;
     animation-play-state: paused !important;
     will-change: auto !important;
-    transform: translate3d(0, 0, 0) !important;
-    -webkit-transform: translate3d(0, 0, 0) !important;
   }
 
   body.mobile-scrolling #voiceflow-chat button[data-testid="launcher"],
   body.mobile-scrolling #voiceflow-chat .vfrc-widget,
   body.mobile-scrolling #voiceflow-chat .vfrc-chat,
   body.mobile-scrolling #voiceflow-chat iframe {
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
+  }
+
+  body:not(.mobile-scrolling) #voiceflow-chat button[data-testid="launcher"],
+  body:not(.mobile-scrolling) #voiceflow-chat .vfrc-widget,
+  body:not(.mobile-scrolling) #voiceflow-chat .vfrc-chat {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.2s ease,
+                box-shadow 0.2s ease !important;
   }
 }
