@@ -1327,20 +1327,28 @@ footer {
   }
 }
 
-#voiceflow-chat.mobile-scrolling * {
-  animation: none !important;
-  transition: none !important;
-}
+@media (max-width: 768px) {
+  body.mobile-scrolling #voiceflow-chat {
+    position: fixed !important;
+  }
 
-#voiceflow-chat.mobile-scrolling iframe *,
-#voiceflow-chat.mobile-scrolling .vfrc-widget *,
-#voiceflow-chat.mobile-scrolling .vfrc-chat * {
-  animation-play-state: paused !important;
-  transition-duration: 0ms !important;
-  will-change: auto !important;
-}
+  body.mobile-scrolling #voiceflow-chat,
+  body.mobile-scrolling #voiceflow-chat *,
+  body.mobile-scrolling #voiceflow-chat *::before,
+  body.mobile-scrolling #voiceflow-chat *::after {
+    animation: none !important;
+    transition: none !important;
+    animation-play-state: paused !important;
+    will-change: auto !important;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+  }
 
-#voiceflow-chat.mobile-scrolling button[data-testid="launcher"] {
-  transition: none !important;
-  transform: none !important;
+  body.mobile-scrolling #voiceflow-chat button[data-testid="launcher"],
+  body.mobile-scrolling #voiceflow-chat .vfrc-widget,
+  body.mobile-scrolling #voiceflow-chat .vfrc-chat,
+  body.mobile-scrolling #voiceflow-chat iframe {
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+  }
 }

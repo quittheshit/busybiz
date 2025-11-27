@@ -10,20 +10,18 @@ export function initVoiceflowScrollHandler() {
   const disableAnimations = () => {
     if (!isMobileDevice()) return;
 
-    const voiceflowContainer = document.getElementById('voiceflow-chat');
-    if (voiceflowContainer && !isScrolling) {
+    if (!isScrolling) {
       isScrolling = true;
-      voiceflowContainer.classList.add('mobile-scrolling');
+      document.body.classList.add('mobile-scrolling');
     }
   };
 
   const enableAnimations = () => {
     if (!isMobileDevice()) return;
 
-    const voiceflowContainer = document.getElementById('voiceflow-chat');
-    if (voiceflowContainer && isScrolling) {
+    if (isScrolling) {
       isScrolling = false;
-      voiceflowContainer.classList.remove('mobile-scrolling');
+      document.body.classList.remove('mobile-scrolling');
     }
   };
 
@@ -37,7 +35,7 @@ export function initVoiceflowScrollHandler() {
     scrollTimer = window.setTimeout(() => {
       enableAnimations();
       scrollTimer = null;
-    }, 150);
+    }, 300);
   };
 
   const handleTouchStart = () => {
@@ -55,7 +53,7 @@ export function initVoiceflowScrollHandler() {
       scrollTimer = window.setTimeout(() => {
         enableAnimations();
         scrollTimer = null;
-      }, 150);
+      }, 300);
     }
   };
 
@@ -67,8 +65,8 @@ export function initVoiceflowScrollHandler() {
   };
 
   const checkForVoiceflowWidget = () => {
-    const voiceflowContainer = document.getElementById('voiceflow-chat');
-    if (voiceflowContainer) {
+    const widget = document.getElementById('voiceflow-chat');
+    if (widget) {
       initializeListeners();
     } else {
       setTimeout(checkForVoiceflowWidget, 500);
@@ -82,5 +80,6 @@ export function initVoiceflowScrollHandler() {
     window.removeEventListener('touchstart', handleTouchStart);
     window.removeEventListener('touchend', handleTouchEnd);
     window.removeEventListener('touchmove', handleScroll);
+    document.body.classList.remove('mobile-scrolling');
   };
 }
