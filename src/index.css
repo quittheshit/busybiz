@@ -1230,11 +1230,6 @@ footer {
   bottom: 20px !important;
   right: 20px !important;
   z-index: 99999 !important;
-  -webkit-transform: translateZ(0) !important;
-  transform: translateZ(0) !important;
-  -webkit-backface-visibility: hidden !important;
-  backface-visibility: hidden !important;
-  will-change: transform !important;
 }
 
 #voiceflow-chat button[data-testid="launcher"] {
@@ -1244,27 +1239,16 @@ footer {
   z-index: 99999 !important;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
   transition: all 0.3s ease !important;
-  -webkit-transform: translateZ(0) !important;
-  transform: translateZ(0) !important;
-  -webkit-backface-visibility: hidden !important;
-  backface-visibility: hidden !important;
-  will-change: transform !important;
 }
 
 #voiceflow-chat button[data-testid="launcher"]:hover {
-  transform: scale(1.05) translateZ(0) !important;
-  -webkit-transform: scale(1.05) translateZ(0) !important;
+  transform: scale(1.05) !important;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2) !important;
 }
 
 #voiceflow-chat iframe,
 #voiceflow-chat .vfrc-widget {
   z-index: 99999 !important;
-  position: fixed !important;
-  -webkit-transform: translateZ(0) !important;
-  transform: translateZ(0) !important;
-  -webkit-backface-visibility: hidden !important;
-  backface-visibility: hidden !important;
 }
 
 #voiceflow-chat .vfrc-chat {
@@ -1275,25 +1259,19 @@ footer {
   max-height: calc(100vh - 140px) !important;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2) !important;
   transform-origin: bottom right !important;
-  animation: popOutFromButton 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
-  -webkit-backface-visibility: hidden !important;
-  backface-visibility: hidden !important;
-  will-change: transform, opacity !important;
-  -webkit-overflow-scrolling: touch !important;
+  animation: popOutFromButton 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
 }
 
 @keyframes popOutFromButton {
   0% {
-    transform: scale(0) translateY(20px) translateX(20px) translateZ(0);
-    -webkit-transform: scale(0) translateY(20px) translateX(20px) translateZ(0);
+    transform: scale(0) translateY(20px) translateX(20px);
     opacity: 0;
   }
   50% {
     opacity: 0.8;
   }
   100% {
-    transform: scale(1) translateY(0) translateX(0) translateZ(0);
-    -webkit-transform: scale(1) translateY(0) translateX(0) translateZ(0);
+    transform: scale(1) translateY(0) translateX(0);
     opacity: 1;
   }
 }
@@ -1302,9 +1280,6 @@ footer {
   #voiceflow-chat {
     bottom: 15px !important;
     right: 15px !important;
-    position: fixed !important;
-    -webkit-transform: translate3d(0, 0, 0) !important;
-    transform: translate3d(0, 0, 0) !important;
   }
 
   #voiceflow-chat button[data-testid="launcher"] {
@@ -1312,9 +1287,6 @@ footer {
     right: 15px !important;
     width: 56px !important;
     height: 56px !important;
-    position: fixed !important;
-    -webkit-transform: translate3d(0, 0, 0) !important;
-    transform: translate3d(0, 0, 0) !important;
   }
 
   #voiceflow-chat .vfrc-chat {
@@ -1324,9 +1296,7 @@ footer {
     width: calc(100vw - 30px) !important;
     max-width: 400px !important;
     max-height: calc(100vh - 120px) !important;
-    max-height: calc(100dvh - 120px) !important;
     transform-origin: bottom right !important;
-    position: fixed !important;
   }
 }
 
@@ -1334,17 +1304,12 @@ footer {
   #voiceflow-chat button[data-testid="launcher"] {
     width: 52px !important;
     height: 52px !important;
-    position: fixed !important;
-    -webkit-transform: translate3d(0, 0, 0) !important;
-    transform: translate3d(0, 0, 0) !important;
   }
 
   #voiceflow-chat .vfrc-chat {
     bottom: 80px !important;
     max-height: calc(100vh - 110px) !important;
-    max-height: calc(100dvh - 110px) !important;
     transform-origin: bottom right !important;
-    position: fixed !important;
   }
 }
 
