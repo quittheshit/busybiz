@@ -361,147 +361,247 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="contact-section">
-        <div className="contact-container">
-          <div className="contact-info-side">
-            <h2 className="headline-font">Lad os tale sammen</h2>
-            <p>Har du spørgsmål eller brug for hjælp? Kontakt os direkte eller prøv vores AI-assistent for hurtige svar.</p>
+      {/* Premium Contact Section */}
+      <section id="contact" className="relative overflow-hidden bg-gradient-to-br from-emerald-50/40 via-amber-50/20 to-teal-50/30 py-24 md:py-32">
+        {/* Floating background elements */}
+        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-teal-200/20 to-emerald-300/10 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-32 right-20 w-80 h-80 bg-gradient-to-br from-amber-200/20 to-orange-300/10 rounded-full blur-3xl animate-float-delayed"></div>
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-br from-blue-200/15 to-cyan-300/10 rounded-full blur-3xl animate-float-slow"></div>
 
-            <div className="contact-details">
-              <div className="contact-detail-item">
-                <div className="contact-detail-icon">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Hero Area */}
+          <div className="text-center mb-16 md:mb-20">
+            <div className="inline-block mb-6 animate-bounce-subtle">
+              <img
+                src="/Busybiz-mascot-transparent-Photoroom copy.png"
+                alt="BusyBiz Mascot"
+                className="w-20 h-20 md:w-24 md:h-24 drop-shadow-lg"
+              />
+            </div>
+            <h2 className="headline-font text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6 leading-tight">
+              Vil du have flere kunder<br />ind ad døren?
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Hvis du føler at konkurrenterne løber med kunderne, eller omvendt hvis du får flere mails end du kan nå at svare på, så skriv til mig.
+            </p>
+          </div>
+
+          {/* Value Proposition Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 max-w-4xl mx-auto">
+            <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-emerald-100/50">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                   </svg>
                 </div>
-                <div className="contact-detail-text">
-                  <strong>EMAIL</strong>
-                  <a href="mailto:miklhagstroem@gmail.com">miklhagstroem@gmail.com</a>
-                </div>
-              </div>
-
-              <div className="contact-detail-item">
-                <div className="contact-detail-icon">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                  </svg>
-                </div>
-                <div className="contact-detail-text">
-                  <strong>TELEFON</strong>
-                  <a href="tel:+4581260711">+45 81 26 07 11</a>
-                </div>
-              </div>
-
-              <div className="contact-detail-item">
-                <div className="contact-detail-icon">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                </div>
-                <div className="contact-detail-text">
-                  <strong>SVARTID</strong>
-                  <span>Inden for 24 timer</span>
+                <div>
+                  <p className="text-gray-700 leading-relaxed">en hjemmeside, der ser professionel ud</p>
                 </div>
               </div>
             </div>
 
-            <div className="chatbot-cta">
-              <h3>Har du brug for øjeblikkelig hjælp?</h3>
-              <p>Chat med vores AI-assistent og få svar på dine spørgsmål nu</p>
-              <button
-                className="chatbot-button"
-                onClick={() => {
-                  if (window.voiceflow && window.voiceflow.chat) {
-                    window.voiceflow.chat.open();
-                  }
-                }}
-              >
-                Start Chat
-              </button>
+            <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-amber-100/50">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-gray-700 leading-relaxed">flere besøg fra Google og ChatGPT</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-blue-100/50">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-gray-700 leading-relaxed">flere henvendelser fra både nye og eksisterende kunder</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-emerald-100/50">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-gray-700 leading-relaxed">mindre manuelt arbejde med chatbots og automatisering</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="contact-form-side">
-            <h3 className="headline-font">Send os en besked</h3>
-            <form onSubmit={handleContactSubmit}>
-              <div className="form-group">
-                <label htmlFor="newContactName">Navn *</label>
-                <input
-                  type="text"
-                  id="newContactName"
-                  name="name"
-                  placeholder="Dit fulde navn"
-                  required
-                />
-              </div>
+          {/* Reassurance */}
+          <div className="text-center mb-16">
+            <p className="text-xl md:text-2xl text-gray-700 font-light italic max-w-3xl mx-auto leading-relaxed">
+              Du behøver ikke vide præcis, hvad du har brug for, bare skriv, så finder vi ud af det sammen.
+            </p>
+          </div>
 
-              <div className="form-group">
-                <label htmlFor="newContactEmail">Email *</label>
-                <input
-                  type="email"
-                  id="newContactEmail"
-                  name="email"
-                  placeholder="din@email.dk"
-                  required
-                />
-              </div>
+          {/* Main Content Grid */}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+            {/* Contact Form */}
+            <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 md:p-10 shadow-2xl border border-gray-100">
+              <h3 className="headline-font text-2xl md:text-3xl text-gray-900 mb-6">Send din besked</h3>
 
-              <div className="form-group">
-                <label htmlFor="newContactSubject">Emne</label>
-                <input
-                  type="text"
-                  id="newContactSubject"
-                  name="subject"
-                  placeholder="Hvad drejer din henvendelse sig om?"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="newContactMessage">Besked *</label>
-                <textarea
-                  id="newContactMessage"
-                  name="message"
-                  placeholder="Fortæl os om dit projekt eller spørgsmål..."
-                  required
-                  rows={5}
-                ></textarea>
-              </div>
-
-              {contactSuccessMessage && (
-                <div style={{
-                  padding: '12px 16px',
-                  marginBottom: '16px',
-                  backgroundColor: '#d1fae5',
-                  color: '#065f46',
-                  borderRadius: '8px',
-                  fontSize: '0.9rem'
-                }}>
-                  Tak for din besked! Vi vender tilbage til dig hurtigst muligt.
+              <form onSubmit={handleContactSubmit} className="space-y-6">
+                <div className="group">
+                  <label htmlFor="premiumContactName" className="block text-sm font-medium text-gray-700 mb-2">
+                    Navn
+                  </label>
+                  <input
+                    type="text"
+                    id="premiumContactName"
+                    name="name"
+                    placeholder="Dit fulde navn"
+                    required
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-teal-400 focus:ring-4 focus:ring-teal-100 transition-all duration-200 outline-none text-gray-900 placeholder-gray-400"
+                  />
                 </div>
-              )}
 
-              {contactErrorMessage && (
-                <div style={{
-                  padding: '12px 16px',
-                  marginBottom: '16px',
-                  backgroundColor: '#fee2e2',
-                  color: '#991b1b',
-                  borderRadius: '8px',
-                  fontSize: '0.9rem'
-                }}>
-                  Der opstod en fejl. Prøv venligst igen.
+                <div className="group">
+                  <label htmlFor="premiumContactEmail" className="block text-sm font-medium text-gray-700 mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="premiumContactEmail"
+                    name="email"
+                    placeholder="din@email.dk"
+                    required
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-teal-400 focus:ring-4 focus:ring-teal-100 transition-all duration-200 outline-none text-gray-900 placeholder-gray-400"
+                  />
                 </div>
-              )}
 
-              <button
-                type="submit"
-                className="submit-button"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'SENDER...' : 'SEND BESKED'}
-              </button>
-            </form>
+                <div className="group">
+                  <label htmlFor="premiumContactMessage" className="block text-sm font-medium text-gray-700 mb-2">
+                    Hvad vil du gerne have hjælp til?
+                  </label>
+                  <textarea
+                    id="premiumContactMessage"
+                    name="message"
+                    placeholder="Fortæl mig om din situation..."
+                    required
+                    rows={5}
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-teal-400 focus:ring-4 focus:ring-teal-100 transition-all duration-200 outline-none text-gray-900 placeholder-gray-400 resize-none"
+                  ></textarea>
+                </div>
+
+                {contactSuccessMessage && (
+                  <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border-l-4 border-emerald-500 p-4 rounded-lg">
+                    <p className="text-emerald-800 text-sm">Tak for din besked! Vi vender tilbage til dig hurtigst muligt.</p>
+                  </div>
+                )}
+
+                {contactErrorMessage && (
+                  <div className="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-red-500 p-4 rounded-lg">
+                    <p className="text-red-800 text-sm">Der opstod en fejl. Prøv venligst igen.</p>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 text-white font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                >
+                  {isSubmitting ? 'SENDER...' : 'SEND MIN BESKED'}
+                </button>
+              </form>
+            </div>
+
+            {/* Right Side: Chatbot & Contact Info */}
+            <div className="space-y-8">
+              {/* Chatbot CTA */}
+              <div className="bg-gradient-to-br from-teal-500 to-emerald-600 rounded-3xl p-8 md:p-10 shadow-2xl text-white relative overflow-hidden group hover:scale-105 transition-transform duration-300">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold">Chat med vores assistent</h3>
+                  </div>
+
+                  <p className="text-white/90 mb-6 leading-relaxed">
+                    Assistenten kan svare på spørgsmål, booke et møde og sende dig mere info med det samme.
+                  </p>
+
+                  <button
+                    onClick={() => {
+                      if (window.voiceflow && window.voiceflow.chat) {
+                        window.voiceflow.chat.open();
+                      }
+                    }}
+                    className="w-full bg-white text-teal-600 font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50"
+                  >
+                    Start en samtale
+                  </button>
+                </div>
+              </div>
+
+              {/* Contact Information */}
+              <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-gray-100">
+                <h4 className="text-xl font-bold text-gray-900 mb-6">Eller kontakt mig direkte</h4>
+
+                <div className="space-y-5">
+                  <a
+                    href="mailto:miklhagstroem@gmail.com"
+                    className="flex items-center gap-4 p-4 rounded-xl hover:bg-teal-50 transition-colors duration-200 group"
+                  >
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-200">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Email</p>
+                      <p className="text-gray-900 font-medium">miklhagstroem@gmail.com</p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="tel:+4581260711"
+                    className="flex items-center gap-4 p-4 rounded-xl hover:bg-amber-50 transition-colors duration-200 group"
+                  >
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-200">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Telefon</p>
+                      <p className="text-gray-900 font-medium">+45 81 26 07 11</p>
+                    </div>
+                  </a>
+
+                  <div className="flex items-center gap-4 p-4 rounded-xl bg-blue-50">
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-xl flex items-center justify-center shadow-md">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Svartid</p>
+                      <p className="text-gray-900 font-medium">Inden for 24 timer</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
