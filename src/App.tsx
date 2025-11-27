@@ -452,7 +452,7 @@ function App() {
                     {/* Floating Money Symbol */}
                     <div className="absolute -top-2 -right-2 text-3xl animate-bounce" style={{ animationDuration: '2s' }}>💰</div>
                   </div>
-                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Professionel hjemmeside der overbeviser kunder om at vælge dig</p>
+                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Professionel hjemmeside der overbeviser alle kunder om at vælge dig.<br />HVER gang.</p>
                 </div>
               </div>
 
