@@ -1473,4 +1473,129 @@ footer {
   .mascot-placeholder {
     display: none;
   }
+
+  /* Mobile Typography Optimization */
+  .premium-headline {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    line-height: 1.2;
+    padding: 0 1rem;
+  }
+
+  /* Subheadline and body text */
+  .premium-hero-bg p {
+    font-size: clamp(0.875rem, 3.5vw, 1rem);
+    line-height: 1.5;
+    padding: 0 1.5rem;
+  }
+
+  /* Overline text */
+  .premium-hero-bg .fade-in.stagger-1 {
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
+    letter-spacing: 0.15em;
+  }
+
+  /* CTA Button */
+  .premium-cta-button {
+    font-size: clamp(0.875rem, 4vw, 1rem);
+    padding: 0.875rem 2rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* Navigation */
+  .premium-nav a,
+  .premium-nav button {
+    font-size: clamp(0.65rem, 2.5vw, 0.75rem);
+  }
+
+  .logo-text {
+    font-size: clamp(0.875rem, 4vw, 1rem);
+  }
+
+  /* Float icons - smaller on mobile */
+  .premium-float-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .premium-float-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .premium-float-icon-small {
+    width: 40px;
+    height: 40px;
+  }
+
+  .premium-float-icon-small svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Adjust hero section padding */
+  .premium-hero-bg .relative.z-10 {
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+  }
+
+  /* Better spacing for mobile */
+  .premium-hero-bg h1 {
+    margin-bottom: 1rem;
+  }
+
+  .premium-hero-bg .fade-in.stagger-3,
+  .premium-hero-bg .fade-in.stagger-4 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
+  .premium-headline {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    line-height: 1.15;
+  }
+
+  .premium-hero-bg p {
+    font-size: clamp(0.8125rem, 3.5vw, 0.9375rem);
+    line-height: 1.6;
+  }
+
+  .premium-cta-button {
+    font-size: clamp(0.8125rem, 3.5vw, 0.9375rem);
+    padding: 0.75rem 1.75rem;
+  }
+
+  /* Hide some float icons on very small screens */
+  .absolute.top-20,
+  .absolute.top-28 {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+}
+
+/* Landscape orientation optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .premium-hero-bg {
+    min-height: 100vh;
+  }
+
+  .premium-hero-bg .relative.z-10 {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+
+  .premium-headline {
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .premium-hero-bg .fade-in.stagger-3,
+  .premium-hero-bg .fade-in.stagger-4 {
+    margin-bottom: 1rem;
+  }
+
+  .premium-cta-button {
+    padding: 0.75rem 2rem;
+  }
 }
