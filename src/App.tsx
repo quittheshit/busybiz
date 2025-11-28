@@ -137,10 +137,12 @@ function App() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo with Icon */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-lg flex items-center justify-center shadow-lg">
-              <svg className="w-6 h-6 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden">
+              <img
+                src="/Busybiz-mascot-transparent-Photoroom copy.png"
+                alt="BusyBiz Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
             <span className="logo-text text-white font-bold tracking-wider">BUSYBIZ</span>
           </div>
