@@ -460,10 +460,12 @@ function App() {
 
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-slate-900/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                      <svg className="w-6 h-6 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-                      </svg>
+                    <div className="w-12 h-12 bg-slate-900/20 backdrop-blur-sm rounded-xl flex items-center justify-center overflow-hidden">
+                      <img
+                        src="/Busybiz-mascot-transparent-Photoroom copy.png"
+                        alt="BusyBiz Logo"
+                        className="w-full h-full object-contain p-1"
+                      />
                     </div>
                     <h3 className="text-2xl font-bold">Chat med vores assistent</h3>
                   </div>
