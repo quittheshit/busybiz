@@ -259,11 +259,11 @@ function App() {
 
 
       {/* Premium Contact Section */}
-      <section id="contact" className="relative overflow-hidden bg-gradient-to-br from-emerald-50/40 via-amber-50/20 to-teal-50/30 py-24 md:py-32">
+      <section id="contact" className="relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 py-24 md:py-32">
         {/* Floating background elements */}
-        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-teal-200/20 to-emerald-300/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-32 right-20 w-80 h-80 bg-gradient-to-br from-amber-200/20 to-orange-300/10 rounded-full blur-3xl animate-float-delayed"></div>
-        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-br from-blue-200/15 to-cyan-300/10 rounded-full blur-3xl animate-float-slow"></div>
+        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-amber-400/10 to-yellow-600/5 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-32 right-20 w-80 h-80 bg-gradient-to-br from-amber-500/15 to-orange-400/10 rounded-full blur-3xl animate-float-delayed"></div>
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-br from-blue-400/10 to-cyan-400/5 rounded-full blur-3xl animate-float-slow"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Hero Area */}
@@ -275,10 +275,10 @@ function App() {
                 className="w-20 h-20 md:w-24 md:h-24 drop-shadow-lg"
               />
             </div>
-            <h2 className="headline-font text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6 leading-tight">
+            <h2 className="headline-font text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight">
               Vil du have flere kunder<br />ind ad døren?
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
               Hvis du føler at konkurrenterne løber med kunderne, eller omvendt hvis du får flere mails end du kan nå at svare på, så skriv til mig.
             </p>
           </div>
@@ -311,37 +311,37 @@ function App() {
             {/* Main Content Grid */}
             <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Step 1: More Customers - Magnet with Users */}
-              <div className="group bg-gradient-to-br from-teal-50 to-white backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-teal-500/30 relative overflow-hidden">
+              <div className="group bg-gradient-to-br from-slate-700 to-slate-800 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-amber-500/30 relative overflow-hidden">
                 <div className="flex flex-col items-center text-center space-y-5">
                   <div className="relative w-20 h-20">
                     {/* Animated Magnet Icon */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-teal-400 to-teal-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-teal-400/50 transition-all duration-500 group-hover:rotate-12">
+                    <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-amber-400/50 transition-all duration-500 group-hover:rotate-12">
                       <svg className="w-12 h-12 text-white animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                       </svg>
                     </div>
                     {/* Orbiting Users */}
-                    <div className="absolute -top-1 -right-1 w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center animate-bounce" style={{ animationDuration: '1.5s' }}>
-                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="absolute -top-1 -right-1 w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center animate-bounce" style={{ animationDuration: '1.5s' }}>
+                      <svg className="w-4 h-4 text-slate-900" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
                       </svg>
                     </div>
-                    <div className="absolute -bottom-1 -left-1 w-5 h-5 bg-teal-400 rounded-full flex items-center justify-center animate-bounce" style={{ animationDuration: '2s', animationDelay: '0.3s' }}>
-                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="absolute -bottom-1 -left-1 w-5 h-5 bg-amber-400 rounded-full flex items-center justify-center animate-bounce" style={{ animationDuration: '2s', animationDelay: '0.3s' }}>
+                      <svg className="w-3 h-3 text-slate-900" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
                       </svg>
                     </div>
                   </div>
-                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Mange flere kunder der finder dig på internettet (Google, Maps, Sociale Medier & ChatGPT)</p>
+                  <p className="text-white leading-relaxed font-semibold text-lg">Mange flere kunder der finder dig på internettet (Google, Maps, Sociale Medier & ChatGPT)</p>
                 </div>
               </div>
 
               {/* Step 2: More Money - Growing Trophy/Money */}
-              <div className="group bg-gradient-to-br from-amber-50 to-white backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-amber-500/30 relative overflow-hidden">
+              <div className="group bg-gradient-to-br from-slate-700 to-slate-800 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-amber-500/30 relative overflow-hidden">
                 <div className="flex flex-col items-center text-center space-y-5">
                   <div className="relative w-20 h-20">
                     {/* Animated Trophy with Money */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-amber-400/50 transition-all duration-500 group-hover:scale-110">
+                    <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-amber-400/50 transition-all duration-500 group-hover:scale-110">
                       <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                       </svg>
@@ -349,16 +349,16 @@ function App() {
                     {/* Floating Money Symbol */}
                     <div className="absolute -top-2 -right-2 text-3xl animate-bounce" style={{ animationDuration: '2s' }}>💰</div>
                   </div>
-                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Professionel hjemmeside der overbeviser alle kunder om at vælge dig. HVER gang.</p>
+                  <p className="text-white leading-relaxed font-semibold text-lg">Professionel hjemmeside der overbeviser alle kunder om at vælge dig. HVER gang.</p>
                 </div>
               </div>
 
               {/* Step 3: Relaxation - Clock */}
-              <div className="group bg-gradient-to-br from-blue-50 to-white backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-blue-500/30 relative overflow-hidden">
+              <div className="group bg-gradient-to-br from-slate-700 to-slate-800 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-blue-400/30 relative overflow-hidden">
                 <div className="flex flex-col items-center text-center space-y-5">
                   <div className="relative w-20 h-20">
                     {/* Animated Clock Icon */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-blue-400/50 transition-all duration-500">
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-blue-400/50 transition-all duration-500">
                       <svg className="w-12 h-12 text-white group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
@@ -367,7 +367,7 @@ function App() {
                     <div className="absolute -top-1 -right-1 text-xl animate-ping" style={{ animationDuration: '1.5s' }}>✨</div>
                     <div className="absolute -bottom-1 -left-1 text-xl animate-ping" style={{ animationDuration: '2s', animationDelay: '0.5s' }}>⚡</div>
                   </div>
-                  <p className="text-gray-800 leading-relaxed font-semibold text-lg">Hjælp dig selv og dine kunder hurtigt og effektiv med automatisk kundeservice, booking-systemer og meget mere </p>
+                  <p className="text-white leading-relaxed font-semibold text-lg">Hjælp dig selv og dine kunder hurtigt og effektiv med automatisk kundeservice, booking-systemer og meget mere </p>
                 </div>
               </div>
             </div>
@@ -375,20 +375,20 @@ function App() {
 
           {/* Reassurance */}
           <div className="text-center mb-16">
-            <p className="text-xl md:text-2xl text-gray-700 font-light italic max-w-3xl mx-auto leading-relaxed">
-              Du behøver ikke vide præcis, hvad du har brug for, bare skriv, så finder vi ud af det sammen. Vi giver gerne et <strong>gratis</strong> tip eller 2.
+            <p className="text-xl md:text-2xl text-white/90 font-light italic max-w-3xl mx-auto leading-relaxed">
+              Du behøver ikke vide præcis, hvad du har brug for, bare skriv, så finder vi ud af det sammen. Vi giver gerne et <strong className="text-amber-300">gratis</strong> tip eller 2.
             </p>
           </div>
 
           {/* Main Content Grid */}
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
             {/* Contact Form */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 md:p-10 shadow-2xl border border-gray-100">
-              <h3 className="headline-font text-2xl md:text-3xl text-gray-900 mb-6">Send din besked</h3>
+            <div className="bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm rounded-3xl p-8 md:p-10 shadow-2xl border border-amber-500/20">
+              <h3 className="headline-font text-2xl md:text-3xl text-white mb-6">Send din besked</h3>
 
               <form onSubmit={handleContactSubmit} className="space-y-6">
                 <div className="group">
-                  <label htmlFor="premiumContactName" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="premiumContactName" className="block text-sm font-medium text-white/90 mb-2">
                     Navn
                   </label>
                   <input
@@ -397,12 +397,12 @@ function App() {
                     name="name"
                     placeholder="Dit fulde navn"
                     required
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-teal-400 focus:ring-4 focus:ring-teal-100 transition-all duration-200 outline-none text-gray-900 placeholder-gray-400"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-amber-500/30 bg-slate-700/50 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 transition-all duration-200 outline-none text-white placeholder-gray-400"
                   />
                 </div>
 
                 <div className="group">
-                  <label htmlFor="premiumContactEmail" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="premiumContactEmail" className="block text-sm font-medium text-white/90 mb-2">
                     Email
                   </label>
                   <input
@@ -411,12 +411,12 @@ function App() {
                     name="email"
                     placeholder="din@email.dk"
                     required
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-teal-400 focus:ring-4 focus:ring-teal-100 transition-all duration-200 outline-none text-gray-900 placeholder-gray-400"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-amber-500/30 bg-slate-700/50 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 transition-all duration-200 outline-none text-white placeholder-gray-400"
                   />
                 </div>
 
                 <div className="group">
-                  <label htmlFor="premiumContactMessage" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="premiumContactMessage" className="block text-sm font-medium text-white/90 mb-2">
                     Hvad vil du gerne have hjælp til?
                   </label>
                   <textarea
@@ -425,7 +425,7 @@ function App() {
                     placeholder="Fortæl mig om din situation..."
                     required
                     rows={5}
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-teal-400 focus:ring-4 focus:ring-teal-100 transition-all duration-200 outline-none text-gray-900 placeholder-gray-400 resize-none"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-amber-500/30 bg-slate-700/50 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 transition-all duration-200 outline-none text-white placeholder-gray-400 resize-none"
                   ></textarea>
                 </div>
 
@@ -444,7 +444,7 @@ function App() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 text-white font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full bg-gradient-to-r from-amber-400 to-yellow-600 hover:from-yellow-500 hover:to-orange-600 text-slate-900 font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {isSubmitting ? 'SENDER...' : 'SEND MIN BESKED'}
                 </button>
@@ -454,21 +454,21 @@ function App() {
             {/* Right Side: Chatbot & Contact Info */}
             <div className="space-y-8">
               {/* Chatbot CTA */}
-              <div className="bg-gradient-to-br from-teal-500 to-emerald-600 rounded-3xl p-8 md:p-10 shadow-2xl text-white relative overflow-hidden group hover:scale-105 transition-transform duration-300">
+              <div className="bg-gradient-to-br from-amber-400 to-yellow-600 rounded-3xl p-8 md:p-10 shadow-2xl text-slate-900 relative overflow-hidden group hover:scale-105 transition-transform duration-300">
                 <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
 
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-12 h-12 bg-slate-900/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                      <svg className="w-6 h-6 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
                       </svg>
                     </div>
                     <h3 className="text-2xl font-bold">Chat med vores assistent</h3>
                   </div>
 
-                  <p className="text-white/90 mb-6 leading-relaxed">
+                  <p className="text-slate-900/90 mb-6 leading-relaxed font-medium">
                     Assistenten kan svare på spørgsmål, booke et møde og sende dig mere info med det samme.
                   </p>
 
@@ -478,7 +478,7 @@ function App() {
                         window.voiceflow.chat.open();
                       }
                     }}
-                    className="w-full bg-white text-teal-600 font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50"
+                    className="w-full bg-slate-900 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-slate-800"
                   >
                     Start en samtale
                   </button>
@@ -486,49 +486,49 @@ function App() {
               </div>
 
               {/* Contact Information */}
-              <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-gray-100">
-                <h4 className="text-xl font-bold text-gray-900 mb-6">Eller kontakt mig direkte</h4>
+              <div className="bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-amber-500/20">
+                <h4 className="text-xl font-bold text-white mb-6">Eller kontakt mig direkte</h4>
 
                 <div className="space-y-5">
                   <a
                     href="mailto:miklhagstroem@gmail.com"
-                    className="flex items-center gap-4 p-4 rounded-xl hover:bg-teal-50 transition-colors duration-200 group"
+                    className="flex items-center gap-4 p-4 rounded-xl hover:bg-slate-700 transition-colors duration-200 group"
                   >
-                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-200">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-200">
+                      <svg className="w-5 h-5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                       </svg>
                     </div>
                     <div>
-                      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Email</p>
-                      <p className="text-gray-900 font-medium">miklhagstroem@gmail.com</p>
+                      <p className="text-xs font-medium text-white/60 uppercase tracking-wide">Email</p>
+                      <p className="text-white font-medium">miklhagstroem@gmail.com</p>
                     </div>
                   </a>
 
                   <a
                     href="tel:+4581260711"
-                    className="flex items-center gap-4 p-4 rounded-xl hover:bg-amber-50 transition-colors duration-200 group"
+                    className="flex items-center gap-4 p-4 rounded-xl hover:bg-slate-700 transition-colors duration-200 group"
                   >
                     <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-200">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                       </svg>
                     </div>
                     <div>
-                      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Telefon</p>
-                      <p className="text-gray-900 font-medium">+45 81 26 07 11</p>
+                      <p className="text-xs font-medium text-white/60 uppercase tracking-wide">Telefon</p>
+                      <p className="text-white font-medium">+45 81 26 07 11</p>
                     </div>
                   </a>
 
-                  <div className="flex items-center gap-4 p-4 rounded-xl bg-blue-50">
-                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-xl flex items-center justify-center shadow-md">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-700/50">
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-md">
+                      <svg className="w-5 h-5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
                     </div>
                     <div>
-                      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Svartid</p>
-                      <p className="text-gray-900 font-medium">Inden for 24 timer</p>
+                      <p className="text-xs font-medium text-white/60 uppercase tracking-wide">Svartid</p>
+                      <p className="text-white font-medium">Inden for 24 timer</p>
                     </div>
                   </div>
                 </div>
@@ -539,29 +539,29 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="fade-in-bottom bg-gradient-to-br from-teal-50/30 via-gray-50 to-orange-50/20 py-16 px-4 sm:px-6 md:px-10 mt-0 relative overflow-hidden" style={{boxShadow: 'inset 0 2px 0 rgba(79, 168, 139, 0.12)'}}>
-        <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-gradient-to-br from-teal-200/15 to-teal-300/10 blur-3xl"></div>
-        <div className="absolute bottom-10 left-10 w-56 h-56 rounded-full bg-gradient-to-br from-orange-200/10 to-orange-300/5 blur-3xl"></div>
+      <footer className="fade-in-bottom bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-16 px-4 sm:px-6 md:px-10 mt-0 relative overflow-hidden border-t border-amber-500/20" style={{boxShadow: 'inset 0 2px 0 rgba(251, 191, 36, 0.15)'}}>
+        <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-gradient-to-br from-amber-400/10 to-yellow-500/5 blur-3xl"></div>
+        <div className="absolute bottom-10 left-10 w-56 h-56 rounded-full bg-gradient-to-br from-orange-400/10 to-amber-500/5 blur-3xl"></div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-10 md:space-y-0">
             <div className="flex items-center space-x-4 transition-all duration-300 hover:scale-105">
               <img src="/Busybiz-mascot-transparent-Photoroom copy.png" alt="BusyBiz Logo" className="mascot-logo" loading="lazy" decoding="async" />
-              <span className="logo-text text-gray-900" style={{fontSize: '1.125rem'}}>BUSYBIZ</span>
+              <span className="logo-text text-white" style={{fontSize: '1.125rem'}}>BUSYBIZ</span>
             </div>
 
-            <div className="flex flex-col items-center space-y-3 text-gray-700 text-sm">
-              <div className="flex items-center space-x-3 transition-all duration-300 hover:text-gray-900 group cursor-pointer" onClick={openContactModal}>
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-200 to-teal-100 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3" style={{boxShadow: '0 4px 12px rgba(79, 168, 139, 0.25), 0 0 0 3px rgba(133, 194, 175, 0.1)'}}>
-                  <svg className="w-4 h-4 text-teal-700 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+            <div className="flex flex-col items-center space-y-3 text-white text-sm">
+              <div className="flex items-center space-x-3 transition-all duration-300 hover:text-amber-300 group cursor-pointer" onClick={openContactModal}>
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3" style={{boxShadow: '0 4px 12px rgba(251, 191, 36, 0.4), 0 0 0 3px rgba(251, 191, 36, 0.1)'}}>
+                  <svg className="w-4 h-4 text-slate-900 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                   </svg>
                 </div>
                 <span className="transition-all duration-300 group-hover:tracking-wide">miklhagstroem@gmail.com</span>
               </div>
-              <div className="flex items-center space-x-3 transition-all duration-300 hover:text-gray-900 group cursor-pointer">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-200 to-orange-100 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3" style={{boxShadow: '0 4px 12px rgba(212, 132, 95, 0.25), 0 0 0 3px rgba(253, 186, 116, 0.1)'}}>
-                  <svg className="w-4 h-4 text-orange-700 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <div className="flex items-center space-x-3 transition-all duration-300 hover:text-amber-300 group cursor-pointer">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3" style={{boxShadow: '0 4px 12px rgba(251, 191, 36, 0.4), 0 0 0 3px rgba(251, 191, 36, 0.1)'}}>
+                  <svg className="w-4 h-4 text-slate-900 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                   </svg>
                 </div>
@@ -569,17 +569,17 @@ function App() {
               </div>
             </div>
 
-            <nav className="nav-font footer-nav text-xs text-gray-600" role="navigation" aria-label="Footer navigation">
-              <a href="#services" onClick={handleNavClick} className="nav-link hover:text-teal-600 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Hjemmesider & forbedringer">HJEMMESIDER</a>
-              <a href="#services" onClick={handleNavClick} className="nav-link hover:text-teal-600 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Bliv fundet online">SEO</a>
-              <a href="#services" onClick={handleNavClick} className="nav-link hover:text-teal-600 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Marketing, automatisering & indhold">MARKETING</a>
-              <button onClick={openContactModal} className="nav-link hover:text-teal-600 transition-all duration-300 hover:translate-y-[-2px] bg-transparent border-none cursor-pointer" style={{fontFamily: 'inherit', fontSize: 'inherit', letterSpacing: 'inherit'}} aria-label="Kontakt os">KONTAKT</button>
+            <nav className="nav-font footer-nav text-xs text-white/80" role="navigation" aria-label="Footer navigation">
+              <a href="#services" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Hjemmesider & forbedringer">HJEMMESIDER</a>
+              <a href="#services" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Bliv fundet online">SEO</a>
+              <a href="#services" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Marketing, automatisering & indhold">MARKETING</a>
+              <button onClick={openContactModal} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px] bg-transparent border-none cursor-pointer" style={{fontFamily: 'inherit', fontSize: 'inherit', letterSpacing: 'inherit'}} aria-label="Kontakt os">KONTAKT</button>
             </nav>
           </div>
 
-          <div className="mt-12 mb-8 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+          <div className="mt-12 mb-8 w-full h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent"></div>
 
-          <div className="text-center text-xs text-gray-500">
+          <div className="text-center text-xs text-white/60">
             © 2025 BusyBiz. Alle rettigheder forbeholdes.
           </div>
         </div>
@@ -611,7 +611,7 @@ function App() {
               )}
 
               <div className="contact-info-box">
-                <h3 className="text-sm font-bold text-gray-700 mb-3 uppercase tracking-wide">Kontakt Information</h3>
+                <h3 className="text-sm font-bold text-white mb-3 uppercase tracking-wide">Kontakt Information</h3>
 
                 <div className="contact-info-item">
                   <div className="contact-info-icon">
@@ -620,8 +620,8 @@ function App() {
                     </svg>
                   </div>
                   <div>
-                    <strong>Email:</strong><br/>
-                    <a href="mailto:miklhagstroem@gmail.com" className="text-teal-700 hover:underline">miklhagstroem@gmail.com</a>
+                    <strong className="text-white">Email:</strong><br/>
+                    <a href="mailto:miklhagstroem@gmail.com" className="text-amber-300 hover:underline">miklhagstroem@gmail.com</a>
                   </div>
                 </div>
 
@@ -632,8 +632,8 @@ function App() {
                     </svg>
                   </div>
                   <div>
-                    <strong>Telefon:</strong><br/>
-                    <a href="tel:+4581260711" className="text-teal-700 hover:underline">+45 81 26 07 11</a>
+                    <strong className="text-white">Telefon:</strong><br/>
+                    <a href="tel:+4581260711" className="text-amber-300 hover:underline">+45 81 26 07 11</a>
                   </div>
                 </div>
 
@@ -644,8 +644,8 @@ function App() {
                     </svg>
                   </div>
                   <div>
-                    <strong>Svartid:</strong><br/>
-                    Inden for 24 timer
+                    <strong className="text-white">Svartid:</strong><br/>
+                    <span className="text-white/90">Inden for 24 timer</span>
                   </div>
                 </div>
               </div>
