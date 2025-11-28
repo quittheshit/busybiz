@@ -133,36 +133,40 @@ function App() {
   return (
     <>
       {/* Header */}
-      <header className="header-teal py-4 px-4 sm:px-6 md:px-10 fade-in-top shadow-sm">
+      <header className="premium-header py-4 px-4 sm:px-6 md:px-10 fade-in-top">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo with Mascot */}
-          <div className="flex items-center space-x-4">
-            <img src="/Busybiz-mascot-transparent-Photoroom copy.png" alt="BusyBiz Logo" className="mascot-logo" loading="eager" fetchpriority="high" />
-            <span className="logo-text text-white">BUSYBIZ</span>
+          {/* Logo with Icon */}
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-lg flex items-center justify-center shadow-lg">
+              <svg className="w-6 h-6 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <span className="logo-text text-white font-bold tracking-wider">BUSYBIZ</span>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="nav-font desktop-nav flex items-center space-x-8 text-xs" role="navigation" aria-label="Main navigation">
-            <a href="#services" onClick={handleNavClick} className="nav-link text-white hover:text-gray-100 transition-all duration-300 hover:scale-110 hover:tracking-wider" aria-label="Hjemmesider & forbedringer">HJEMMESIDER</a>
-            <a href="#services" onClick={handleNavClick} className="nav-link text-white hover:text-gray-100 transition-all duration-300 hover:scale-110 hover:tracking-wider" aria-label="Bliv fundet online">SEO</a>
-            <a href="#services" onClick={handleNavClick} className="nav-link text-white hover:text-gray-100 transition-all duration-300 hover:scale-110 hover:tracking-wider" aria-label="Marketing, automatisering & indhold">MARKETING</a>
-            <button onClick={openContactModal} className="nav-link text-white hover:text-gray-100 transition-all duration-300 hover:scale-110 hover:tracking-wider bg-transparent border-none cursor-pointer" aria-label="Kontakt os">KONTAKT</button>
+          <nav className="premium-nav desktop-nav flex items-center space-x-8 text-xs" role="navigation" aria-label="Main navigation">
+            <a href="#services" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Hjemmesider & forbedringer">HJEMMESIDER</a>
+            <a href="#services" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Bliv fundet online">SEO</a>
+            <a href="#services" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Marketing, automatisering & indhold">MARKETING</a>
+            <button onClick={openContactModal} className="nav-link text-white hover:text-amber-300 transition-all duration-300 bg-transparent border-none cursor-pointer" aria-label="Kontakt os">KONTAKT</button>
           </nav>
 
           {/* Desktop Phone */}
           <a href="tel:+4581260711" className="desktop-phone flex items-center space-x-3 text-white group cursor-pointer no-underline" aria-label="Ring til BusyBiz på +45 81 26 07 11">
-            <div className="w-9 h-9 rounded-full bg-white/25 backdrop-blur-sm flex items-center justify-center shadow-md transition-all duration-300 group-hover:bg-white/40 group-hover:scale-110 group-hover:shadow-lg">
-              <svg className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" aria-hidden="true">
+            <div className="premium-phone-icon w-10 h-10 rounded-full bg-gradient-to-br from-amber-400/30 to-yellow-600/30 backdrop-blur-sm flex items-center justify-center shadow-lg border border-amber-400/40 transition-all duration-300 group-hover:shadow-amber-400/50 group-hover:scale-110">
+              <svg className="w-5 h-5 text-amber-300 transition-transform duration-300 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
               </svg>
             </div>
-            <span className="text-sm font-light tracking-wide transition-all duration-300 group-hover:tracking-wider">+45 81 26 07 11</span>
+            <span className="text-sm font-light tracking-wide transition-all duration-300 group-hover:text-amber-300">+45 81 26 07 11</span>
           </a>
 
           {/* Mobile Phone Icon */}
           <a href="tel:+4581260711" className="mobile-phone-icon" aria-label="Ring til BusyBiz på +45 81 26 07 11">
-            <div className="w-10 h-10 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center shadow-md transition-all duration-300 hover:bg-white/40 hover:scale-110 hover:shadow-lg">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" aria-hidden="true">
+            <div className="premium-phone-icon w-10 h-10 rounded-full bg-gradient-to-br from-amber-400/30 to-yellow-600/30 backdrop-blur-sm flex items-center justify-center shadow-lg border border-amber-400/40">
+              <svg className="w-5 h-5 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
               </svg>
             </div>
@@ -171,71 +175,78 @@ function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="hero-bg relative overflow-hidden">
-        <div className="hero-overlay"></div>
+      <section className="premium-hero-bg relative overflow-hidden">
+        <div className="premium-hero-overlay"></div>
 
-        {/* Floating Decorative Shapes */}
-        <div className="absolute top-1/4 right-1/4 w-20 h-20 rounded-full bg-gradient-to-br from-teal-300/20 to-teal-400/10 blur-xl animate-pulse" style={{animationDuration: '5s'}}></div>
-        <div className="absolute bottom-1/3 left-1/4 w-16 h-16 rounded-full bg-gradient-to-br from-orange-300/15 to-orange-400/10 blur-lg animate-pulse" style={{animationDuration: '6s', animationDelay: '1s'}}></div>
+        {/* Floating Icons */}
+        <div className="absolute top-20 left-[10%] opacity-80 animate-float-icon" style={{animationDelay: '0s'}}>
+          <div className="premium-float-icon">
+            <svg className="w-12 h-12 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+        </div>
+
+        <div className="absolute top-32 left-[20%] opacity-70 animate-float-icon" style={{animationDelay: '1s'}}>
+          <div className="premium-float-icon-small">
+            <svg className="w-10 h-10 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+            </svg>
+          </div>
+        </div>
+
+        <div className="absolute top-40 right-[15%] opacity-75 animate-float-icon" style={{animationDelay: '0.5s'}}>
+          <div className="premium-float-icon">
+            <svg className="w-12 h-12 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+            </svg>
+          </div>
+        </div>
+
+        <div className="absolute top-28 right-[25%] opacity-70 animate-float-icon" style={{animationDelay: '1.5s'}}>
+          <div className="premium-float-icon-small">
+            <svg className="w-10 h-10 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+            </svg>
+          </div>
+        </div>
 
         <div className="relative z-10 flex items-center justify-center min-h-screen py-24 px-4 sm:px-6 md:px-10">
-          <div className="max-w-5xl mx-auto text-center">
+          <div className="max-w-6xl mx-auto text-center">
             {/* Overline */}
-            <div className="fade-in stagger-1 text-gray-700 uppercase mb-4" style={{fontWeight: 500, letterSpacing: '0.25em', fontSize: '0.875rem'}}>
+            <div className="fade-in stagger-1 text-white/90 uppercase mb-4 tracking-widest text-sm font-light">
               DANMARKS BEDSTE
             </div>
 
             {/* Main Headline */}
-            <h1 className="fade-in stagger-2 headline-font text-gray-900 mb-6 px-4 hero-headline" style={{fontSize: '2.5rem', lineHeight: '1.1'}}>
-              Hjemmeside-designer
+            <h1 className="fade-in stagger-2 premium-headline text-white mb-6 px-4">
+              WEB DESIGN,<br/>
+              <span className="text-gradient">AUTOMATISERING</span><br/>
+              & MARKETING
             </h1>
 
             {/* Sub-headline */}
-            <p className="fade-in stagger-3 text-gray-700 font-light px-6 mb-8 hero-subheadline" style={{letterSpacing: '0.08em', lineHeight: '1.4', fontSize: '1rem'}}>
-              FOR <span style={{color: '#d4845f', fontWeight: 400}}>LOKALE FIRMAER</span> I DANMARK
+            <p className="fade-in stagger-3 text-white uppercase tracking-wider px-6 mb-4" style={{fontSize: '1.1rem', fontWeight: 500, lineHeight: '1.5'}}>
+              TIL LOKALE FIRMAER I DANMARK.
+            </p>
+
+            {/* Subtext */}
+            <p className="fade-in stagger-4 text-white/90 px-6 mb-10 max-w-3xl mx-auto" style={{fontSize: '1rem', lineHeight: '1.6'}}>
+              Få flere kunder, mere omsætning og automatisering med unikt design og animationer i topklasse.
             </p>
 
             {/* CTA Button */}
-            <div className="fade-in stagger-4 mb-10">
-              <button className="cta-button" onClick={openContactModal} aria-label="Åbn kontakt formular">
-                <span>Kontakt os</span>
+            <div className="fade-in stagger-5 mb-10">
+              <button className="premium-cta-button" onClick={openContactModal} aria-label="Åbn kontakt formular">
+                <span>FÅ MERE SUCCES NU</span>
               </button>
             </div>
-
-            {/* Business Icons */}
-            <div className="fade-in stagger-5 flex justify-center items-center gap-5 mb-10 flex-wrap px-4">
-              <div className="icon-circle float-gentle" style={{animationDelay: '0.2s'}}>
-                <img src="/transparent-hairdresser-icon-Photoroom.png" alt="Hairdresser & Salon Services" loading="lazy" decoding="async" />
-              </div>
-              <div className="icon-circle float-gentle" style={{animationDelay: '0.4s'}}>
-                <img src="/transparent-construction-icon-Photoroom.png" alt="Construction & Repair Services" loading="lazy" decoding="async" />
-              </div>
-              <div className="icon-circle float-gentle" style={{animationDelay: '0.5s'}}>
-                <img src="/transparent-service-icon-Photoroom.png" alt="Hospitality & Service Industry" loading="lazy" decoding="async" />
-              </div>
-              <div className="icon-circle float-gentle" style={{animationDelay: '0.7s'}}>
-                <img src="/transparent-influencer-icon.png" alt="Fitness & Wellness Instructors" loading="lazy" decoding="async" />
-              </div>
-              <div className="icon-circle float-gentle" style={{animationDelay: '0.9s'}}>
-                <img src="/transparent-doctor-icon.png" alt="Healthcare & Medical Services" loading="lazy" decoding="async" />
-              </div>
-              <div className="icon-circle float-gentle" style={{animationDelay: '1.1s'}}>
-                <img src="/transparent-gardening-icon.png" alt="Garden & Lifestyle Boutiques" loading="lazy" decoding="async" />
-              </div>
-            </div>
-
-            {/* Bottom Text */}
-            <p className="fade-in text-gray-900 max-w-4xl mx-auto uppercase px-6 py-4 md:py-0 bottom-text-mobile-bg" style={{letterSpacing: '0.12em', lineHeight: '1.3', fontSize: '0.8rem', fontWeight: 600, animationDelay: '1.3s', backgroundColor: 'rgba(255, 255, 255, 0.85)', borderRadius: '8px'}}>
-              FÅ BYENS BEDSTE HJEMMESIDE<br/>
-              OG BLIV BYENS GO-TO FIRMA<br/>
-              I DIN BRANCHE.
-            </p>
           </div>
         </div>
 
-        {/* Mascot */}
-        <div className="mascot-container fade-in float-slow" style={{animationDelay: '1.5s'}}>
-          <img src="/Busybiz-mascot-transparent-Photoroom.png" alt="BusyBiz Mascot" className="mascot-image" loading="lazy" decoding="async" />
+        {/* Mascot Placeholder */}
+        <div className="mascot-placeholder fade-in" style={{animationDelay: '1.5s'}}>
+          {/* Reserved for future 3D mascot */}
         </div>
       </section>
 
