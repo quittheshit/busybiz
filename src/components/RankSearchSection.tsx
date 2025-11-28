@@ -187,25 +187,25 @@ const RankSearchSection = memo(() => {
   const displayListings = generateListings();
 
   return (
-    <section className="relative bg-gradient-to-b from-gray-50 to-white py-12">
+    <section className="relative bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 py-20 md:py-24">
       <div className="px-6 md:px-12 lg:px-20">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="headline-font text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-4">
+          <div className="text-center mb-12">
+            <h2 className="headline-font text-4xl md:text-5xl lg:text-6xl text-white mb-6">
               Bliv fundet online
             </h2>
-            <p className="text-gray-600 text-lg md:text-xl mb-6">
+            <p className="text-white/90 text-lg md:text-xl mb-6">
               Se hvordan dit firma klatrer til tops i søgeresultaterne
             </p>
           </div>
 
-          <div className="mb-8 max-w-3xl mx-auto">
-            <div className="relative bg-white rounded-full shadow-lg border border-gray-200 px-6 py-3 flex items-center gap-4">
-              <Search className="w-5 h-5 text-gray-400 flex-shrink-0" />
-              <div className="flex-1 text-gray-700 text-base md:text-lg font-light">
+          <div className="mb-10 max-w-3xl mx-auto">
+            <div className="relative bg-slate-700/50 rounded-full shadow-2xl border-2 border-amber-500/30 px-6 py-4 flex items-center gap-4 backdrop-blur-sm">
+              <Search className="w-5 h-5 text-amber-400 flex-shrink-0" />
+              <div className="flex-1 text-white text-base md:text-lg font-light">
                 {currentQuery}
                 <span
-                  className={`inline-block w-0.5 h-5 bg-blue-600 ml-1 ${
+                  className={`inline-block w-0.5 h-5 bg-amber-400 ml-1 ${
                     showCursor ? 'opacity-100' : 'opacity-0'
                   }`}
                   style={{ transition: 'opacity 0.1s' }}
@@ -214,9 +214,9 @@ const RankSearchSection = memo(() => {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-            <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-teal-50">
-              <h3 className="text-base font-semibold text-gray-900">
+          <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl border-2 border-amber-500/30 overflow-hidden">
+            <div className="p-4 border-b-2 border-amber-500/30 bg-gradient-to-r from-slate-700 to-slate-800">
+              <h3 className="text-base font-semibold text-white uppercase tracking-wide">
                 Søgeresultater
               </h3>
             </div>
@@ -233,11 +233,11 @@ const RankSearchSection = memo(() => {
                   <div
                     key={`${listing.position}-${listing.isYourBusiness ? 'your' : 'other'}-${index}`}
                     className={`
-                      px-6 py-3 border-b border-gray-100 transition-all duration-300 ease-out will-change-transform
+                      px-6 py-3 border-b border-slate-700/50 transition-all duration-300 ease-out will-change-transform
                       ${
                         listing.isYourBusiness
-                          ? 'bg-gradient-to-r from-teal-50 via-blue-50 to-teal-50 border-l-4 border-l-teal-500 shadow-md'
-                          : 'bg-white hover:bg-gray-50'
+                          ? 'bg-gradient-to-r from-teal-500/20 via-emerald-500/20 to-teal-500/20 border-l-4 border-l-teal-400 shadow-lg shadow-teal-500/20'
+                          : 'bg-slate-800/50 hover:bg-slate-700/50'
                       }
                     `}
                     style={{
@@ -254,8 +254,8 @@ const RankSearchSection = memo(() => {
                           text-xl font-bold flex-shrink-0 w-10 text-left
                           ${
                             listing.isYourBusiness
-                              ? 'text-teal-600'
-                              : 'text-gray-400'
+                              ? 'text-teal-400'
+                              : 'text-white/40'
                           }
                         `}
                       >
@@ -268,8 +268,8 @@ const RankSearchSection = memo(() => {
                             font-semibold
                             ${
                               listing.isYourBusiness
-                                ? 'text-gray-900 text-base'
-                                : 'text-gray-700 text-base'
+                                ? 'text-white text-base'
+                                : 'text-white/70 text-base'
                             }
                           `}
                         >
@@ -281,7 +281,7 @@ const RankSearchSection = memo(() => {
                             listing.name
                           )}
                         </div>
-                        <div className="text-xs text-gray-500 mt-0.5">
+                        <div className="text-xs text-white/60 mt-0.5">
                           {listing.isYourBusiness
                             ? 'Din virksomhed stiger i søgeresultaterne'
                             : 'Konkurrent virksomhed'}
@@ -295,12 +295,12 @@ const RankSearchSection = memo(() => {
               </div>
             </div>
 
-            <div ref={triggerRef} className="p-4 bg-gradient-to-r from-gray-50 to-blue-50 border-t border-gray-200">
+            <div ref={triggerRef} className="p-4 bg-gradient-to-r from-slate-700 to-slate-800 border-t-2 border-amber-500/30">
               <div className="text-center">
-                <p className="text-xs text-gray-600 mb-1.5">
-                  <strong className="text-gray-900">Scroll ned</strong> for at se dit firma klatre til tops
+                <p className="text-xs text-white/80 mb-1.5">
+                  <strong className="text-white">Scroll ned</strong> for at se dit firma klatre til tops
                 </p>
-                <div className="flex items-center justify-center gap-2 text-teal-600 font-semibold text-sm">
+                <div className="flex items-center justify-center gap-2 text-teal-400 font-semibold text-sm">
                   <span>Fra position {STARTING_POSITION}</span>
                   <span>→</span>
                   <span>Til #1</span>
@@ -309,10 +309,10 @@ const RankSearchSection = memo(() => {
             </div>
           </div>
 
-          <div className="mt-8 text-center max-w-2xl mx-auto">
-            <p className="text-gray-600 leading-relaxed text-sm">
+          <div className="mt-10 text-center max-w-2xl mx-auto">
+            <p className="text-white/90 leading-relaxed text-base">
               Med vores SEO-optimering og lokale markedsføringsstrategier hjælper vi dit firma med at blive det
-              <strong className="text-teal-600"> første valg</strong> når potentielle kunder søger efter dine ydelser.
+              <strong className="text-teal-400"> første valg</strong> når potentielle kunder søger efter dine ydelser.
             </p>
           </div>
         </div>
