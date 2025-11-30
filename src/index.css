@@ -960,6 +960,18 @@ footer {
   margin-bottom: 0.75rem;
   color: #ffffff;
   font-size: 0.9375rem;
+  min-width: 0;
+}
+
+.contact-info-item > div {
+  min-width: 0;
+  flex: 1;
+}
+
+.contact-info-item > div > div {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .contact-info-item:last-child {
@@ -1649,11 +1661,28 @@ footer {
   }
 
   .contact-modal-content {
-    margin: 1rem;
-    max-width: calc(100vw - 2rem);
+    margin: 0.5rem;
+    max-width: calc(100vw - 1rem);
+    width: calc(100vw - 1rem);
+  }
+
+  .contact-modal-body {
+    padding: 1.25rem;
+  }
+
+  .contact-modal-header {
+    padding: 1.25rem;
   }
 
   .contact-form-input {
     font-size: 16px;
+  }
+
+  .contact-info-box {
+    padding: 1rem;
+  }
+
+  .contact-info-item {
+    font-size: 0.8125rem;
   }
 }
