@@ -186,6 +186,15 @@ function App() {
 
       {/* Hero Section */}
       <section className="premium-hero-bg relative overflow-hidden">
+        {/* Optimized Hero Background Image */}
+        <img
+          src="/localbiz-background-smaller.png"
+          alt=""
+          className="hero-bg-image"
+          fetchPriority="high"
+          decoding="async"
+          aria-hidden="true"
+        />
         <div className="premium-hero-overlay"></div>
 
         {/* Floating Icons */}
