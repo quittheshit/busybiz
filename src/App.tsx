@@ -222,9 +222,9 @@ function App() {
 
             {/* Main Headline */}
             <h1 className="fade-in stagger-2 premium-headline text-white mb-6 px-4">
-              WEB DESIGN,<br/>
-              <span className="text-gradient">AUTOMATISERING</span><br/>
-              & MARKETING
+              Web Design, SEO, Marketing<br/>
+              & <span className="text-gradient">Automatisering</span><br/>
+              til Lokale Firmaer
             </h1>
 
             {/* Sub-headline */}
