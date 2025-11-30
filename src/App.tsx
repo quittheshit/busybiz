@@ -588,10 +588,10 @@ function App() {
             </div>
 
             <nav className="nav-font footer-nav text-xs text-white/80" role="navigation" aria-label="Footer navigation">
-              <a href="#services" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Hjemmesider & forbedringer">HJEMMESIDER</a>
-              <a href="#services" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Bliv fundet online">SEO</a>
-              <a href="#services" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Marketing, automatisering & indhold">MARKETING</a>
-              <button onClick={openContactModal} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px] bg-transparent border-none cursor-pointer" style={{fontFamily: 'inherit', fontSize: 'inherit', letterSpacing: 'inherit'}} aria-label="Kontakt os">KONTAKT</button>
+              <a href="#home" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Gå til forsiden">HJEM</a>
+              <a href="#services" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Se vores services">SERVICES</a>
+              <a href="#seo" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Bliv fundet online">SEO</a>
+              <a href="#contact" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Kontakt os">KONTAKT</a>
             </nav>
           </div>
 
