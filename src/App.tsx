@@ -157,9 +157,9 @@ function App() {
 
           {/* Desktop Navigation */}
           <nav className="premium-nav desktop-nav flex items-center space-x-8 text-xs" role="navigation" aria-label="Main navigation">
-            <a href="#services" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Hjemmesider & forbedringer">HJEMMESIDER</a>
-            <a href="#services" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Bliv fundet online">SEO</a>
-            <a href="#services" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Marketing, automatisering & indhold">MARKETING</a>
+            <a href="#contact" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Hjemmesider & forbedringer">HJEMMESIDER</a>
+            <a href="#contact" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Bliv fundet online">SEO</a>
+            <a href="#contact" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Marketing, automatisering & indhold">MARKETING</a>
             <button onClick={openContactModal} className="nav-link text-white hover:text-amber-300 transition-all duration-300 bg-transparent border-none cursor-pointer" aria-label="Kontakt os">KONTAKT</button>
           </nav>
 
