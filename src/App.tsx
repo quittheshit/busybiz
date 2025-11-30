@@ -781,7 +781,7 @@ function App() {
             </p>
 
             <p className="thank-you-submessage">
-              Vi glæder os til at hjælpe dig med at vokse! 🚀
+              Vi glæder os til at hjælpe dig! 🚀
             </p>
 
             <button
