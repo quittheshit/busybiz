@@ -227,14 +227,9 @@ function App() {
                 & <span className="text-gradient">Automatisering</span>
               </span>
               <span className="premium-headline-bottom block mt-4">
-                til Lokale Firmaer
+                til Lokale Firmaer i Danmark
               </span>
             </h1>
-
-            {/* Sub-headline */}
-            <p className="fade-in stagger-3 text-white uppercase tracking-wider px-6 mb-4" style={{fontSize: '1.1rem', fontWeight: 500, lineHeight: '1.5'}}>
-              I DANMARK.
-            </p>
 
             {/* Subtext */}
             <p className="fade-in stagger-4 text-white/90 px-6 mb-10 max-w-3xl mx-auto" style={{fontSize: '1rem', lineHeight: '1.6'}}>
