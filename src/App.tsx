@@ -139,7 +139,7 @@ function App() {
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden">
               <img
-                src="/Busybiz-mascot-transparent-Photoroom copy.png"
+                src="/Busybiz-mascot-transparent-Photoroom.png"
                 alt="BusyBiz Logo"
                 className="w-full h-full object-contain"
               />
@@ -270,7 +270,7 @@ function App() {
           <div className="text-center mb-16 md:mb-20">
             <div className="inline-block mb-6 animate-bounce-subtle">
               <img
-                src="/Busybiz-mascot-transparent-Photoroom copy.png"
+                src="/Busybiz-mascot-transparent-Photoroom.png"
                 alt="BusyBiz Mascot"
                 className="w-20 h-20 md:w-24 md:h-24 drop-shadow-lg"
               />
@@ -462,7 +462,7 @@ function App() {
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-12 h-12 bg-slate-900/20 backdrop-blur-sm rounded-xl flex items-center justify-center overflow-hidden">
                       <img
-                        src="/Busybiz-mascot-transparent-Photoroom copy.png"
+                        src="/Busybiz-mascot-transparent-Photoroom.png"
                         alt="BusyBiz Logo"
                         className="w-full h-full object-contain p-1"
                       />
@@ -548,7 +548,7 @@ function App() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-10 md:space-y-0">
             <div className="flex items-center space-x-4 transition-all duration-300 hover:scale-105">
-              <img src="/Busybiz-mascot-transparent-Photoroom copy.png" alt="BusyBiz Logo" className="mascot-logo" loading="lazy" decoding="async" />
+              <img src="/Busybiz-mascot-transparent-Photoroom.png" alt="BusyBiz Logo" className="mascot-logo" loading="lazy" decoding="async" />
               <span className="logo-text text-white" style={{fontSize: '1.125rem'}}>BUSYBIZ</span>
             </div>
 
