@@ -1689,14 +1689,15 @@ footer {
   }
 
   .contact-info-icon {
-    width: 20px;
-    height: 20px;
+    width: 32px;
+    height: 24px;
+    border-radius: 12px;
     flex-shrink: 0;
   }
 
   .contact-info-icon svg {
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
   }
 
   .contact-info-item strong {
