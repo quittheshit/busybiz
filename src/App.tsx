@@ -758,11 +758,16 @@ function App() {
               </svg>
             </button>
 
-            <div className="thank-you-icon-wrapper">
-              <div className="thank-you-icon-circle">
-                <svg className="thank-you-checkmark" viewBox="0 0 52 52" fill="none">
-                  <circle className="checkmark-circle" cx="26" cy="26" r="25" stroke="#4fa88b" strokeWidth="2" fill="none"/>
-                  <path className="checkmark-check" fill="none" stroke="#4fa88b" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" d="M14 27l7.5 7.5L38 18"/>
+            {/* Mascot with animated success badge */}
+            <div className="thank-you-mascot-wrapper">
+              <img
+                src="/Busybiz-mascot-transparent-Photoroom.png"
+                alt="BusyBiz Mascot"
+                className="thank-you-mascot"
+              />
+              <div className="thank-you-success-badge">
+                <svg className="thank-you-checkmark-small" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17l-5-5" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
             </div>
@@ -772,7 +777,11 @@ function App() {
             </h2>
 
             <p className="thank-you-message">
-              Mange tak for at skrive! Vi svarer dig inden for 24 timer
+              Perfekt! Vi er allerede på sagen og vender tilbage inden for <strong>24 timer</strong>.
+            </p>
+
+            <p className="thank-you-submessage">
+              Vi glæder os til at hjælpe dig med at vokse! 🚀
             </p>
 
             <button
