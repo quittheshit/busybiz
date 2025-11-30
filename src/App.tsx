@@ -95,6 +95,9 @@ function App() {
     };
 
     try {
+      console.log('Submitting form with data:', data);
+      console.log('VITE_SUPABASE_URL:', import.meta.env.VITE_SUPABASE_URL);
+
       // Send to Supabase Edge Function
       const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`, {
         method: 'POST',
@@ -104,6 +107,10 @@ function App() {
         },
         body: JSON.stringify(data)
       });
+
+      console.log('Response status:', response.status);
+      const responseData = await response.json();
+      console.log('Response data:', responseData);
 
       if (response.ok) {
         setContactSuccessMessage(true);
@@ -120,7 +127,8 @@ function App() {
           }, 200);
         }, 500);
       } else {
-        throw new Error('Failed to send message');
+        console.error('Server error:', responseData);
+        throw new Error(responseData.error || 'Failed to send message');
       }
     } catch (error) {
       console.error('Error sending contact form:', error);
