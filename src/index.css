@@ -979,8 +979,8 @@ footer {
 }
 
 .contact-info-icon {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: linear-gradient(135deg, #fbbf24, #f59e0b);
   display: flex;
@@ -991,8 +991,8 @@ footer {
 }
 
 .contact-info-icon svg {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   color: #1e293b;
 }
 
