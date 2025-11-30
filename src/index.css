@@ -1376,6 +1376,35 @@ footer {
   }
 }
 
+.premium-headline-top {
+  font-family: 'Rufina', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .premium-headline-top {
+    font-size: 3rem;
+  }
+}
+
+.premium-headline-bottom {
+  font-family: 'Rufina', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 768px) {
+  .premium-headline-bottom {
+    font-size: 3.5rem;
+  }
+}
+
 .text-gradient {
   background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
   -webkit-background-clip: text;

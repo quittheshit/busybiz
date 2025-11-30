@@ -221,15 +221,19 @@ function App() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="fade-in stagger-2 premium-headline text-white mb-6 px-4">
-              Web Design, SEO, Marketing<br/>
-              & <span className="text-gradient">Automatisering</span><br/>
-              til Lokale Firmaer
+            <h1 className="fade-in stagger-2 text-white mb-6 px-4">
+              <span className="premium-headline-top">
+                Web Design, SEO, Marketing<br/>
+                & <span className="text-gradient">Automatisering</span>
+              </span>
+              <span className="premium-headline-bottom block mt-4">
+                til Lokale Firmaer
+              </span>
             </h1>
 
             {/* Sub-headline */}
             <p className="fade-in stagger-3 text-white uppercase tracking-wider px-6 mb-4" style={{fontSize: '1.1rem', fontWeight: 500, lineHeight: '1.5'}}>
-              TIL LOKALE FIRMAER I DANMARK.
+              I DANMARK.
             </p>
 
             {/* Subtext */}
