@@ -1622,6 +1622,16 @@ footer {
     opacity: 0.4;
     transform: scale(0.8);
   }
+
+  .contact-info-icon {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .contact-info-icon svg {
+    width: 11px !important;
+    height: 11px !important;
+  }
 }
 
 /* Landscape orientation optimization */
