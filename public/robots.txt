@@ -1,0 +1,29 @@
+# robots.txt for BusyBiz - Danish Web Design & Marketing
+# Allow all search engines to crawl the entire site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://busybiz.dk/sitemap.xml
+
+# Block common bot paths (security)
+User-agent: *
+Disallow: /admin
+Disallow: /api
+Disallow: /.env
+Disallow: /node_modules
+
+# Allow Google and Bing full access
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Crawl-delay for aggressive bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10

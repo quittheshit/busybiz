@@ -157,9 +157,9 @@ function App() {
 
           {/* Desktop Navigation */}
           <nav className="premium-nav desktop-nav flex items-center space-x-8 text-xs" role="navigation" aria-label="Main navigation">
-            <a href="#contact" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Hjemmesider & forbedringer">HJEMMESIDER</a>
-            <a href="#contact" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Bliv fundet online">SEO</a>
-            <a href="#contact" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Marketing, automatisering & indhold">MARKETING</a>
+            <a href="#hjemmesider" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Hjemmesider & forbedringer">HJEMMESIDER</a>
+            <a href="#seo" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Bliv fundet online">SEO</a>
+            <a href="#marketing" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Marketing, automatisering & indhold">MARKETING</a>
             <button onClick={openContactModal} className="nav-link text-white hover:text-amber-300 transition-all duration-300 bg-transparent border-none cursor-pointer" aria-label="Kontakt os">KONTAKT</button>
           </nav>
 
@@ -185,7 +185,7 @@ function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="premium-hero-bg relative overflow-hidden">
+      <section id="hjemmesider" className="premium-hero-bg relative overflow-hidden">
         {/* Optimized Hero Background Image */}
         <img
           src="/localbiz-background-smaller.png"
@@ -269,13 +269,15 @@ function App() {
       </section>
 
       {/* Rank Search Animation Section */}
-      <Suspense fallback={<div className="py-20 text-center">Loading...</div>}>
-        <RankSearchSection />
-      </Suspense>
+      <div id="seo">
+        <Suspense fallback={<div className="py-20 text-center">Loading...</div>}>
+          <RankSearchSection />
+        </Suspense>
+      </div>
 
 
       {/* Premium Contact Section */}
-      <section id="contact" className="relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 py-24 md:py-32">
+      <section id="marketing" className="relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 py-24 md:py-32">
         {/* Floating background elements */}
         <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-amber-400/10 to-yellow-600/5 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-32 right-20 w-80 h-80 bg-gradient-to-br from-amber-500/15 to-orange-400/10 rounded-full blur-3xl animate-float-delayed"></div>
@@ -397,7 +399,7 @@ function App() {
           </div>
 
           {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+          <div id="contact" className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
             {/* Contact Form */}
             <div className="bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm rounded-3xl p-8 md:p-10 shadow-2xl border border-amber-500/20">
               <h3 className="headline-font text-2xl md:text-3xl text-white mb-6">Send din besked</h3>
@@ -588,9 +590,9 @@ function App() {
             </div>
 
             <nav className="nav-font footer-nav text-xs text-white/80" role="navigation" aria-label="Footer navigation">
-              <a href="#services" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Hjemmesider & forbedringer">HJEMMESIDER</a>
-              <a href="#services" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Bliv fundet online">SEO</a>
-              <a href="#services" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Marketing, automatisering & indhold">MARKETING</a>
+              <a href="#hjemmesider" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Hjemmesider & forbedringer">HJEMMESIDER</a>
+              <a href="#seo" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Bliv fundet online">SEO</a>
+              <a href="#marketing" onClick={handleNavClick} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px]" aria-label="Marketing, automatisering & indhold">MARKETING</a>
               <button onClick={openContactModal} className="nav-link hover:text-amber-300 transition-all duration-300 hover:translate-y-[-2px] bg-transparent border-none cursor-pointer" style={{fontFamily: 'inherit', fontSize: 'inherit', letterSpacing: 'inherit'}} aria-label="Kontakt os">KONTAKT</button>
             </nav>
           </div>
