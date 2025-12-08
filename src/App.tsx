@@ -394,7 +394,7 @@ function App() {
           {/* Reassurance */}
           <div className="text-center mb-16">
             <p className="text-xl md:text-2xl text-white/90 font-light italic max-w-3xl mx-auto leading-relaxed">
-              Du behøver ikke vide præcis, hvad du har brug for, bare skriv, så finder vi ud af det sammen. Vi giver gerne et <strong className="text-amber-300">gratis</strong> tip eller 2.
+              Du behøver ikke vide præcis hvad du har brug for. Bare skriv, så finder vi ud af det sammen. Vi giver gerne et <strong className="text-amber-300">gratis</strong> tip eller 2.
             </p>
           </div>
 
