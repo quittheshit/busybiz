@@ -250,7 +250,7 @@ function App() {
 
             {/* Subtext */}
             <p className="fade-in stagger-4 text-white/90 px-6 mb-10 max-w-3xl mx-auto" style={{fontSize: '1rem', lineHeight: '1.6'}}>
-              Få byens bedste hjemmeside, flere kunder, mere omsætning og automatisering med unikt design og animationer i topklasse, og bliv byens GO-TO firma i din branche.
+              Bliv byens GO-TO firma i din branche med en top-position i søgeresultaterne, byens bedste hjemmeside og automatiseret kundeservice mm.
             </p>
 
             {/* CTA Button */}
