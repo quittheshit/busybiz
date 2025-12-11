@@ -3,12 +3,28 @@
   <head>
     <meta charset="UTF-8" />
 
-    <!-- Favicons -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/Busybiz-mascot-transparent-Photoroom.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/Busybiz-mascot-transparent-Photoroom.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/Busybiz-mascot-transparent-Photoroom.png" />
-    <link rel="mask-icon" href="/Busybiz-mascot-transparent-Photoroom.png" color="#2563eb" />
-    <meta name="theme-color" content="#ffffff" />
+    <!-- Favicons - Comprehensive Implementation -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png" />
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2563eb" />
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileColor" content="#2563eb" />
+    <meta name="msapplication-TileImage" content="/mstile-150x150.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -29,9 +45,9 @@
     <meta property="og:url" content="https://busybiz.dk/" />
     <meta property="og:title" content="BusyBiz - Hjemmeside, SEO & Marketing til Lokale Firmaer" />
     <meta property="og:description" content="Få flere kunder med en professionel hjemmeside, SEO optimering og automatisering til lokale firmaer i Danmark." />
-    <meta property="og:image" content="https://busybiz.dk/Busybiz-mascot-transparent-Photoroom.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image" content="https://busybiz.dk/favicon-512x512.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
     <meta property="og:locale" content="da_DK" />
     <meta property="og:site_name" content="BusyBiz" />
 
@@ -40,7 +56,7 @@
     <meta name="twitter:url" content="https://busybiz.dk/" />
     <meta name="twitter:title" content="BusyBiz - Hjemmeside, SEO & Marketing til Lokale Firmaer" />
     <meta name="twitter:description" content="Få flere kunder med en professionel hjemmeside, SEO optimering og automatisering til lokale firmaer i Danmark." />
-    <meta name="twitter:image" content="https://busybiz.dk/Busybiz-mascot-transparent-Photoroom.png" />
+    <meta name="twitter:image" content="https://busybiz.dk/favicon-512x512.png" />
 
     <!-- Geo Tags for Local SEO -->
     <meta name="geo.region" content="DK" />
@@ -66,8 +82,18 @@
       "name": "BusyBiz",
       "description": "Professionel hjemmeside design, SEO optimering og marketing automatisering til lokale firmaer i Danmark",
       "url": "https://busybiz.dk",
-      "logo": "https://busybiz.dk/Busybiz-mascot-transparent-Photoroom.png",
-      "image": "https://busybiz.dk/Busybiz-mascot-transparent-Photoroom.png",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://busybiz.dk/favicon-512x512.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://busybiz.dk/favicon-512x512.png",
+        "width": 512,
+        "height": 512
+      },
       "telephone": "+45-81-26-07-11",
       "email": "miklhagstroem@gmail.com",
       "address": {
