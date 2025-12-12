@@ -1,217 +1,143 @@
 import { useState } from 'react';
+import { useAuth } from '../lib/auth';
+import { STRIPE_PRODUCTS } from '../stripe-config';
 
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: string;
-  priceId: string;
-  features: string[];
-  popular?: boolean;
-}
+const PricingSection = () => {
+  const { user } = useAuth();
+  const [loadingPriceId, setLoadingPriceId] = useState<string | null>(null);
 
-const products: Product[] = [
-  {
-    id: '1',
-    name: 'Brugerdefineret',
-    description: 'Få et uforpligtende tilbud',
-    price: '0',
-    priceId: 'price_1SdN0o22WWIq95RMeiPWG3CJ',
-    features: [
-      'Skræddersyet løsning til dine behov',
-      'Fleksibel pris baseret på omfang',
-      'Personlig konsultation',
-      'Alle funktioner tilgængelige',
-      'Kontakt os for et uforpligtende tilbud'
-    ]
-  },
-  {
-    id: '2',
-    name: 'Lokal SEO – Første side / Top 3 på Google',
-    description: 'Mest populær til voksende virksomheder',
-    price: '2.999',
-    priceId: 'price_1SdMy222WWIq95RMiCN3TYcQ',
-    features: [
-      'Google Maps integration',
-      'Avanceret SEO optimering',
-      'Top 3 placering på Google',
-      'Lokal synlighed',
-      'Øget kundetilgang',
-      '6 måneders support'
-    ],
-    popular: true
-  },
-  {
-    id: '3',
-    name: 'Ny Hjemmeside',
-    description: 'Komplet hjemmeside til din virksomhed',
-    price: '3.999',
-    priceId: 'price_1SdMh722WWIq95RMSqAR9ABz',
-    features: [
-      'Professionel hjemmeside',
-      'Mobil-venlig design',
-      'Basis SEO optimering',
-      'Kontakt formular',
-      'Hosting inkluderet',
-      '3 måneders support'
-    ]
-  }
-];
+  const handleCheckout = async (priceId: string) => {
+    if (!user) {
+      window.location.href = '/login';
+      return;
+    }
 
-export default function PricingSection() {
-  const [isLoading, setIsLoading] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleCheckout = async (priceId: string, productName: string) => {
-    setIsLoading(priceId);
-    setError(null);
+    setLoadingPriceId(priceId);
 
     try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-      if (!supabaseUrl || !supabaseKey) {
-        throw new Error('Betalingssystem ikke konfigureret korrekt');
-      }
-
-      const response = await fetch(`${supabaseUrl}/functions/v1/create-checkout-session`, {
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-checkout`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${supabaseKey}`,
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
           'Content-Type': 'application/json',
-          'apikey': supabaseKey,
         },
         body: JSON.stringify({
           priceId,
           successUrl: `${window.location.origin}/success`,
-          cancelUrl: `${window.location.origin}#pricing`
-        })
+          cancelUrl: `${window.location.origin}/checkout`,
+        }),
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-        console.error('Checkout error:', data);
-        throw new Error(data.error || data.details || 'Kunne ikke oprette betalingssession');
-      }
-
       if (data.url) {
         window.location.href = data.url;
       } else {
-        throw new Error('Intet checkout URL modtaget');
+        throw new Error('No checkout URL received');
       }
     } catch (error) {
-      console.error('Error creating checkout session:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Ukendt fejl';
-      setError(`Fejl: ${errorMessage}. Prøv venligst igen eller kontakt os.`);
-
-      setTimeout(() => setError(null), 8000);
+      console.error('Checkout error:', error);
+      alert('Der opstod en fejl. Prøv venligst igen.');
     } finally {
-      setIsLoading(null);
+      setLoadingPriceId(null);
     }
   };
 
+  const formatPrice = (price?: number, currency: string = 'kr') => {
+    if (!price) return 'Kontakt for pris';
+    return `${price.toLocaleString('da-DK')} ${currency}`;
+  };
+
   return (
-    <section id="pricing" className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-24 md:py-32">
-      {/* Background decorations */}
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-24 md:py-32">
+      {/* Background elements */}
       <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-amber-400/10 to-yellow-600/5 rounded-full blur-3xl animate-float"></div>
       <div className="absolute bottom-32 right-20 w-80 h-80 bg-gradient-to-br from-amber-500/15 to-orange-400/10 rounded-full blur-3xl animate-float-delayed"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="headline-font text-4xl md:text-5xl lg:text-6xl text-white mb-6">
-            Vælg din pakke
+        {/* Header */}
+        <div className="text-center mb-16 md:mb-20">
+          <h2 className="headline-font text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight">
+            Vælg din løsning
           </h2>
-          <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-            Engangsbetaling. Ingen skjulte omkostninger. Inklusiv hosting og support.
+          <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            Professionelle løsninger til at få din virksomhed til at vokse online
           </p>
-
-          {/* Error Message */}
-          {error && (
-            <div className="mt-6 mx-auto max-w-2xl bg-red-500/10 border border-red-500/50 rounded-lg p-4 animate-pulse">
-              <p className="text-red-400 text-sm md:text-base">{error}</p>
-            </div>
-          )}
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {products.map((product) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {STRIPE_PRODUCTS.map((product) => (
             <div
               key={product.id}
-              className={`relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
-                product.popular ? 'border-2 border-amber-500/50 scale-105' : 'border border-slate-700'
-              }`}
+              className="group bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-amber-500/20 hover:border-amber-400/40 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
             >
-              {product.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-400 to-yellow-600 text-slate-900 px-6 py-2 rounded-full text-sm font-bold shadow-lg">
-                  MEST POPULÆR
+              {/* Card glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-400/5 to-yellow-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="relative z-10">
+                {/* Header */}
+                <div className="mb-6">
+                  <h3 className="text-xl font-bold text-white mb-4 leading-tight">
+                    {product.name}
+                  </h3>
+                  <div className="text-3xl font-bold text-amber-400 mb-2">
+                    {formatPrice(product.price_per_unit, product.currency_symbol)}
+                  </div>
+                  {product.price_per_unit && (
+                    <p className="text-white/60 text-sm">Engangsbetaling</p>
+                  )}
                 </div>
-              )}
 
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-white mb-2">{product.name}</h3>
-                <p className="text-white/70 text-sm mb-6">{product.description}</p>
-
-                <div className="flex items-end justify-center gap-2 mb-2">
-                  <span className="text-5xl font-bold text-white">{product.price}</span>
-                  <span className="text-2xl text-white/70 mb-2">kr</span>
+                {/* Description */}
+                <div className="mb-8">
+                  <p className="text-white/80 leading-relaxed text-sm">
+                    {product.description}
+                  </p>
                 </div>
-                <p className="text-white/60 text-sm">Engangsbetaling</p>
+
+                {/* CTA Button */}
+                <button
+                  onClick={() => handleCheckout(product.priceId)}
+                  disabled={loadingPriceId === product.priceId}
+                  className="w-full bg-gradient-to-r from-amber-400 to-yellow-600 hover:from-yellow-500 hover:to-orange-600 text-slate-900 font-bold py-4 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                >
+                  {loadingPriceId === product.priceId ? (
+                    <div className="flex items-center justify-center">
+                      <div className="w-5 h-5 border-2 border-slate-900/30 border-t-slate-900 rounded-full animate-spin mr-2"></div>
+                      Indlæser...
+                    </div>
+                  ) : product.price_per_unit ? (
+                    'Køb nu'
+                  ) : (
+                    'Kontakt os'
+                  )}
+                </button>
               </div>
-
-              <ul className="space-y-4 mb-8">
-                {product.features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <svg className="w-6 h-6 text-amber-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-white/90 text-sm leading-relaxed">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                onClick={() => handleCheckout(product.priceId, product.name)}
-                disabled={isLoading === product.priceId}
-                className={`w-full py-4 px-8 rounded-full font-bold transition-all duration-300 ${
-                  product.popular
-                    ? 'bg-gradient-to-r from-amber-400 to-yellow-600 hover:from-yellow-500 hover:to-orange-600 text-slate-900 shadow-lg hover:shadow-xl'
-                    : 'bg-slate-700 hover:bg-slate-600 text-white'
-                } disabled:opacity-50 disabled:cursor-not-allowed`}
-              >
-                {isLoading === product.priceId ? 'ÅBNER BETALING...' : 'VÆLG PAKKE'}
-              </button>
             </div>
           ))}
         </div>
 
-        {/* Trust Badge */}
+        {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <p className="text-white/60 text-sm mb-4">Sikker betaling med Stripe</p>
-          <div className="flex items-center justify-center gap-6 flex-wrap">
-            <div className="flex items-center gap-2 text-white/70">
-              <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              <span className="text-sm">SSL Sikret</span>
-            </div>
-            <div className="flex items-center gap-2 text-white/70">
-              <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-              </svg>
-              <span className="text-sm">Alle betalingskort accepteret</span>
-            </div>
-            <div className="flex items-center gap-2 text-white/70">
-              <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              <span className="text-sm">30 dages pengene tilbage garanti</span>
-            </div>
-          </div>
+          <p className="text-white/80 mb-6">
+            Har du spørgsmål eller brug for en skræddersyet løsning?
+          </p>
+          <button
+            onClick={() => {
+              const contactSection = document.getElementById('marketing');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="inline-flex items-center px-8 py-3 border-2 border-amber-400 text-amber-400 font-semibold rounded-full hover:bg-amber-400 hover:text-slate-900 transition-all duration-300"
+          >
+            Kontakt os
+          </button>
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default PricingSection;
