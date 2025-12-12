@@ -142,7 +142,7 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen" style={{background: 'transparent'}}>
           <Routes>
             <Route path="/" element={
               <>

@@ -69,6 +69,19 @@
     <!-- Critical Hero Image Preload -->
     <link rel="preload" as="image" href="/localbiz-background-smaller.png" fetchpriority="high" />
 
+    <!-- Critical CSS to prevent background color flash -->
+    <style>
+      html, body {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e8f5f1 25%, #f0f8f5 50%, #fef8f5 75%, #f8f9fa 100%) !important;
+        background-attachment: fixed !important;
+        margin: 0;
+        padding: 0;
+      }
+      #root {
+        background: transparent !important;
+      }
+    </style>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -156,8 +169,8 @@
     }
     </script>
   </head>
-  <body>
-    <div id="root"></div>
+  <body style="background: linear-gradient(135deg, #f8f9fa 0%, #e8f5f1 25%, #f0f8f5 50%, #fef8f5 75%, #f8f9fa 100%); margin: 0; padding: 0;">
+    <div id="root" style="background: transparent;"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script type="text/javascript">
       (function(d, t) {
