@@ -131,7 +131,7 @@ const PricingSection = () => {
                   </h3>
                   {product.id === 'prod_TaY4maI2H9O4om' && (
                     <p className="text-white/60 text-sm mb-6">
-                      Betal én gang eller månedligt
+                      Mest populær til voksende virksomheder
                     </p>
                   )}
                   {product.id === 'prod_TaY7yhzKC1nLmD' && (
@@ -150,7 +150,9 @@ const PricingSection = () => {
                     </span>
                     <span className="text-2xl text-white/80 ml-2">kr</span>
                   </div>
-                  <p className="text-white/60 text-sm">Engangsbetaling</p>
+                  <p className="text-white/60 text-sm">
+                    {product.id === 'prod_TaXm2PawSXhMmc' ? 'Betal én gang eller månedligt' : 'Engangsbetaling'}
+                  </p>
                 </div>
 
                   {/* Features */}
