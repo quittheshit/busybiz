@@ -15,12 +15,11 @@ const PricingSection = () => {
       'Kontakt os for et uforpligtende tilbud'
     ],
     'prod_TaY4maI2H9O4om': [
-      'Google Maps integration',
-      'Avanceret SEO optimering',
-      'Top 3 placering på Google',
-      'Lokal synlighed',
-      'Øget kundetilgang',
-      'Første side på Google eller pengene retur'
+      'Top 5 placering på Google garanteret',
+      'Mange flere lokale ser din side',
+      'Optimering af Google Profil',
+      'Optimering af din hjemmeside',
+      'Flere citations (andre sider der godkender dit firma)'
     ],
     'prod_TaXm2PawSXhMmc': [
       'Professionel hjemmeside',
