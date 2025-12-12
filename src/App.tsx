@@ -1,5 +1,6 @@
 import { useState, useEffect, lazy, Suspense, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SuccessPage from './pages/SuccessPage';
 
 const RankSearchSection = lazy(() => import('./components/RankSearchSection'));
 const PricingSection = lazy(() => import('./components/PricingSection'));
@@ -10,6 +11,16 @@ function App() {
   const [contactErrorMessage, setContactErrorMessage] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showThankYouModal, setShowThankYouModal] = useState(false);
+
+  // Listen for contact modal events
+  useEffect(() => {
+    const handleOpenContactModal = () => {
+      openContactModal();
+    };
+
+    window.addEventListener('openContactModal', handleOpenContactModal);
+    return () => window.removeEventListener('openContactModal', handleOpenContactModal);
+  }, [openContactModal]);
 
   const openContactModal = useCallback(() => {
     setIsContactModalOpen(true);
@@ -820,6 +831,9 @@ function App() {
                 )}
               </>
             } />
+          </Routes>
+            } />
+            <Route path="/success" element={<SuccessPage />} />
           </Routes>
       </div>
     </Router>
