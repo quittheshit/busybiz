@@ -147,7 +147,7 @@ function App() {
             <Route path="/" element={
               <>
                 {/* Header */}
-                <header className="premium-header py-4 px-4 sm:px-6 md:px-10 fade-in-top">
+                <header className="premium-header py-4 px-4 sm:px-6 md:px-10">
                   <div className="max-w-7xl mx-auto flex items-center justify-between">
                     {/* Logo with Icon */}
                     <div className="flex items-center space-x-3">
@@ -570,7 +570,7 @@ function App() {
                 </Suspense>
 
                 {/* Footer */}
-                <footer className="fade-in-bottom bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-16 px-4 sm:px-6 md:px-10 mt-0 relative overflow-hidden border-t border-amber-500/20" style={{boxShadow: 'inset 0 2px 0 rgba(251, 191, 36, 0.15)'}}>
+                <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-16 px-4 sm:px-6 md:px-10 mt-0 relative overflow-hidden border-t border-amber-500/20" style={{boxShadow: 'inset 0 2px 0 rgba(251, 191, 36, 0.15)'}}>
                   <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-gradient-to-br from-amber-400/10 to-yellow-500/5 blur-3xl"></div>
                   <div className="absolute bottom-10 left-10 w-56 h-56 rounded-full bg-gradient-to-br from-orange-400/10 to-amber-500/5 blur-3xl"></div>
 
