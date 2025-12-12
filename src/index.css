@@ -32,6 +32,12 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  .fade-in,
+  .fade-in-top,
+  .fade-in-bottom {
+    opacity: 1 !important;
+  }
 }
 
 body {
