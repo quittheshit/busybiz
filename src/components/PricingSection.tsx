@@ -13,47 +13,47 @@ interface Product {
 const products: Product[] = [
   {
     id: '1',
-    name: 'Starter',
-    description: 'Perfekt til små virksomheder',
-    price: '2.999',
-    priceId: 'price_STARTER_ID',
+    name: 'Brugerdefineret',
+    description: 'Få et uforpligtende tilbud',
+    price: '0',
+    priceId: 'price_1SdN0o22WWIq95RMeiPWG3CJ',
     features: [
-      'Professionel hjemmeside',
-      'Mobil-venlig design',
-      'Basis SEO optimering',
-      'Kontakt formular',
-      '3 måneders support'
+      'Skræddersyet løsning til dine behov',
+      'Fleksibel pris baseret på omfang',
+      'Personlig konsultation',
+      'Alle funktioner tilgængelige',
+      'Kontakt os for et uforpligtende tilbud'
     ]
   },
   {
     id: '2',
-    name: 'Professional',
+    name: 'Lokal SEO – Første side / Top 3 på Google',
     description: 'Mest populær til voksende virksomheder',
-    price: '5.999',
-    priceId: 'price_PROFESSIONAL_ID',
+    price: '2.999',
+    priceId: 'price_1SdMy222WWIq95RMiCN3TYcQ',
     features: [
-      'Alt fra Starter pakken',
-      'Avanceret SEO optimering',
       'Google Maps integration',
-      'AI chatbot assistent',
-      'Marketing automatisering',
+      'Avanceret SEO optimering',
+      'Top 3 placering på Google',
+      'Lokal synlighed',
+      'Øget kundetilgang',
       '6 måneders support'
     ],
     popular: true
   },
   {
     id: '3',
-    name: 'Enterprise',
-    description: 'Komplet løsning til etablerede virksomheder',
-    price: '9.999',
-    priceId: 'price_ENTERPRISE_ID',
+    name: 'Ny Hjemmeside',
+    description: 'Komplet hjemmeside til din virksomhed',
+    price: '3.999',
+    priceId: 'price_1SdMh722WWIq95RMSqAR9ABz',
     features: [
-      'Alt fra Professional pakken',
-      'Booking & betalingssystem',
-      'Kundeportal',
-      'Social media integration',
-      'Månedlige analyser & optimering',
-      '12 måneders premium support'
+      'Professionel hjemmeside',
+      'Mobil-venlig design',
+      'Basis SEO optimering',
+      'Kontakt formular',
+      'Hosting inkluderet',
+      '3 måneders support'
     ]
   }
 ];
