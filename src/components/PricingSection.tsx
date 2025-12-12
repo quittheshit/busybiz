@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../lib/auth';
 import { STRIPE_PRODUCTS } from '../stripe-config';
+import { Check, Shield, CreditCard, Lock } from 'lucide-react';
 
 const PricingSection = () => {
   const { user } = useAuth();
@@ -38,97 +39,147 @@ const PricingSection = () => {
     }
   };
 
-  const formatPrice = (price?: number, currency: string = 'kr') => {
-    if (!price) return 'Kontakt for pris';
-    return `${price.toLocaleString('da-DK')} ${currency}`;
+  const formatPrice = (price?: number) => {
+    if (!price) return '0';
+    return price.toLocaleString('da-DK');
   };
 
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-24 md:py-32">
-      {/* Background elements */}
-      <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-amber-400/10 to-yellow-600/5 rounded-full blur-3xl animate-float"></div>
-      <div className="absolute bottom-32 right-20 w-80 h-80 bg-gradient-to-br from-amber-500/15 to-orange-400/10 rounded-full blur-3xl animate-float-delayed"></div>
+  const productFeatures: Record<string, string[]> = {
+    'Brugerdefineret': [
+      'Skræddersyet løsning til dine behov',
+      'Fleksibel pris baseret på omfang',
+      'Personlig konsultation',
+      'Alle funktioner tilgængelige',
+      'Kontakt os for et uforpligtende tilbud'
+    ],
+    'Lokal SEO – Første side / Top 3 på Google': [
+      'Google Maps integration',
+      'Avanceret SEO optimering',
+      'Top 3 placering på Google',
+      'Lokal synlighed',
+      'Øget kundetilgang',
+      '6 måneders support'
+    ],
+    'Ny Hjemmeside': [
+      'Professionel hjemmeside',
+      'Mobil-venlig design',
+      'Basis SEO optimering',
+      'Kontakt formular',
+      'Hosting inkluderet',
+      '3 måneders support'
+    ]
+  };
 
+  const isPopular = (name: string) => name === 'Lokal SEO – Første side / Top 3 på Google';
+
+  return (
+    <section className="relative overflow-hidden bg-[#1e293b] py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16 md:mb-20">
-          <h2 className="headline-font text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight">
-            Vælg din løsning
+        <div className="text-center mb-16">
+          <h2 className="headline-font text-4xl md:text-5xl text-white mb-4 leading-tight">
+            Vælg din pakke
           </h2>
-          <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-            Professionelle løsninger til at få din virksomhed til at vokse online
+          <p className="text-lg text-white/80 max-w-3xl mx-auto">
+            Engangsbetaling. Ingen skjulte omkostninger. Inklusiv hosting og support.
           </p>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {STRIPE_PRODUCTS.map((product) => (
-            <div
-              key={product.id}
-              className="group bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-amber-500/20 hover:border-amber-400/40 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
-            >
-              {/* Card glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-400/5 to-yellow-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              <div className="relative z-10">
-                {/* Header */}
-                <div className="mb-6">
-                  <h3 className="text-xl font-bold text-white mb-4 leading-tight">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
+          {STRIPE_PRODUCTS.map((product) => {
+            const popular = isPopular(product.name);
+            const features = productFeatures[product.name] || [];
+
+            return (
+              <div
+                key={product.id}
+                className={`relative bg-[#334155] rounded-2xl p-8 ${
+                  popular
+                    ? 'border-2 border-amber-500'
+                    : 'border border-slate-600'
+                }`}
+              >
+                {popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-amber-500 text-slate-900 px-6 py-2 rounded-full text-sm font-bold uppercase">
+                      Mest populær
+                    </span>
+                  </div>
+                )}
+
+                <div className="text-center mb-8">
+                  <h3 className="text-xl font-bold text-white mb-4">
                     {product.name}
                   </h3>
-                  <div className="text-3xl font-bold text-amber-400 mb-2">
-                    {formatPrice(product.price_per_unit, product.currency_symbol)}
+                  <p className="text-white/70 text-sm mb-6 min-h-[60px]">
+                    {product.name === 'Brugerdefineret'
+                      ? 'Få et uforpligtende tilbud'
+                      : product.name === 'Lokal SEO – Første side / Top 3 på Google'
+                      ? 'Mest populær til voksende virksomheder'
+                      : 'Komplet hjemmeside til din virksomhed'
+                    }
+                  </p>
+                  <div className="mb-2">
+                    <span className="text-5xl font-bold text-white">
+                      {formatPrice(product.price_per_unit)}
+                    </span>
+                    <span className="text-2xl text-white/80 ml-2">kr</span>
                   </div>
-                  {product.price_per_unit && (
-                    <p className="text-white/60 text-sm">Engangsbetaling</p>
-                  )}
+                  <p className="text-white/60 text-sm">Engangsbetaling</p>
                 </div>
 
-                {/* Description */}
-                <div className="mb-8">
-                  <p className="text-white/80 leading-relaxed text-sm">
-                    {product.description}
-                  </p>
+                {/* Features */}
+                <div className="mb-8 space-y-4">
+                  {features.map((feature, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-white/90 text-sm">{feature}</span>
+                    </div>
+                  ))}
                 </div>
 
                 {/* CTA Button */}
                 <button
                   onClick={() => handleCheckout(product.priceId)}
                   disabled={loadingPriceId === product.priceId}
-                  className="w-full bg-gradient-to-r from-amber-400 to-yellow-600 hover:from-yellow-500 hover:to-orange-600 text-slate-900 font-bold py-4 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className={`w-full font-bold py-4 px-6 rounded-full transition-all duration-300 ${
+                    popular
+                      ? 'bg-amber-500 hover:bg-amber-600 text-slate-900'
+                      : 'bg-slate-600 hover:bg-slate-700 text-white'
+                  } disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
                   {loadingPriceId === product.priceId ? (
                     <div className="flex items-center justify-center">
-                      <div className="w-5 h-5 border-2 border-slate-900/30 border-t-slate-900 rounded-full animate-spin mr-2"></div>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
                       Indlæser...
                     </div>
-                  ) : product.price_per_unit ? (
-                    'Køb nu'
                   ) : (
-                    'Kontakt os'
+                    'VÆLG PAKKE'
                   )}
                 </button>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <p className="text-white/80 mb-6">
-            Har du spørgsmål eller brug for en skræddersyet løsning?
-          </p>
-          <button
-            onClick={() => {
-              const contactSection = document.getElementById('marketing');
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="inline-flex items-center px-8 py-3 border-2 border-amber-400 text-amber-400 font-semibold rounded-full hover:bg-amber-400 hover:text-slate-900 transition-all duration-300"
-          >
-            Kontakt os
-          </button>
+        {/* Stripe Security */}
+        <div className="text-center">
+          <p className="text-white/70 mb-6">Sikker betaling med Stripe</p>
+          <div className="flex items-center justify-center gap-8 flex-wrap">
+            <div className="flex items-center gap-2 text-white/70">
+              <Shield className="w-5 h-5 text-green-500" />
+              <span className="text-sm">SSL Sikret</span>
+            </div>
+            <div className="flex items-center gap-2 text-white/70">
+              <CreditCard className="w-5 h-5 text-blue-500" />
+              <span className="text-sm">Alle betalingskort accepteret</span>
+            </div>
+            <div className="flex items-center gap-2 text-white/70">
+              <Lock className="w-5 h-5 text-amber-500" />
+              <span className="text-sm">30 dages pengene tilbage garanti</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
