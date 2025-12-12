@@ -676,6 +676,25 @@ footer {
   letter-spacing: 0.25em;
   font-size: 1.125rem;
   font-weight: 400;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.premium-header .flex.items-center.space-x-3:hover .logo-text {
+  text-shadow:
+    0 0 10px rgba(251, 191, 36, 0.8),
+    0 0 20px rgba(251, 191, 36, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.28em;
+}
+
+.premium-header .flex.items-center.space-x-3:hover img {
+  filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.8)) drop-shadow(0 0 20px rgba(251, 191, 36, 0.6));
+  transform: scale(1.05);
+}
+
+.premium-header .flex.items-center.space-x-3 img {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mascot-logo {
@@ -774,6 +793,42 @@ footer {
   gap: 2rem;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.footer-nav a,
+.footer-nav button {
+  position: relative;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-nav a::before,
+.footer-nav button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(245, 158, 11, 0.08));
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.footer-nav a:hover,
+.footer-nav button:hover {
+  text-shadow:
+    0 0 8px rgba(251, 191, 36, 0.7),
+    0 0 16px rgba(251, 191, 36, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 0 15px rgba(251, 191, 36, 0.5),
+    0 0 30px rgba(251, 191, 36, 0.3);
+}
+
+.footer-nav a:hover::before,
+.footer-nav button:hover::before {
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
@@ -1489,10 +1544,69 @@ footer {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-weight: 500;
   letter-spacing: 0.05em;
+  position: relative;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.premium-nav a::before,
+.premium-nav button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.1));
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.premium-nav a:hover,
+.premium-nav button:hover {
+  color: #fbbf24;
+  font-weight: 600;
+  transform: translateY(-2px);
+  text-shadow:
+    0 0 10px rgba(251, 191, 36, 0.8),
+    0 0 20px rgba(251, 191, 36, 0.6),
+    0 0 30px rgba(251, 191, 36, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 0 20px rgba(251, 191, 36, 0.6),
+    0 0 40px rgba(251, 191, 36, 0.4),
+    0 8px 16px rgba(251, 191, 36, 0.3);
+}
+
+.premium-nav a:hover::before,
+.premium-nav button:hover::before {
+  opacity: 1;
 }
 
 .premium-phone-icon {
   box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.desktop-phone:hover .premium-phone-icon {
+  box-shadow:
+    0 0 30px rgba(251, 191, 36, 0.8),
+    0 0 50px rgba(251, 191, 36, 0.6),
+    0 8px 20px rgba(251, 191, 36, 0.4);
+  transform: scale(1.15) rotate(12deg);
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.5), rgba(245, 158, 11, 0.5));
+}
+
+.desktop-phone span {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.desktop-phone:hover span {
+  text-shadow:
+    0 0 10px rgba(251, 191, 36, 0.8),
+    0 0 20px rgba(251, 191, 36, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .premium-hero-bg {
