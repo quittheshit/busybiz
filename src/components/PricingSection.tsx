@@ -63,6 +63,7 @@ const PricingSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {stripeProducts.map((product, index) => {
             const isPopular = index === 1;
+            const isRecommended = index === 0;
             return (
               <div
                 key={product.id}
@@ -103,6 +104,22 @@ const PricingSection = () => {
                         }}
                       >
                         MEST POPULÆR
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Recommended Badge */}
+                  {isRecommended && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <div
+                        className="px-6 py-2 rounded-full text-sm font-medium shadow-md"
+                        style={{
+                          backgroundColor: 'rgba(148, 163, 184, 0.2)',
+                          border: '1px solid rgba(226, 232, 240, 0.3)',
+                          color: '#e2e8f0'
+                        }}
+                      >
+                        ANBEFALET
                       </div>
                     </div>
                   )}
