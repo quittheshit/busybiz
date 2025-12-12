@@ -147,7 +147,7 @@ function App() {
             <Route path="/" element={
               <>
                 {/* Header */}
-                <header className="premium-header premium-header-reveal py-4 px-4 sm:px-6 md:px-10">
+                <header className="premium-header py-4 px-4 sm:px-6 md:px-10">
                   <div className="max-w-7xl mx-auto flex items-center justify-between">
                     {/* Logo with Icon */}
                     <div className="flex items-center space-x-3">

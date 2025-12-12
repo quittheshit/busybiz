@@ -1558,6 +1558,62 @@ footer {
   line-height: 1.1;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   display: block;
+  position: relative;
+  animation: headlineRevealWipe 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  clip-path: inset(0 100% 0 0);
+  overflow: visible;
+}
+
+.premium-headline-top::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -150%;
+  width: 150%;
+  height: 140%;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    transparent 20%,
+    rgba(251, 191, 36, 0.15) 35%,
+    rgba(255, 215, 100, 0.35) 45%,
+    rgba(255, 230, 150, 0.5) 50%,
+    rgba(255, 215, 100, 0.35) 55%,
+    rgba(251, 191, 36, 0.15) 65%,
+    transparent 80%,
+    transparent 100%
+  );
+  animation: headlineShineReveal 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  z-index: 10;
+  pointer-events: none;
+  filter: blur(12px);
+  box-shadow: 0 0 60px 30px rgba(251, 191, 36, 0.4);
+  transform: skewX(-15deg);
+}
+
+@keyframes headlineRevealWipe {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes headlineShineReveal {
+  0% {
+    left: -150%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: 120%;
+    opacity: 0;
+  }
 }
 
 @media (min-width: 768px) {
