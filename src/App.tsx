@@ -831,8 +831,6 @@ function App() {
                 )}
               </>
             } />
-          </Routes>
-            } />
             <Route path="/success" element={<SuccessPage />} />
           </Routes>
       </div>
