@@ -141,7 +141,7 @@ const PricingSection = () => {
                   )}
                   {product.id === 'prod_TaXm2PawSXhMmc' && (
                     <p className="text-white/60 text-sm mb-6">
-                      Betal én gang eller månedligt
+                      Komplet hjemmeside til din virksomhed
                     </p>
                   )}
                   <div className="mb-2">
