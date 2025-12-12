@@ -1,18 +1,17 @@
-import { useState, useEffect, lazy, Suspense, useCallback, useMemo } from 'react';
+import { useState, useEffect, lazy, Suspense, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './lib/auth';
+import { AuthProvider, useAuth } from './lib/auth';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { Login } from './pages/Login';
 import { Signup } from './pages/Signup';
 import { Dashboard } from './pages/Dashboard';
 import { Checkout } from './pages/Checkout';
 import { Success } from './pages/Success';
-import { useAuth } from './lib/auth';
 
 const RankSearchSection = lazy(() => import('./components/RankSearchSection'));
 const PricingSection = lazy(() => import('./components/PricingSection'));
 
-function App() {
+function AppContent() {
   const { user } = useAuth();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [contactSuccessMessage, setContactSuccessMessage] = useState(false);
@@ -150,9 +149,8 @@ function App() {
   };
 
   return (
-    <AuthProvider>
-      <Router>
-        <div className="min-h-screen bg-white">
+    <Router>
+      <div className="min-h-screen bg-white">
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
@@ -852,8 +850,15 @@ function App() {
             } />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-        </div>
-      </Router>
+      </div>
+    </Router>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
     </AuthProvider>
   );
 }
