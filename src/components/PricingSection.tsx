@@ -1,27 +1,18 @@
 import { useState } from 'react';
 import { stripeProducts } from '../stripe-config';
 import { Check, Shield, CreditCard, Lock } from 'lucide-react';
-import { supabase } from '../lib/supabase';
-import { useAuth } from '../hooks/useAuth';
 
 const PricingSection = () => {
   const [loadingPriceId, setLoadingPriceId] = useState<string | null>(null);
   const [isCheckingOut, setIsCheckingOut] = useState<string | null>(null);
-  const { user } = useAuth();
 
   const handleCheckout = async (priceId: string) => {
-    if (!user) {
-      // Redirect to sign up or show auth modal
-      return;
-    }
-
     setIsCheckingOut(priceId);
 
     try {
       const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-checkout`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({

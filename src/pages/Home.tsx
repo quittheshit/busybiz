@@ -1,8 +1,6 @@
 import React from 'react';
 import { Zap, Shield, Headphones } from 'lucide-react';
 import { ProductCard } from '../components/ProductCard';
-import { AuthButton } from '../components/AuthButton';
-import { UserSubscription } from '../components/UserSubscription';
 import { STRIPE_PRODUCTS } from '../stripe-config';
 
 export function Home() {
@@ -12,11 +10,7 @@ export function Home() {
       <header className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <h1 className="text-xl font-bold text-gray-900">Digital Services</h1>
-              <UserSubscription />
-            </div>
-            <AuthButton />
+            <h1 className="text-xl font-bold text-gray-900">Digital Services</h1>
           </div>
         </div>
       </header>

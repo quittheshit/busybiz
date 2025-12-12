@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Check, ArrowRight, Loader2 } from 'lucide-react';
 import { StripeProduct, formatPrice } from '../stripe-config';
-import { supabase } from '../lib/supabase';
 
 interface ProductCardProps {
   product: StripeProduct;
@@ -13,17 +12,9 @@ export function ProductCard({ product }: ProductCardProps) {
   const handlePurchase = async () => {
     try {
       setLoading(true);
-      
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        // Redirect to login or show auth modal
-        alert('Du skal være logget ind for at købe');
-        return;
-      }
 
       const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-checkout`;
       const headers = {
-        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
         'Content-Type': 'application/json',
       };
 
@@ -39,7 +30,7 @@ export function ProductCard({ product }: ProductCardProps) {
       });
 
       const data = await response.json();
-      
+
       if (data.url) {
         window.location.href = data.url;
       } else {
