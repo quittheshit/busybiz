@@ -56,7 +56,7 @@ const PricingSection = () => {
       'Top 3 placering på Google',
       'Lokal synlighed',
       'Øget kundetilgang',
-      '6 måneders support'
+      '3 måneders support'
     ],
     'Ny Hjemmeside': [
       'Professionel hjemmeside',
@@ -71,7 +71,7 @@ const PricingSection = () => {
   const isPopular = (name: string) => name === 'Lokal SEO – Første side / Top 3 på Google';
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-[#1e293b] to-slate-950 py-24 md:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-[#1e293b] to-slate-950 py-16 md:py-24">
       {/* Animated background gradients */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-amber-500/10 to-yellow-600/5 rounded-full blur-3xl animate-pulse"></div>
