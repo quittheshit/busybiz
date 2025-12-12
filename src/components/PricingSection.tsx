@@ -16,7 +16,7 @@ const products: Product[] = [
     name: 'Brugerdefineret',
     description: 'Få et uforpligtende tilbud',
     price: '0',
-    priceId: 'price_1SdN0o22WWIq95RMeiPWG3CJ',
+    priceId: 'price_1SdNkC0T1Kx6I8gp3dIiZkqx',
     features: [
       'Skræddersyet løsning til dine behov',
       'Fleksibel pris baseret på omfang',
@@ -30,7 +30,7 @@ const products: Product[] = [
     name: 'Lokal SEO – Første side / Top 3 på Google',
     description: 'Mest populær til voksende virksomheder',
     price: '2.999',
-    priceId: 'price_1SdMy222WWIq95RMiCN3TYcQ',
+    priceId: 'price_1SdNjE0T1Kx6I8gp2VjQgWra',
     features: [
       'Google Maps integration',
       'Avanceret SEO optimering',
@@ -46,7 +46,7 @@ const products: Product[] = [
     name: 'Ny Hjemmeside',
     description: 'Komplet hjemmeside til din virksomhed',
     price: '3.999',
-    priceId: 'price_1SdMh722WWIq95RMSqAR9ABz',
+    priceId: 'price_1SdNei0T1Kx6I8gpDqOPQH6s',
     features: [
       'Professionel hjemmeside',
       'Mobil-venlig design',

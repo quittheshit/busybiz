@@ -194,11 +194,11 @@ To complete the payment system setup:
 
 4. **Verify Price IDs**
    Current price IDs in the system:
-   - `price_1SdN0o22WWIq95RMeiPWG3CJ` - Brugerdefineret (0 kr)
-   - `price_1SdMy222WWIq95RMiCN3TYcQ` - Lokal SEO (2.999 kr)
-   - `price_1SdMh722WWIq95RMSqAR9ABz` - Ny Hjemmeside (3.999 kr)
+   - `price_1SdNkC0T1Kx6I8gp3dIiZkqx` - Brugerdefineret (0 kr) - prod_TaYrlPk46eJpkX
+   - `price_1SdNjE0T1Kx6I8gp2VjQgWra` - Lokal SEO (2.999 kr) - prod_TaYqNW9Lk9FSdb
+   - `price_1SdNei0T1Kx6I8gpDqOPQH6s` - Ny Hjemmeside (3.999 kr) - prod_TaYmO0rCLjaCzj
 
-   Ensure these match your Stripe product price IDs.
+   These price IDs are configured and ready to use with your Stripe account.
 
 ---
 
