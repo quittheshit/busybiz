@@ -1,43 +1,9 @@
-import { useState } from 'react';
 import { Check } from 'lucide-react';
 import { stripeProducts } from '../stripe-config';
 
 const PricingSection = () => {
-  const [loadingPriceId, setLoadingPriceId] = useState<string | null>(null);
-
-  const handleCheckout = async (priceId: string) => {
-    if (priceId === 'price_1SdN0o22WWIq95RMeiPWG3CJ') {
-      const event = new CustomEvent('openContactModal');
-      window.dispatchEvent(event);
-      return;
-    }
-
-    setLoadingPriceId(priceId);
-
-    try {
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-checkout`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          priceId,
-          successUrl: `${window.location.origin}/success`,
-          cancelUrl: window.location.href,
-        }),
-      });
-
-      const { url } = await response.json();
-
-      if (url) {
-        window.location.href = url;
-      }
-    } catch (error) {
-      console.error('Error creating checkout session:', error);
-    } finally {
-      setLoadingPriceId(null);
-    }
+  const handleCheckout = (checkoutUrl: string) => {
+    window.location.href = checkoutUrl;
   };
 
   const productFeatures: Record<string, string[]> = {
@@ -184,9 +150,8 @@ const PricingSection = () => {
 
                   {/* CTA Button */}
                   <button
-                    onClick={() => handleCheckout(product.priceId)}
-                    disabled={loadingPriceId === product.priceId}
-                    className="w-full font-bold py-4 px-6 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-base uppercase tracking-wider"
+                    onClick={() => handleCheckout(product.checkoutUrl)}
+                    className="w-full font-bold py-4 px-6 rounded-full transition-all duration-300 text-base uppercase tracking-wider"
                     style={{
                       background: isPopular
                         ? 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)'
@@ -218,14 +183,7 @@ const PricingSection = () => {
                       }
                     }}
                   >
-                    {loadingPriceId === product.priceId ? (
-                      <div className="flex items-center justify-center">
-                        <div className="w-5 h-5 border-2 border-current/30 border-t-current rounded-full animate-spin mr-2"></div>
-                        Indlæser...
-                      </div>
-                    ) : (
-                      'VÆLG PAKKE'
-                    )}
+                    VÆLG PAKKE
                   </button>
                 </div>
               </div>
