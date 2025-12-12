@@ -23,11 +23,10 @@ const PricingSection = () => {
     ],
     'prod_TaXm2PawSXhMmc': [
       'Professionel hjemmeside',
-      'Mobil-venlig design',
-      'Basis SEO optimering',
-      'Kontakt formular',
-      'Hosting inkluderet',
-      '3 måneders support'
+      'Basis SEO og tekst optimering',
+      'Basis automatisering (email, kundeformular mm.)',
+      '3 Måneders support (vedvarende support kan arrangeres)',
+      'Mulighed for tilkøb af udvidet hjemmeside med extra funktioner'
     ]
   };
 
