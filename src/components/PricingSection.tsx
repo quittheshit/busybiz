@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { useAuth } from '../lib/auth';
 import { STRIPE_PRODUCTS } from '../stripe-config';
 import { Check, Shield, CreditCard, Lock } from 'lucide-react';
 
 const PricingSection = () => {
-  const { user } = useAuth();
   const [loadingPriceId, setLoadingPriceId] = useState<string | null>(null);
 
   const handleCheckout = async (priceId: string) => {

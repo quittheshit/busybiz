@@ -1,18 +1,10 @@
 import { useState, useEffect, lazy, Suspense, useCallback } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './lib/auth';
-import { ProtectedRoute } from './components/ProtectedRoute';
-import { Login } from './pages/Login';
-import { Signup } from './pages/Signup';
-import { Dashboard } from './pages/Dashboard';
-import { Checkout } from './pages/Checkout';
-import { Success } from './pages/Success';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const RankSearchSection = lazy(() => import('./components/RankSearchSection'));
 const PricingSection = lazy(() => import('./components/PricingSection'));
 
-function AppContent() {
-  const { user } = useAuth();
+function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [contactSuccessMessage, setContactSuccessMessage] = useState(false);
   const [contactErrorMessage, setContactErrorMessage] = useState(false);
@@ -152,23 +144,6 @@ function AppContent() {
     <Router>
       <div className="min-h-screen bg-white">
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/dashboard" element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } />
-            <Route path="/checkout" element={
-              <ProtectedRoute>
-                <Checkout />
-              </ProtectedRoute>
-            } />
-            <Route path="/success" element={
-              <ProtectedRoute>
-                <Success />
-              </ProtectedRoute>
-            } />
             <Route path="/" element={
               <>
                 {/* Header */}
@@ -192,9 +167,6 @@ function AppContent() {
                       <a href="#seo" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Bliv fundet online">SEO</a>
                       <a href="#marketing" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Marketing, automatisering & indhold">MARKETING</a>
                       <button onClick={openContactModal} className="nav-link text-white hover:text-amber-300 transition-all duration-300 bg-transparent border-none cursor-pointer" aria-label="Kontakt os">KONTAKT</button>
-                      {user && (
-                        <a href="/dashboard" className="nav-link text-amber-300 hover:text-amber-400 transition-all duration-300 font-semibold" aria-label="Dashboard">DASHBOARD</a>
-                      )}
                     </nav>
 
                     {/* Desktop Phone */}
@@ -848,18 +820,9 @@ function AppContent() {
                 )}
               </>
             } />
-            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
       </div>
     </Router>
-  );
-}
-
-function App() {
-  return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
   );
 }
 
