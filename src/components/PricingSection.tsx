@@ -52,10 +52,10 @@ const PricingSection = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl text-white mb-4 font-light tracking-tight">
-            Vælg din pakke
+            Vil du have en fast pris?
           </h2>
           <p className="text-base md:text-lg text-white/80 max-w-3xl mx-auto">
-            Engangsbetaling. Ingen skjulte omkostninger. Inklusiv hosting og support.
+            Her får du et par muligheder. Kontakt os gerne først og så tilpasser vi meget gerne pris og tjenester til dit behov.
           </p>
         </div>
 
