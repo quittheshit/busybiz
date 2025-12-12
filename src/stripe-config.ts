@@ -9,12 +9,11 @@ export interface StripeProduct {
 
 export const stripeProducts: StripeProduct[] = [
   {
-    id: 'prod_TaXm2PawSXhMmc',
-    name: 'Ny Hjemmeside',
-    description: 'Få en professionel og moderne hjemmeside, der præsenterer din virksomhed klart og troværdigt. Designet til at fungere perfekt på mobil, tablet og computer, og nem at udvide senere. Inkluderet: Skræddersyet Moderne Design, Mobilvenlig og Hurtig Indlæsning, Grundlæggende SEO Opsætning med Tekster, Billeder og Kontaktoplysninger. En ideel løsning til virksomheder, der vil se professionelle ud online, uden at betale for mere end nødvendigt.',
-    price_per_unit: 3999.00,
+    id: 'prod_TaY7yhzKC1nLmD',
+    name: 'Brugerdefineret',
+    description: 'Prisen fastsættes individuelt ud fra opgavens omfang, behov og mål. Kontakt os for en kort dialog og et konkret tilbud, der matcher din virksomhed og dit projekt.',
     currency_symbol: 'kr',
-    checkoutUrl: 'https://buy.stripe.com/14AaEP43Z2Mx1J2gIcgA800'
+    checkoutUrl: 'https://buy.stripe.com/8x2aEPasn9aV73majOgA801'
   },
   {
     id: 'prod_TaY4maI2H9O4om',
@@ -25,10 +24,11 @@ export const stripeProducts: StripeProduct[] = [
     checkoutUrl: 'https://buy.stripe.com/6oU4grgQL9aVgDW77CgA802'
   },
   {
-    id: 'prod_TaY7yhzKC1nLmD',
-    name: 'Brugerdefineret',
-    description: 'Prisen fastsættes individuelt ud fra opgavens omfang, behov og mål. Kontakt os for en kort dialog og et konkret tilbud, der matcher din virksomhed og dit projekt.',
+    id: 'prod_TaXm2PawSXhMmc',
+    name: 'Ny Hjemmeside',
+    description: 'Få en professionel og moderne hjemmeside, der præsenterer din virksomhed klart og troværdigt. Designet til at fungere perfekt på mobil, tablet og computer, og nem at udvide senere. Inkluderet: Skræddersyet Moderne Design, Mobilvenlig og Hurtig Indlæsning, Grundlæggende SEO Opsætning med Tekster, Billeder og Kontaktoplysninger. En ideel løsning til virksomheder, der vil se professionelle ud online, uden at betale for mere end nødvendigt.',
+    price_per_unit: 3999.00,
     currency_symbol: 'kr',
-    checkoutUrl: 'https://buy.stripe.com/8x2aEPasn9aV73majOgA801'
+    checkoutUrl: 'https://buy.stripe.com/14AaEP43Z2Mx1J2gIcgA800'
   }
 ];
