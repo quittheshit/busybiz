@@ -7,11 +7,6 @@ const PricingSection = () => {
   const [loadingPriceId, setLoadingPriceId] = useState<string | null>(null);
 
   const handleCheckout = async (priceId: string) => {
-    if (!user) {
-      window.location.href = '/login';
-      return;
-    }
-
     setLoadingPriceId(priceId);
 
     try {
@@ -23,8 +18,8 @@ const PricingSection = () => {
         },
         body: JSON.stringify({
           priceId,
-          successUrl: `${window.location.origin}/success`,
-          cancelUrl: `${window.location.origin}/checkout`,
+          successUrl: `${window.location.origin}/?payment=success`,
+          cancelUrl: `${window.location.origin}/?payment=cancelled`,
         }),
       });
 
