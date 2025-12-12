@@ -47,26 +47,46 @@ const PricingSection = () => {
     'prod_TaY7yhzKC1nLmD': [
       'Skræddersyet løsning til dine behov',
       'Fleksibel pris baseret på omfang',
-      'Personlig konsultation'
+      'Personlig konsultation',
+      'Alle funktioner tilgængelige',
+      'Kontakt os for et uforpligtende tilbud'
     ],
     'prod_TaY4maI2H9O4om': [
       'Google Maps integration',
       'Avanceret SEO optimering',
-      'Lokal søgeord targeting',
-      'Google Virksomhedsprofil setup',
-      'Citation opbygning'
+      'Top 3 placering på Google',
+      'Lokal synlighed',
+      'Øget kundetilgang',
+      '6 måneders support'
     ],
     'prod_TaXm2PawSXhMmc': [
       'Professionel hjemmeside',
       'Mobil-venlig design',
       'Basis SEO optimering',
-      'Hurtig indlæsning',
-      'Kontaktformular'
+      'Kontakt formular',
+      'Hosting inkluderet',
+      '3 måneders support'
     ]
   };
 
   return (
     <section className="relative overflow-hidden py-24 md:py-32" style={{ backgroundColor: '#1e293b' }}>
+      {/* Premium Background Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20"
+          style={{
+            background: 'radial-gradient(circle, rgba(251, 191, 36, 0.3) 0%, transparent 70%)'
+          }}
+        />
+        <div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-20"
+          style={{
+            background: 'radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, transparent 70%)'
+          }}
+        />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
@@ -79,26 +99,52 @@ const PricingSection = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {stripeProducts.map((product, index) => {
             const isPopular = index === 1;
             return (
               <div
                 key={product.id}
-                className="relative rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1"
-                style={{
-                  backgroundColor: '#0f172a',
-                  border: isPopular ? '2px solid #f59e0b' : '1px solid rgba(148, 163, 184, 0.2)'
-                }}
+                className="relative group"
               >
-                {/* Popular Badge */}
+                {/* Golden Gradient Border for Popular Card */}
                 {isPopular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <div className="px-6 py-2 rounded-full text-sm font-bold" style={{ backgroundColor: '#f59e0b', color: '#0f172a' }}>
-                      MEST POPULÆR
-                    </div>
+                  <div
+                    className="absolute inset-0 rounded-3xl transition-all duration-500 group-hover:scale-105"
+                    style={{
+                      background: 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #f59e0b 100%)',
+                      padding: '2px',
+                      filter: 'blur(0px)'
+                    }}
+                  >
+                    <div className="w-full h-full rounded-3xl" style={{ backgroundColor: '#0f172a' }}></div>
                   </div>
                 )}
+
+                <div
+                  className="relative rounded-3xl p-8 transition-all duration-500 group-hover:-translate-y-2"
+                  style={{
+                    backgroundColor: '#0f172a',
+                    border: isPopular ? 'none' : '1px solid rgba(148, 163, 184, 0.2)',
+                    boxShadow: isPopular
+                      ? '0 20px 60px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(251, 191, 36, 0.1)'
+                      : '0 10px 30px rgba(0, 0, 0, 0.3)'
+                  }}
+                >
+                  {/* Popular Badge */}
+                  {isPopular && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <div
+                        className="px-6 py-2 rounded-full text-sm font-bold shadow-lg"
+                        style={{
+                          background: 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)',
+                          color: '#0f172a'
+                        }}
+                      >
+                        MEST POPULÆR
+                      </div>
+                    </div>
+                  )}
 
                 {/* Header */}
                 <div className="text-center mb-8 pt-4">
@@ -129,83 +175,92 @@ const PricingSection = () => {
                   <p className="text-white/60 text-sm">Engangsbetaling</p>
                 </div>
 
-                {/* Features */}
-                <div className="space-y-4 mb-8">
-                  {productFeatures[product.id]?.map((feature, idx) => (
-                    <div key={idx} className="flex items-start">
-                      <Check className="w-5 h-5 flex-shrink-0 mr-3 mt-0.5" style={{ color: '#f59e0b' }} />
-                      <span className="text-white/80 text-sm">{feature}</span>
-                    </div>
-                  ))}
-                </div>
+                  {/* Features */}
+                  <div className="space-y-4 mb-8">
+                    {productFeatures[product.id]?.map((feature, idx) => (
+                      <div key={idx} className="flex items-start">
+                        <Check className="w-5 h-5 flex-shrink-0 mr-3 mt-0.5" style={{ color: '#fbbf24' }} />
+                        <span className="text-white/80 text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
 
-                {/* CTA Button */}
-                <button
-                  onClick={() => handleCheckout(product.priceId)}
-                  disabled={loadingPriceId === product.priceId}
-                  className="w-full font-bold py-3 px-6 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                  style={{
-                    backgroundColor: isPopular ? '#f59e0b' : 'transparent',
-                    border: isPopular ? 'none' : '2px solid #f59e0b',
-                    color: isPopular ? '#0f172a' : '#f59e0b'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isPopular) {
-                      e.currentTarget.style.backgroundColor = '#f59e0b';
-                      e.currentTarget.style.color = '#0f172a';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isPopular) {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.color = '#f59e0b';
-                    }
-                  }}
-                >
-                  {loadingPriceId === product.priceId ? (
-                    <div className="flex items-center justify-center">
-                      <div className="w-5 h-5 border-2 border-current/30 border-t-current rounded-full animate-spin mr-2"></div>
-                      Indlæser...
-                    </div>
-                  ) : product.price_per_unit ? (
-                    'Køb nu'
-                  ) : (
-                    'Få tilbud'
-                  )}
-                </button>
+                  {/* CTA Button */}
+                  <button
+                    onClick={() => handleCheckout(product.priceId)}
+                    disabled={loadingPriceId === product.priceId}
+                    className="w-full font-bold py-4 px-6 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-base uppercase tracking-wider"
+                    style={{
+                      background: isPopular
+                        ? 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)'
+                        : 'rgba(51, 65, 85, 0.6)',
+                      border: isPopular ? 'none' : '2px solid rgba(148, 163, 184, 0.3)',
+                      color: isPopular ? '#0f172a' : '#e2e8f0',
+                      boxShadow: isPopular
+                        ? '0 10px 30px rgba(245, 158, 11, 0.4)'
+                        : '0 5px 15px rgba(0, 0, 0, 0.2)'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (isPopular) {
+                        e.currentTarget.style.background = 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)';
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                        e.currentTarget.style.boxShadow = '0 15px 40px rgba(245, 158, 11, 0.5)';
+                      } else {
+                        e.currentTarget.style.background = 'rgba(71, 85, 105, 0.8)';
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (isPopular) {
+                        e.currentTarget.style.background = 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = '0 10px 30px rgba(245, 158, 11, 0.4)';
+                      } else {
+                        e.currentTarget.style.background = 'rgba(51, 65, 85, 0.6)';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                      }
+                    }}
+                  >
+                    {loadingPriceId === product.priceId ? (
+                      <div className="flex items-center justify-center">
+                        <div className="w-5 h-5 border-2 border-current/30 border-t-current rounded-full animate-spin mr-2"></div>
+                        Indlæser...
+                      </div>
+                    ) : (
+                      'VÆLG PAKKE'
+                    )}
+                  </button>
+                </div>
               </div>
             );
           })}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <p className="text-white/70 mb-6">
-            Har du spørgsmål eller brug for en skræddersyet løsning?
+        {/* Trust Badges */}
+        <div className="text-center mt-20">
+          <p className="text-white/70 mb-8 text-sm">
+            Sikker betaling med Stripe
           </p>
-          <button
-            data-contact-trigger
-            onClick={() => {
-              const event = new CustomEvent('openContactModal');
-              window.dispatchEvent(event);
-            }}
-            className="px-8 py-3 rounded-lg font-bold transition-all duration-300"
-            style={{
-              backgroundColor: 'transparent',
-              border: '2px solid #f59e0b',
-              color: '#f59e0b'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#f59e0b';
-              e.currentTarget.style.color = '#0f172a';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent';
-              e.currentTarget.style.color = '#f59e0b';
-            }}
-          >
-            Kontakt os
-          </button>
+          <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-white/60">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(34, 197, 94, 0.2)' }}>
+                <Check className="w-4 h-4" style={{ color: '#22c55e' }} />
+              </div>
+              <span>SSL Sikret</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(59, 130, 246, 0.2)' }}>
+                <Check className="w-4 h-4" style={{ color: '#3b82f6' }} />
+              </div>
+              <span>Alle betalingskort accepteret</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(245, 158, 11, 0.2)' }}>
+                <Check className="w-4 h-4" style={{ color: '#f59e0b' }} />
+              </div>
+              <span>30 dages pengene tilbage garanti</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
