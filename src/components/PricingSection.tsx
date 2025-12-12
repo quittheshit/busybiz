@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Check } from 'lucide-react';
 import { stripeProducts } from '../stripe-config';
 
 const PricingSection = () => {
@@ -15,7 +16,7 @@ const PricingSection = () => {
     }
 
     setLoadingPriceId(priceId);
-    
+
     try {
       const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-checkout`, {
         method: 'POST',
@@ -31,7 +32,7 @@ const PricingSection = () => {
       });
 
       const { url } = await response.json();
-      
+
       if (url) {
         window.location.href = url;
       }
@@ -42,68 +43,128 @@ const PricingSection = () => {
     }
   };
 
-  const formatPrice = (price?: number, currency: string = 'kr') => {
-    if (!price) return 'Kontakt os';
-    return `${price.toLocaleString('da-DK')} ${currency}`;
+  const productFeatures: Record<string, string[]> = {
+    'prod_TaY7yhzKC1nLmD': [
+      'Skræddersyet løsning til dine behov',
+      'Fleksibel pris baseret på omfang',
+      'Personlig konsultation'
+    ],
+    'prod_TaY4maI2H9O4om': [
+      'Google Maps integration',
+      'Avanceret SEO optimering',
+      'Lokal søgeord targeting',
+      'Google Virksomhedsprofil setup',
+      'Citation opbygning'
+    ],
+    'prod_TaXm2PawSXhMmc': [
+      'Professionel hjemmeside',
+      'Mobil-venlig design',
+      'Basis SEO optimering',
+      'Hurtig indlæsning',
+      'Kontaktformular'
+    ]
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-24 md:py-32">
-      {/* Background Elements */}
-      <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-amber-400/10 to-yellow-600/5 rounded-full blur-3xl animate-float"></div>
-      <div className="absolute bottom-32 right-20 w-80 h-80 bg-gradient-to-br from-amber-500/15 to-orange-400/10 rounded-full blur-3xl animate-float-delayed"></div>
-
+    <section className="relative overflow-hidden py-24 md:py-32" style={{ backgroundColor: '#1e293b' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="headline-font text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight">
-            Vælg din løsning
+          <h2 className="text-4xl md:text-5xl lg:text-6xl text-white mb-4 font-light tracking-tight">
+            Vælg din pakke
           </h2>
-          <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-            Professionelle løsninger til at få din virksomhed til at vokse online
+          <p className="text-base md:text-lg text-white/80 max-w-3xl mx-auto">
+            Engangsbetaling. Ingen skjulte omkostninger. Inklusiv hosting og support.
           </p>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {stripeProducts.map((product) => (
-            <div
-              key={product.id}
-              className="group bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-amber-500/20 hover:border-amber-400/40 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
-            >
-              {/* Card Background Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              <div className="relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {stripeProducts.map((product, index) => {
+            const isPopular = index === 1;
+            return (
+              <div
+                key={product.id}
+                className="relative rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  backgroundColor: '#0f172a',
+                  border: isPopular ? '2px solid #f59e0b' : '1px solid rgba(148, 163, 184, 0.2)'
+                }}
+              >
+                {/* Popular Badge */}
+                {isPopular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <div className="px-6 py-2 rounded-full text-sm font-bold" style={{ backgroundColor: '#f59e0b', color: '#0f172a' }}>
+                      MEST POPULÆR
+                    </div>
+                  </div>
+                )}
+
                 {/* Header */}
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-white mb-4 leading-tight">
+                <div className="text-center mb-8 pt-4">
+                  <h3 className="text-xl font-bold text-white mb-2 leading-tight">
                     {product.name}
                   </h3>
-                  <div className="text-4xl font-bold text-amber-400 mb-2">
-                    {formatPrice(product.price_per_unit, product.currency_symbol)}
-                  </div>
-                  {product.price_per_unit && (
-                    <p className="text-white/70 text-sm">Engangsbetaling</p>
+                  {product.id === 'prod_TaY4maI2H9O4om' && (
+                    <p className="text-white/60 text-sm mb-6">
+                      Mest populær til voksende virksomheder
+                    </p>
                   )}
+                  {product.id === 'prod_TaY7yhzKC1nLmD' && (
+                    <p className="text-white/60 text-sm mb-6">
+                      Få et uforpligtende tilbud
+                    </p>
+                  )}
+                  {product.id === 'prod_TaXm2PawSXhMmc' && (
+                    <p className="text-white/60 text-sm mb-6">
+                      Komplet hjemmeside til din virksomhed
+                    </p>
+                  )}
+                  <div className="mb-2">
+                    <span className="text-5xl font-bold text-white">
+                      {product.price_per_unit ? product.price_per_unit.toLocaleString('da-DK').replace('.', '.') : '0'}
+                    </span>
+                    <span className="text-2xl text-white/80 ml-2">kr</span>
+                  </div>
+                  <p className="text-white/60 text-sm">Engangsbetaling</p>
                 </div>
 
-                {/* Description */}
-                <div className="mb-8">
-                  <p className="text-white/90 leading-relaxed text-sm">
-                    {product.description}
-                  </p>
+                {/* Features */}
+                <div className="space-y-4 mb-8">
+                  {productFeatures[product.id]?.map((feature, idx) => (
+                    <div key={idx} className="flex items-start">
+                      <Check className="w-5 h-5 flex-shrink-0 mr-3 mt-0.5" style={{ color: '#f59e0b' }} />
+                      <span className="text-white/80 text-sm">{feature}</span>
+                    </div>
+                  ))}
                 </div>
 
                 {/* CTA Button */}
                 <button
                   onClick={() => handleCheckout(product.priceId)}
                   disabled={loadingPriceId === product.priceId}
-                  className="w-full bg-gradient-to-r from-amber-400 to-yellow-600 hover:from-yellow-500 hover:to-orange-600 text-slate-900 font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full font-bold py-3 px-6 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{
+                    backgroundColor: isPopular ? '#f59e0b' : 'transparent',
+                    border: isPopular ? 'none' : '2px solid #f59e0b',
+                    color: isPopular ? '#0f172a' : '#f59e0b'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isPopular) {
+                      e.currentTarget.style.backgroundColor = '#f59e0b';
+                      e.currentTarget.style.color = '#0f172a';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isPopular) {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = '#f59e0b';
+                    }
+                  }}
                 >
                   {loadingPriceId === product.priceId ? (
                     <div className="flex items-center justify-center">
-                      <div className="w-5 h-5 border-2 border-slate-900/30 border-t-slate-900 rounded-full animate-spin mr-2"></div>
+                      <div className="w-5 h-5 border-2 border-current/30 border-t-current rounded-full animate-spin mr-2"></div>
                       Indlæser...
                     </div>
                   ) : product.price_per_unit ? (
@@ -113,13 +174,13 @@ const PricingSection = () => {
                   )}
                 </button>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <p className="text-white/80 mb-6">
+          <p className="text-white/70 mb-6">
             Har du spørgsmål eller brug for en skræddersyet løsning?
           </p>
           <button
@@ -128,7 +189,20 @@ const PricingSection = () => {
               const event = new CustomEvent('openContactModal');
               window.dispatchEvent(event);
             }}
-            className="bg-transparent border-2 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-slate-900 font-bold py-3 px-8 rounded-full transition-all duration-300"
+            className="px-8 py-3 rounded-lg font-bold transition-all duration-300"
+            style={{
+              backgroundColor: 'transparent',
+              border: '2px solid #f59e0b',
+              color: '#f59e0b'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#f59e0b';
+              e.currentTarget.style.color = '#0f172a';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.color = '#f59e0b';
+            }}
           >
             Kontakt os
           </button>
