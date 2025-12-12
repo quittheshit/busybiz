@@ -495,7 +495,7 @@ function App() {
                             </div>
 
                             <p className="text-slate-900/90 mb-6 leading-relaxed font-medium">
-                              Assistenten kan svare på spørgsmål, booke et møde og sende dig mere info med det samme.
+                              Assistenten kan svare på spørgsmål, booke et møde, give dig tips til at få flere kunder og sende dig mere info med det samme.
                             </p>
 
                             <button
