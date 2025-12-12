@@ -151,7 +151,7 @@ const PricingSection = () => {
                     <span className="text-2xl text-white/80 ml-2">kr</span>
                   </div>
                   <p className="text-white/60 text-sm">
-                    {product.id === 'prod_TaXm2PawSXhMmc' ? 'Betal én gang eller månedligt' : 'Engangsbetaling'}
+                    {product.id === 'prod_TaXm2PawSXhMmc' ? 'Engangsbetaling - med mulighed for tilkøb af fast support' : 'Engangsbetaling'}
                   </p>
                 </div>
 
