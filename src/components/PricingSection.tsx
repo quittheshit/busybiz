@@ -20,7 +20,7 @@ const PricingSection = () => {
       'Top 3 placering på Google',
       'Lokal synlighed',
       'Øget kundetilgang',
-      '6 måneders support'
+      'Første side på Google eller pengene retur'
     ],
     'prod_TaXm2PawSXhMmc': [
       'Professionel hjemmeside',
