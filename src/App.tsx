@@ -7,11 +7,13 @@ import { Signup } from './pages/Signup';
 import { Dashboard } from './pages/Dashboard';
 import { Checkout } from './pages/Checkout';
 import { Success } from './pages/Success';
+import { useAuth } from './lib/auth';
 
 const RankSearchSection = lazy(() => import('./components/RankSearchSection'));
 const PricingSection = lazy(() => import('./components/PricingSection'));
 
 function App() {
+  const { user } = useAuth();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [contactSuccessMessage, setContactSuccessMessage] = useState(false);
   const [contactErrorMessage, setContactErrorMessage] = useState(false);
@@ -192,6 +194,9 @@ function App() {
                       <a href="#seo" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Bliv fundet online">SEO</a>
                       <a href="#marketing" onClick={handleNavClick} className="nav-link text-white hover:text-amber-300 transition-all duration-300" aria-label="Marketing, automatisering & indhold">MARKETING</a>
                       <button onClick={openContactModal} className="nav-link text-white hover:text-amber-300 transition-all duration-300 bg-transparent border-none cursor-pointer" aria-label="Kontakt os">KONTAKT</button>
+                      {user && (
+                        <a href="/dashboard" className="nav-link text-amber-300 hover:text-amber-400 transition-all duration-300 font-semibold" aria-label="Dashboard">DASHBOARD</a>
+                      )}
                     </nav>
 
                     {/* Desktop Phone */}
