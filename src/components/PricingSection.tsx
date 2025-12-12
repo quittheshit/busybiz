@@ -130,7 +130,7 @@ const PricingSection = () => {
                     <h3 className="text-xl font-bold text-white mb-2">
                       {product.name}
                     </h3>
-                    <p className="text-white/70 text-sm mb-3 min-h-[60px]">
+                    <p className="text-white/70 text-sm mb-1 min-h-[60px]">
                       {product.name === 'Brugerdefineret'
                         ? 'Få et uforpligtende tilbud'
                         : product.name === 'Lokal SEO – Første side / Top 3 på Google'
