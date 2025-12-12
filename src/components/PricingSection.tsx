@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { stripeProducts } from '../stripe-config';
+import { STRIPE_PRODUCTS } from '../stripe-config';
 import { Check, Shield, CreditCard, Lock } from 'lucide-react';
 
 const PricingSection = () => {
@@ -88,7 +88,7 @@ const PricingSection = () => {
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
-          {stripeProducts.map((product) => {
+          {STRIPE_PRODUCTS.map((product) => {
             const popular = isPopular(product.name);
             const features = productFeatures[product.name] || [];
 
