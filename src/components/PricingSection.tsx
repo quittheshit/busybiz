@@ -143,10 +143,10 @@ const PricingSection = () => {
 
                 {/* Header - Fixed height section */}
                 <div className="text-center mb-8 pt-4">
-                  <h3 className="text-xl font-bold text-white mb-2 leading-tight min-h-[3.5rem] flex items-center justify-center">
+                  <h3 className="text-xl font-bold text-white mb-1 leading-tight min-h-[3.5rem] flex items-center justify-center">
                     {product.name}
                   </h3>
-                  <div className="min-h-[4rem] flex items-center justify-center">
+                  <div className="min-h-[2.5rem] flex items-center justify-center">
                     {product.id === 'prod_TaY4maI2H9O4om' && (
                       <p className="text-white/60 text-sm">
                         Mest populær til voksende virksomheder
