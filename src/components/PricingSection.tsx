@@ -1,12 +1,21 @@
 import { useState } from 'react';
-import { STRIPE_PRODUCTS } from '../stripe-config';
+import { stripeProducts } from '../stripe-config';
 import { Check, Shield, CreditCard, Lock } from 'lucide-react';
+import { supabase } from '../lib/supabase';
+import { useAuth } from '../hooks/useAuth';
 
 const PricingSection = () => {
   const [loadingPriceId, setLoadingPriceId] = useState<string | null>(null);
+  const [isCheckingOut, setIsCheckingOut] = useState<string | null>(null);
+  const { user } = useAuth();
 
   const handleCheckout = async (priceId: string) => {
-    setLoadingPriceId(priceId);
+    if (!user) {
+      // Redirect to sign up or show auth modal
+      return;
+    }
+
+    setIsCheckingOut(priceId);
 
     try {
       const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-checkout`, {
@@ -17,23 +26,20 @@ const PricingSection = () => {
         },
         body: JSON.stringify({
           priceId,
-          successUrl: `${window.location.origin}/?payment=success`,
-          cancelUrl: `${window.location.origin}/?payment=cancelled`,
+          successUrl: `${window.location.origin}/success`,
+          cancelUrl: `${window.location.origin}`,
         }),
       });
 
-      const data = await response.json();
-
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        throw new Error('No checkout URL received');
+      const { url } = await response.json();
+      
+      if (url) {
+        window.location.href = url;
       }
     } catch (error) {
       console.error('Checkout error:', error);
-      alert('Der opstod en fejl. Prøv venligst igen.');
     } finally {
-      setLoadingPriceId(null);
+      setIsCheckingOut(null);
     }
   };
 
@@ -91,7 +97,7 @@ const PricingSection = () => {
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
-          {STRIPE_PRODUCTS.map((product) => {
+          {stripeProducts.map((product) => {
             const popular = isPopular(product.name);
             const features = productFeatures[product.name] || [];
 
@@ -160,14 +166,14 @@ const PricingSection = () => {
                   {/* CTA Button */}
                   <button
                     onClick={() => handleCheckout(product.priceId)}
-                    disabled={loadingPriceId === product.priceId}
+                    disabled={isCheckingOut === product.priceId}
                     className={`w-full font-bold py-4 px-6 rounded-full transition-all duration-300 shadow-lg ${
                       popular
                         ? 'bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-500 hover:via-yellow-500 hover:to-amber-600 text-slate-900 shadow-amber-500/30 hover:shadow-amber-500/50 hover:shadow-xl'
                         : 'bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-500 hover:to-slate-600 text-white shadow-slate-900/50'
                     } disabled:opacity-50 disabled:cursor-not-allowed hover:transform hover:-translate-y-1`}
                   >
-                    {loadingPriceId === product.priceId ? (
+                    {isCheckingOut === product.priceId ? (
                       <div className="flex items-center justify-center">
                         <div className="w-5 h-5 border-2 border-slate-900/30 border-t-slate-900 rounded-full animate-spin mr-2"></div>
                         Indlæser...
