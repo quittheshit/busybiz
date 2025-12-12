@@ -127,10 +127,10 @@ const PricingSection = () => {
 
                 <div className="relative z-10">
                   <div className="text-center mb-8">
-                    <h3 className="text-xl font-bold text-white mb-4">
+                    <h3 className="text-xl font-bold text-white mb-2">
                       {product.name}
                     </h3>
-                    <p className="text-white/70 text-sm mb-6 min-h-[60px]">
+                    <p className="text-white/70 text-sm mb-3 min-h-[60px]">
                       {product.name === 'Brugerdefineret'
                         ? 'Få et uforpligtende tilbud'
                         : product.name === 'Lokal SEO – Første side / Top 3 på Google'
