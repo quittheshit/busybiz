@@ -7,11 +7,8 @@ const PricingSection = () => {
 
   const handleCheckout = async (priceId: string) => {
     if (priceId === 'price_1SdN0o22WWIq95RMeiPWG3CJ') {
-      // Custom pricing - open contact modal instead
-      const contactButton = document.querySelector('[data-contact-trigger]') as HTMLButtonElement;
-      if (contactButton) {
-        contactButton.click();
-      }
+      const event = new CustomEvent('openContactModal');
+      window.dispatchEvent(event);
       return;
     }
 
