@@ -229,50 +229,44 @@ const PricingSection = () => {
           })}
         </div>
 
-        {/* Trust Badges - Enhanced depth */}
+        {/* Trust Badges - Simple style */}
         <div className="text-center mt-20">
           <p className="text-white/70 mb-8 text-sm font-medium">
             Sikker betaling med Stripe
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-white/70">
-            <div className="flex items-center gap-3 px-4 py-2 rounded-full transition-all duration-300 hover:scale-105" style={{
-              backgroundColor: 'rgba(15, 23, 42, 0.5)',
-              border: '1px solid rgba(34, 197, 94, 0.3)',
-              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(34, 197, 94, 0.1)'
+          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 text-sm text-white/70">
+            <div className="flex items-center gap-3 px-5 py-3 rounded-full transition-all duration-300" style={{
+              backgroundColor: 'rgba(15, 23, 42, 0.3)',
+              border: '1px solid rgba(34, 197, 94, 0.4)'
             }}>
-              <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
-                backgroundColor: 'rgba(34, 197, 94, 0.2)',
-                boxShadow: '0 2px 8px rgba(34, 197, 94, 0.3), inset 0 1px 0 rgba(34, 197, 94, 0.3)'
+              <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
+                backgroundColor: 'rgba(34, 197, 94, 0.15)'
               }}>
                 <Check className="w-4 h-4" style={{ color: '#22c55e' }} />
               </div>
-              <span className="font-medium">SSL Sikret</span>
+              <span>SSL Sikret</span>
             </div>
-            <div className="flex items-center gap-3 px-4 py-2 rounded-full transition-all duration-300 hover:scale-105" style={{
-              backgroundColor: 'rgba(15, 23, 42, 0.5)',
-              border: '1px solid rgba(59, 130, 246, 0.3)',
-              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(59, 130, 246, 0.1)'
+            <div className="flex items-center gap-3 px-5 py-3 rounded-full transition-all duration-300" style={{
+              backgroundColor: 'rgba(15, 23, 42, 0.3)',
+              border: '1px solid rgba(59, 130, 246, 0.4)'
             }}>
-              <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
-                backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                boxShadow: '0 2px 8px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(59, 130, 246, 0.3)'
+              <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
+                backgroundColor: 'rgba(59, 130, 246, 0.15)'
               }}>
                 <Check className="w-4 h-4" style={{ color: '#3b82f6' }} />
               </div>
-              <span className="font-medium">Alle betalingskort accepteret</span>
+              <span>Alle betalingskort accepteret</span>
             </div>
-            <div className="flex items-center gap-3 px-4 py-2 rounded-full transition-all duration-300 hover:scale-105" style={{
-              backgroundColor: 'rgba(15, 23, 42, 0.5)',
-              border: '1px solid rgba(245, 158, 11, 0.3)',
-              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(245, 158, 11, 0.1)'
+            <div className="flex items-center gap-3 px-5 py-3 rounded-full transition-all duration-300" style={{
+              backgroundColor: 'rgba(15, 23, 42, 0.3)',
+              border: '1px solid rgba(245, 158, 11, 0.4)'
             }}>
-              <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
-                backgroundColor: 'rgba(245, 158, 11, 0.2)',
-                boxShadow: '0 2px 8px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(245, 158, 11, 0.3)'
+              <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
+                backgroundColor: 'rgba(245, 158, 11, 0.15)'
               }}>
                 <Check className="w-4 h-4" style={{ color: '#f59e0b' }} />
               </div>
-              <span className="font-medium">30 dages pengene tilbage garanti</span>
+              <span>30 dages pengene tilbage garanti</span>
             </div>
           </div>
         </div>
