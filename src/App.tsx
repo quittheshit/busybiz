@@ -1,6 +1,7 @@
 import { useState, useEffect, lazy, Suspense, useCallback, useMemo } from 'react';
 
 const RankSearchSection = lazy(() => import('./components/RankSearchSection'));
+const PricingSection = lazy(() => import('./components/PricingSection'));
 
 function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -557,6 +558,11 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Pricing Section */}
+      <Suspense fallback={<div className="py-20 text-center">Loading...</div>}>
+        <PricingSection />
+      </Suspense>
 
       {/* Footer */}
       <footer className="fade-in-bottom bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-16 px-4 sm:px-6 md:px-10 mt-0 relative overflow-hidden border-t border-amber-500/20" style={{boxShadow: 'inset 0 2px 0 rgba(251, 191, 36, 0.15)'}}>
