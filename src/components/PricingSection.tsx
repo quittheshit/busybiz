@@ -55,7 +55,7 @@ const PricingSection = () => {
             Vil du have en fast pris?
           </h2>
           <p className="text-base md:text-lg text-white/80 max-w-3xl mx-auto">
-            Her får du et par muligheder. Kontakt os gerne først og så tilpasser vi meget gerne pris og tjenester til dit behov.
+            Her får du et par muligheder. Kontakt os gerne først, og så tilpasser vi meget gerne pris og tjenester efter dine behov.
           </p>
         </div>
 
