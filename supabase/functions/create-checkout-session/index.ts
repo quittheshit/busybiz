@@ -17,8 +17,22 @@ Deno.serve(async (req: Request) => {
 
   try {
     const stripeSecretKey = Deno.env.get("STRIPE_SECRET_KEY");
+    
     if (!stripeSecretKey) {
-      throw new Error("STRIPE_SECRET_KEY not found in environment variables");
+      console.error("STRIPE_SECRET_KEY not configured");
+      return new Response(
+        JSON.stringify({ 
+          error: "Payment system not configured. Please contact support.",
+          details: "STRIPE_SECRET_KEY missing"
+        }),
+        {
+          status: 500,
+          headers: {
+            ...corsHeaders,
+            "Content-Type": "application/json",
+          },
+        }
+      );
     }
 
     const stripe = new Stripe(stripeSecretKey, {
@@ -29,9 +43,22 @@ Deno.serve(async (req: Request) => {
     const { priceId, successUrl, cancelUrl } = await req.json();
 
     if (!priceId) {
-      throw new Error("priceId is required");
+      return new Response(
+        JSON.stringify({ error: "priceId is required" }),
+        {
+          status: 400,
+          headers: {
+            ...corsHeaders,
+            "Content-Type": "application/json",
+          },
+        }
+      );
     }
 
+    console.log("Creating checkout session for priceId:", priceId);
+
+    const origin = req.headers.get("origin") || "https://yourdomain.com";
+    
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
@@ -40,12 +67,15 @@ Deno.serve(async (req: Request) => {
         },
       ],
       mode: "payment",
-      success_url: successUrl || `${req.headers.get("origin")}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: cancelUrl || `${req.headers.get("origin")}#pricing`,
+      success_url: successUrl || `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: cancelUrl || `${origin}#pricing`,
+      automatic_tax: { enabled: false },
     });
 
+    console.log("Checkout session created:", session.id);
+
     return new Response(
-      JSON.stringify({ url: session.url }),
+      JSON.stringify({ url: session.url, sessionId: session.id }),
       {
         headers: {
           ...corsHeaders,
@@ -55,10 +85,17 @@ Deno.serve(async (req: Request) => {
     );
   } catch (error) {
     console.error("Error creating checkout session:", error);
+    
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    const statusCode = error.statusCode || 500;
+    
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: "Failed to create checkout session",
+        details: errorMessage
+      }),
       {
-        status: 500,
+        status: statusCode,
         headers: {
           ...corsHeaders,
           "Content-Type": "application/json",

@@ -60,16 +60,26 @@ const products: Product[] = [
 
 export default function PricingSection() {
   const [isLoading, setIsLoading] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleCheckout = async (priceId: string, productName: string) => {
     setIsLoading(priceId);
+    setError(null);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-checkout-session`, {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+      if (!supabaseUrl || !supabaseKey) {
+        throw new Error('Betalingssystem ikke konfigureret korrekt');
+      }
+
+      const response = await fetch(`${supabaseUrl}/functions/v1/create-checkout-session`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Authorization': `Bearer ${supabaseKey}`,
           'Content-Type': 'application/json',
+          'apikey': supabaseKey,
         },
         body: JSON.stringify({
           priceId,
@@ -78,18 +88,24 @@ export default function PricingSection() {
         })
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to create checkout session');
+        console.error('Checkout error:', data);
+        throw new Error(data.error || data.details || 'Kunne ikke oprette betalingssession');
       }
 
-      const { url } = await response.json();
-
-      if (url) {
-        window.location.href = url;
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error('Intet checkout URL modtaget');
       }
     } catch (error) {
       console.error('Error creating checkout session:', error);
-      alert('Der opstod en fejl. Prøv venligst igen eller kontakt os direkte.');
+      const errorMessage = error instanceof Error ? error.message : 'Ukendt fejl';
+      setError(`Fejl: ${errorMessage}. Prøv venligst igen eller kontakt os.`);
+
+      setTimeout(() => setError(null), 8000);
     } finally {
       setIsLoading(null);
     }
@@ -110,6 +126,13 @@ export default function PricingSection() {
           <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
             Engangsbetaling. Ingen skjulte omkostninger. Inklusiv hosting og support.
           </p>
+
+          {/* Error Message */}
+          {error && (
+            <div className="mt-6 mx-auto max-w-2xl bg-red-500/10 border border-red-500/50 rounded-lg p-4 animate-pulse">
+              <p className="text-red-400 text-sm md:text-base">{error}</p>
+            </div>
+          )}
         </div>
 
         {/* Pricing Cards */}
