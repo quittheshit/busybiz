@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SuccessPage from './pages/SuccessPage';
 import RankSearchSection from './components/RankSearchSection';
 import PricingSection from './components/PricingSection';
+import { WeatherOverlay } from './components/weather/WeatherOverlay';
 
 function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -153,6 +154,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen" style={{background: 'transparent'}}>
+          <WeatherOverlay />
           <Routes>
             <Route path="/" element={
               <>
