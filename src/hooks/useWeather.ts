@@ -25,7 +25,7 @@ export function useWeather() {
 
         const data = await response.json();
 
-        const weatherValue = data.weather || data.Weather || 'Normal';
+        const weatherValue = data.currentWeather || data.weather || data.Weather || 'Normal';
 
         if (['Snow', 'Rain', 'Sunny', 'Cloudy', 'Normal'].includes(weatherValue)) {
           setWeather(weatherValue as WeatherType);
