@@ -163,24 +163,6 @@ function App() {
                 <header className="premium-header py-4 px-4 sm:px-6 md:px-10">
                   <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-wrap">
                     
-                    {/* TEMP SENTRY TEST BUTTON */}
-                    <button 
-                      onClick={() => {
-                        try {
-                          throw new Error("Sentry Test Error From Busybiz!");
-                        } catch (error) {
-                          Sentry.captureException(error);
-                          Sentry.showReportDialog({
-                            eventId: Sentry.captureException(error),
-                          });
-                        }
-                      }}
-                      className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg animate-pulse"
-                      title="Test Sentry Error Tracking"
-                    >
-                      Test Sentry Error & Feedback
-                    </button>
-                    
                     {/* Logo with Icon */}
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden">
