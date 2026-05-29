@@ -487,42 +487,8 @@ function App() {
                         </form>
                       </div>
 
-                      {/* Right Side: Chatbot & Contact Info */}
+                      {/* Right Side: Contact Info */}
                       <div className="space-y-8">
-                        {/* Chatbot CTA */}
-                        <div className="bg-gradient-to-br from-amber-400 to-yellow-600 rounded-3xl p-8 md:p-10 shadow-2xl text-slate-900 relative overflow-hidden group hover:scale-105 transition-transform duration-300">
-                          <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-                          <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-
-                          <div className="relative z-10">
-                            <div className="flex items-center gap-3 mb-4">
-                              <div className="w-12 h-12 bg-slate-900/20 backdrop-blur-sm rounded-xl flex items-center justify-center overflow-hidden">
-                                <img
-                                  src="/Busybiz-mascot-transparent-Photoroom.png"
-                                  alt="BusyBiz Logo"
-                                  className="w-full h-full object-contain p-1"
-                                />
-                              </div>
-                              <h3 className="text-2xl font-bold">Chat med vores assistent</h3>
-                            </div>
-
-                            <p className="text-slate-900/90 mb-6 leading-relaxed font-medium">
-                              Assistenten kan svare på spørgsmål, hjælpe dig med at få flere kunder, booke et møde og sende dig mere info med det samme.
-                            </p>
-
-                            <button
-                              onClick={() => {
-                                if (window.voiceflow && window.voiceflow.chat) {
-                                  window.voiceflow.chat.open();
-                                }
-                              }}
-                              className="w-full bg-slate-900 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-slate-800"
-                            >
-                              Start en samtale
-                            </button>
-                          </div>
-                        </div>
-
                         {/* Contact Information */}
                         <div className="bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-amber-500/20">
                           <h4 className="text-xl font-bold text-white mb-6">Eller kontakt mig direkte</h4>
