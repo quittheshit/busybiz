@@ -1,5 +1,7 @@
 import React from 'react';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { useJsonLd } from '../hooks/useJsonLd';
+import { getServiceSchema, getBreadcrumbSchema } from '../lib/schemaGraph';
 import { NavigationHeader } from '../components/NavigationHeader';
 import { FooterComponent } from '../components/FooterComponent';
 
@@ -14,6 +16,16 @@ const MarketingPage: React.FC<PageProps> = ({ onOpenContact }) => {
     canonicalPath: '/marketing',
     keywords: 'digital marketing, automatisering, automatisk kundeservice, leads generering, marketing til håndværkere'
   });
+
+  useJsonLd(
+    getServiceSchema(
+      'Digital Marketing & Automatisering',
+      'Automatiseret kundeservice, SMS-opfølgning og leadgenerering.',
+      '/marketing'
+    ),
+    'marketing-service-schema'
+  );
+  useJsonLd(getBreadcrumbSchema('Marketing', '/marketing'), 'marketing-breadcrumb-schema');
 
   return (
     <div className="min-h-screen bg-slate-900 text-white flex flex-col justify-between">

@@ -1,5 +1,7 @@
 import React from 'react';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { useJsonLd } from '../hooks/useJsonLd';
+import { getBreadcrumbSchema } from '../lib/schemaGraph';
 import { NavigationHeader } from '../components/NavigationHeader';
 import { FooterComponent } from '../components/FooterComponent';
 import PricingSection from '../components/PricingSection';
@@ -15,6 +17,8 @@ const PricingPage: React.FC<PageProps> = ({ onOpenContact }) => {
     canonicalPath: '/priser',
     keywords: 'hjemmeside pris, SEO pris, marketing priser, billig hjemmeside til firma, webdesign pakker Danmark'
   });
+
+  useJsonLd(getBreadcrumbSchema('Priser', '/priser'), 'pricing-breadcrumb-schema');
 
   return (
     <div className="min-h-screen bg-slate-900 text-white flex flex-col justify-between">

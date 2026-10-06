@@ -1,9 +1,12 @@
 import React from 'react';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { useJsonLd } from '../hooks/useJsonLd';
+import { getGlobalBusinessSchema, getFaqPageSchema } from '../lib/schemaGraph';
 import { NavigationHeader } from '../components/NavigationHeader';
 import { FooterComponent } from '../components/FooterComponent';
 import RankSearchSection from '../components/RankSearchSection';
 import PricingSection from '../components/PricingSection';
+import { FaqSection } from '../components/FaqSection';
 
 interface HomePageProps {
   onOpenContact: () => void;
@@ -26,6 +29,10 @@ export const HomePage: React.FC<HomePageProps> = ({
     canonicalPath: '/',
     keywords: 'hjemmeside, webdesign, SEO, søgemaskineoptimering, marketing, automatisering, lokale firmaer, Danmark'
   });
+
+  // Inject Global Business & FAQ Schemas
+  useJsonLd(getGlobalBusinessSchema(), 'global-business-schema');
+  useJsonLd(getFaqPageSchema(), 'faq-page-schema');
 
   return (
     <div>
@@ -193,6 +200,11 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* Pricing Section */}
       <div id="priser">
         <PricingSection />
+      </div>
+
+      {/* FAQ Section with JSON-LD Schema */}
+      <div id="faq">
+        <FaqSection />
       </div>
 
       <FooterComponent onOpenContact={onOpenContact} />

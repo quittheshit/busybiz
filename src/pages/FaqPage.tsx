@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { useJsonLd } from '../hooks/useJsonLd';
+import { getFaqPageSchema, getBreadcrumbSchema } from '../lib/schemaGraph';
 import { NavigationHeader } from '../components/NavigationHeader';
 import { FooterComponent } from '../components/FooterComponent';
 
@@ -95,6 +97,10 @@ const FaqPage: React.FC<PageProps> = ({ onOpenContact }) => {
     canonicalPath: '/faq',
     keywords: 'FAQ hjemmeside, spørgsmål om SEO, hvor hurtigt virker SEO, BusyBiz FAQ, webdesign spørgsmål'
   });
+
+  // Inject FAQ & Breadcrumb JSON-LD Schemas
+  useJsonLd(getFaqPageSchema(), 'faq-page-schema');
+  useJsonLd(getBreadcrumbSchema('FAQ', '/faq'), 'faq-breadcrumb-schema');
 
   const [openId, setOpenId] = useState<number | null>(1);
   const [searchQuery, setSearchQuery] = useState('');

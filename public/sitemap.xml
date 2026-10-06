@@ -6,8 +6,8 @@
   <!-- Homepage -->
   <url>
     <loc>https://busybiz.dk/</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://busybiz.dk/Busybiz-mascot-transparent-Photoroom.png</image:loc>
@@ -19,32 +19,43 @@
     </image:image>
   </url>
 
-  <!-- Main Sections (as they exist on single page) -->
+  <!-- Hjemmesider & Webdesign Page -->
   <url>
-    <loc>https://busybiz.dk/#hjemmesider</loc>
-    <lastmod>2025-12-08</lastmod>
+    <loc>https://busybiz.dk/hjemmesider</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
+  <!-- Local SEO Page -->
   <url>
-    <loc>https://busybiz.dk/#seo</loc>
-    <lastmod>2025-12-08</lastmod>
+    <loc>https://busybiz.dk/seo</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
+  <!-- Marketing & Automatisering Page -->
   <url>
-    <loc>https://busybiz.dk/#marketing</loc>
-    <lastmod>2025-12-08</lastmod>
+    <loc>https://busybiz.dk/marketing</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
+  <!-- Priser & Pakker Page -->
   <url>
-    <loc>https://busybiz.dk/#contact</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://busybiz.dk/priser</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- FAQ & Knowledge Base Page (AEO / GEO Focus) -->
+  <url>
+    <loc>https://busybiz.dk/faq</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { useJsonLd } from '../hooks/useJsonLd';
+import { getServiceSchema, getBreadcrumbSchema } from '../lib/schemaGraph';
 import { NavigationHeader } from '../components/NavigationHeader';
 import { FooterComponent } from '../components/FooterComponent';
 import RankSearchSection from '../components/RankSearchSection';
@@ -15,6 +17,16 @@ const SeoPage: React.FC<PageProps> = ({ onOpenContact }) => {
     canonicalPath: '/seo',
     keywords: 'SEO optimering, lokal SEO, Google optimering, Google Maps SEO, søgemaskineoptimering Danmark'
   });
+
+  useJsonLd(
+    getServiceSchema(
+      'Lokal SEO & Google Optimering',
+      'Top-placeringer på Google og Google Maps i dit lokalområde.',
+      '/seo'
+    ),
+    'seo-service-schema'
+  );
+  useJsonLd(getBreadcrumbSchema('SEO', '/seo'), 'seo-breadcrumb-schema');
 
   return (
     <div className="min-h-screen bg-slate-900 text-white flex flex-col justify-between">

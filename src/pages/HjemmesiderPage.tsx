@@ -1,5 +1,7 @@
 import React from 'react';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { useJsonLd } from '../hooks/useJsonLd';
+import { getServiceSchema, getBreadcrumbSchema } from '../lib/schemaGraph';
 import { NavigationHeader } from '../components/NavigationHeader';
 import { FooterComponent } from '../components/FooterComponent';
 import { Link } from 'react-router-dom';
@@ -15,6 +17,16 @@ const HjemmesiderPage: React.FC<PageProps> = ({ onOpenContact }) => {
     canonicalPath: '/hjemmesider',
     keywords: 'hjemmeside, webdesign, professionel hjemmeside, mobilvenlig hjemmeside, firma hjemmeside Danmark'
   });
+
+  useJsonLd(
+    getServiceSchema(
+      'Hjemmeside Design & Webudvikling',
+      'Skræddersyede, mobiloptimerede og lynhurtige hjemmesider til danske virksomheder.',
+      '/hjemmesider'
+    ),
+    'hjemmesider-service-schema'
+  );
+  useJsonLd(getBreadcrumbSchema('Hjemmesider', '/hjemmesider'), 'hjemmesider-breadcrumb-schema');
 
   return (
     <div className="min-h-screen bg-slate-900 text-white flex flex-col justify-between">
