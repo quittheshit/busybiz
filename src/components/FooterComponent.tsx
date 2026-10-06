@@ -1,29 +1,11 @@
 import React from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 interface FooterProps {
   onOpenContact: () => void;
 }
 
 export const FooterComponent: React.FC<FooterProps> = ({ onOpenContact }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const handleNav = (path: string, hashId?: string) => {
-    if (location.pathname === '/' && hashId) {
-      const targetElement = document.getElementById(hashId);
-      if (targetElement) {
-        const headerOffset = 80;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        return;
-      }
-    }
-    navigate(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-16 px-4 sm:px-6 md:px-10 mt-0 relative overflow-hidden border-t border-amber-500/20" style={{boxShadow: 'inset 0 2px 0 rgba(251, 191, 36, 0.15)'}}>
       <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-gradient-to-br from-amber-400/10 to-yellow-500/5 blur-3xl pointer-events-none"></div>
@@ -56,11 +38,11 @@ export const FooterComponent: React.FC<FooterProps> = ({ onOpenContact }) => {
           </div>
 
           <nav className="nav-font flex flex-wrap justify-center gap-6 text-xs text-white/80 uppercase font-semibold" role="navigation" aria-label="Footer navigation">
-            <button onClick={() => handleNav('/hjemmesider', 'hjemmesider')} className="hover:text-amber-300 transition-all duration-300 bg-transparent border-none cursor-pointer">HJEMMESIDER</button>
-            <button onClick={() => handleNav('/seo', 'seo')} className="hover:text-amber-300 transition-all duration-300 bg-transparent border-none cursor-pointer">SEO</button>
-            <button onClick={() => handleNav('/marketing', 'marketing')} className="hover:text-amber-300 transition-all duration-300 bg-transparent border-none cursor-pointer">MARKETING</button>
-            <button onClick={() => handleNav('/priser', 'priser')} className="hover:text-amber-300 transition-all duration-300 bg-transparent border-none cursor-pointer">PRISER</button>
-            <button onClick={() => handleNav('/faq', 'faq')} className="hover:text-amber-300 transition-all duration-300 bg-transparent border-none cursor-pointer">FAQ</button>
+            <Link to="/hjemmesider" className="hover:text-amber-300 transition-all duration-300 text-white/80 no-underline">HJEMMESIDER</Link>
+            <Link to="/seo" className="hover:text-amber-300 transition-all duration-300 text-white/80 no-underline">SEO</Link>
+            <Link to="/marketing" className="hover:text-amber-300 transition-all duration-300 text-white/80 no-underline">MARKETING</Link>
+            <Link to="/priser" className="hover:text-amber-300 transition-all duration-300 text-white/80 no-underline">PRISER</Link>
+            <Link to="/faq" className="hover:text-amber-300 transition-all duration-300 text-white/80 no-underline">FAQ</Link>
             <button onClick={onOpenContact} className="hover:text-amber-300 transition-all duration-300 bg-transparent border-none cursor-pointer text-amber-300 font-bold">KONTAKT</button>
           </nav>
         </div>

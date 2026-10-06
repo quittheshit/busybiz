@@ -7,6 +7,8 @@ import MarketingPage from './pages/MarketingPage';
 import PricingPage from './pages/PricingPage';
 import FaqPage from './pages/FaqPage';
 import SuccessPage from './pages/SuccessPage';
+import { ScrollToTop } from './components/ScrollToTop';
+import { LoadingScreen } from './components/LoadingScreen';
 import { WeatherOverlay } from './components/weather/WeatherOverlay';
 import * as Sentry from '@sentry/react';
 
@@ -106,6 +108,8 @@ function App() {
 
   return (
     <Router>
+      <LoadingScreen />
+      <ScrollToTop />
       <div className="min-h-screen text-slate-100" style={{ background: 'transparent' }}>
         <WeatherOverlay />
         <Routes>

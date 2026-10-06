@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 interface NavigationHeaderProps {
   onOpenContact: () => void;
@@ -7,26 +7,15 @@ interface NavigationHeaderProps {
 
 export const NavigationHeader: React.FC<NavigationHeaderProps> = ({ onOpenContact }) => {
   const location = useLocation();
-  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, path: string, hashId?: string) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-
-    if (location.pathname === '/' && hashId) {
-      const targetElement = document.getElementById(hashId);
-      if (targetElement) {
-        const headerOffset = 80;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        return;
-      }
-    }
-    navigate(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const navItems = [
+    { label: 'HJEMMESIDER', path: '/hjemmesider' },
+    { label: 'SEO', path: '/seo' },
+    { label: 'MARKETING', path: '/marketing' },
+    { label: 'PRISER', path: '/priser' },
+    { label: 'FAQ', path: '/faq' },
+  ];
 
   return (
     <header className="premium-header py-4 px-4 sm:px-6 md:px-10 sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-amber-500/10">
@@ -45,41 +34,15 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({ onOpenContac
 
         {/* Desktop Navigation */}
         <nav className="premium-nav hidden md:flex items-center space-x-6 text-xs font-semibold tracking-wider uppercase" role="navigation" aria-label="Main navigation">
-          <a
-            href="/hjemmesider"
-            onClick={(e) => handleNav(e, '/hjemmesider', 'hjemmesider')}
-            className={`nav-link text-white hover:text-amber-300 transition-all duration-300 ${location.pathname === '/hjemmesider' ? 'text-amber-400 font-bold border-b-2 border-amber-400 pb-1' : ''}`}
-          >
-            HJEMMESIDER
-          </a>
-          <a
-            href="/seo"
-            onClick={(e) => handleNav(e, '/seo', 'seo')}
-            className={`nav-link text-white hover:text-amber-300 transition-all duration-300 ${location.pathname === '/seo' ? 'text-amber-400 font-bold border-b-2 border-amber-400 pb-1' : ''}`}
-          >
-            SEO
-          </a>
-          <a
-            href="/marketing"
-            onClick={(e) => handleNav(e, '/marketing', 'marketing')}
-            className={`nav-link text-white hover:text-amber-300 transition-all duration-300 ${location.pathname === '/marketing' ? 'text-amber-400 font-bold border-b-2 border-amber-400 pb-1' : ''}`}
-          >
-            MARKETING
-          </a>
-          <a
-            href="/priser"
-            onClick={(e) => handleNav(e, '/priser', 'priser')}
-            className={`nav-link text-white hover:text-amber-300 transition-all duration-300 ${location.pathname === '/priser' ? 'text-amber-400 font-bold border-b-2 border-amber-400 pb-1' : ''}`}
-          >
-            PRISER
-          </a>
-          <a
-            href="/faq"
-            onClick={(e) => handleNav(e, '/faq', 'faq')}
-            className={`nav-link text-white hover:text-amber-300 transition-all duration-300 ${location.pathname === '/faq' ? 'text-amber-400 font-bold border-b-2 border-amber-400 pb-1' : ''}`}
-          >
-            FAQ
-          </a>
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`nav-link text-white hover:text-amber-300 transition-all duration-300 ${location.pathname === item.path ? 'text-amber-400 font-bold border-b-2 border-amber-400 pb-1' : ''}`}
+            >
+              {item.label}
+            </Link>
+          ))}
           <button
             onClick={onOpenContact}
             className="nav-link text-amber-300 hover:text-amber-200 transition-all duration-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-400/30 px-3 py-1.5 rounded-full cursor-pointer"
@@ -123,11 +86,16 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({ onOpenContac
       {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden mt-4 py-4 px-6 bg-slate-900/95 border-t border-amber-500/20 rounded-2xl space-y-4 text-sm font-medium">
-          <a href="/hjemmesider" onClick={(e) => handleNav(e, '/hjemmesider', 'hjemmesider')} className="block text-white hover:text-amber-300">HJEMMESIDER</a>
-          <a href="/seo" onClick={(e) => handleNav(e, '/seo', 'seo')} className="block text-white hover:text-amber-300">SEO</a>
-          <a href="/marketing" onClick={(e) => handleNav(e, '/marketing', 'marketing')} className="block text-white hover:text-amber-300">MARKETING</a>
-          <a href="/priser" onClick={(e) => handleNav(e, '/priser', 'priser')} className="block text-white hover:text-amber-300">PRISER</a>
-          <a href="/faq" onClick={(e) => handleNav(e, '/faq', 'faq')} className="block text-white hover:text-amber-300">FAQ</a>
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-white hover:text-amber-300"
+            >
+              {item.label}
+            </Link>
+          ))}
           <button
             onClick={() => { setMobileMenuOpen(false); onOpenContact(); }}
             className="w-full text-center bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-900 font-bold py-2 px-4 rounded-xl"

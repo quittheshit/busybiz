@@ -169,9 +169,18 @@
     }
     </script>
   </head>
-  <body style="background: linear-gradient(135deg, #f8f9fa 0%, #e8f5f1 25%, #f0f8f5 50%, #fef8f5 75%, #f8f9fa 100%); margin: 0; padding: 0;">
+  <body style="background: #020617; margin: 0; padding: 0;">
+    <!-- Static First-Paint Branded Splash Screen -->
+    <div id="static-brand-loader" style="position: fixed; inset: 0; z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #020617; color: #ffffff; font-family: sans-serif;">
+      <div style="position: relative; margin-bottom: 1.5rem;">
+        <div style="width: 96px; height: 96px; border-radius: 1rem; background-color: #0f172a; border: 1px solid rgba(251, 191, 36, 0.4); padding: 0.75rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 40px rgba(251, 191, 36, 0.25);">
+          <img src="/Busybiz-mascot-transparent-Photoroom.png" alt="BusyBiz Logo" style="width: 100%; height: 100%; object-fit: contain;" />
+        </div>
+      </div>
+      <h1 style="font-size: 2rem; font-weight: 900; letter-spacing: 0.15em; color: #fbbf24; margin: 0 0 0.5rem 0; text-transform: uppercase;">BUSYBIZ</h1>
+      <p style="color: rgba(251, 191, 36, 0.7); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; margin: 0; text-transform: uppercase;">Webdesign • SEO • Marketing</p>
+    </div>
     <div id="root" style="background: transparent;"></div>
     <script type="module" src="/src/main.tsx"></script>
-
   </body>
 </html>
