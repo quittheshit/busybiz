@@ -16,6 +16,7 @@ export function WeatherOverlay() {
       {weather === 'Snow' && <SnowAnimation />}
       {weather === 'Rain' && <RainAnimation />}
       {weather === 'Sunny' && <SunnyAnimation />}
+      {weather === 'Cloudy' && <CloudyAnimation />}
     </>
   );
 }

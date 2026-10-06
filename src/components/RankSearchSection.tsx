@@ -7,7 +7,6 @@ const RankSearchSection = memo(() => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
   const [yourPosition, setYourPosition] = useState(28);
-  const [wheelProgress, setWheelProgress] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const animationFrameRef = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
@@ -95,7 +94,6 @@ const RankSearchSection = memo(() => {
     );
 
     setYourPosition(newPosition);
-    setWheelProgress(easedProgress);
 
     if (progress < 1) {
       animationFrameRef.current = requestAnimationFrame(animatePosition);

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { getProductByPriceId } from '../stripe-config';
 
 const SuccessPage = () => {
   const [searchParams] = useSearchParams();
